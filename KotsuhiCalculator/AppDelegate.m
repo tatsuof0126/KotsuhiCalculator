@@ -7,15 +7,42 @@
 //
 
 #import "AppDelegate.h"
+#import "ConfigManager.h"
+#import <FelloPush/KonectNotificationsAPI.h>
 
 @implementation AppDelegate
+
+@synthesize purchaseManager;
+
+@synthesize targetKotsuhi;
+@synthesize targetMyPattern;
+
+@synthesize visit;
+@synthesize departure;
+@synthesize arrival;
+@synthesize transportation;
+@synthesize amount;
+@synthesize purpose;
+@synthesize route;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // For AppBank Fello
+    NSString* appId = @"10646";
+    [KonectNotificationsAPI initialize:nil launchOptions:launchOptions appId:appId];
+    
+    // 広告削除アドオン購入済みなら広告表示しない
+    if([ConfigManager isRemoveAdsFlg] == YES){
+        [KonectNotificationsAPI setAdEnabled:NO];
+    } else {
+        [KonectNotificationsAPI setAdEnabled:YES];
+    }
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -41,6 +68,46 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (InAppPurchaseManager*)getInAppPurchaseManager {
+    if(purchaseManager == nil){
+        purchaseManager = [[InAppPurchaseManager alloc] init];
+    }
+    
+    return purchaseManager;
+    
+}
+
++ (void)adjustForiPhone5:(UIView*)view {
+    // iPhone5対応
+    if([UIScreen mainScreen].bounds.size.height == 568){
+        CGRect oldRect = view.frame;
+        CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y,
+                                    oldRect.size.width, oldRect.size.height+88);
+        view.frame = newRect;
+    }
+}
+
++ (void)adjustOriginForiPhone5:(UIView*)view {
+    // iPhone5対応
+    if([UIScreen mainScreen].bounds.size.height == 568){
+        CGRect oldRect = view.frame;
+        CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y+88,
+                                    oldRect.size.width, oldRect.size.height);
+        view.frame = newRect;
+    }
+}
+
++ (void)adjustOriginForBeforeiOS6:(UIView*)view {
+    // iOS5/6対応
+    if([[[UIDevice currentDevice] systemVersion] compare:@"7" options:NSNumericSearch]
+       == NSOrderedAscending){
+        CGRect oldRect = view.frame;
+        CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y-20,
+                                    oldRect.size.width, oldRect.size.height);
+        view.frame = newRect;
+    }
 }
 
 @end

@@ -10,18 +10,55 @@
 		0B091E3618CF5E5800C93391 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3518CF5E5800C93391 /* Foundation.framework */; };
 		0B091E3818CF5E5800C93391 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3718CF5E5800C93391 /* CoreGraphics.framework */; };
 		0B091E3A18CF5E5800C93391 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3918CF5E5800C93391 /* UIKit.framework */; };
-		0B091E4018CF5E5800C93391 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B091E3E18CF5E5800C93391 /* InfoPlist.strings */; };
 		0B091E4218CF5E5800C93391 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E4118CF5E5800C93391 /* main.m */; };
 		0B091E4618CF5E5800C93391 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E4518CF5E5800C93391 /* AppDelegate.m */; };
-		0B091E4918CF5E5800C93391 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B091E4718CF5E5800C93391 /* Main.storyboard */; };
-		0B091E4C18CF5E5800C93391 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E4B18CF5E5800C93391 /* FirstViewController.m */; };
-		0B091E4F18CF5E5800C93391 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E4E18CF5E5800C93391 /* SecondViewController.m */; };
 		0B091E5118CF5E5800C93391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B091E5018CF5E5800C93391 /* Images.xcassets */; };
 		0B091E5818CF5E5800C93391 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E5718CF5E5800C93391 /* XCTest.framework */; };
 		0B091E5918CF5E5800C93391 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3518CF5E5800C93391 /* Foundation.framework */; };
 		0B091E5A18CF5E5800C93391 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3918CF5E5800C93391 /* UIKit.framework */; };
-		0B091E6218CF5E5800C93391 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B091E6018CF5E5800C93391 /* InfoPlist.strings */; };
 		0B091E6418CF5E5800C93391 /* KotsuhiCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */; };
+		0B096F63192E5FC900D8E127 /* FelloPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B096F61192E5FC900D8E127 /* FelloPush.bundle */; };
+		0B096F64192E5FC900D8E127 /* FelloPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B096F62192E5FC900D8E127 /* FelloPush.framework */; };
+		0B096F67192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */; };
+		0B3EC945192E32A300966776 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3EC944192E32A300966776 /* Security.framework */; };
+		0B3EC94E192E347000966776 /* NADView_readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B3EC94C192E347000966776 /* NADView_readme.txt */; };
+		0B3EC94F192E34DF00966776 /* libNendAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3EC947192E347000966776 /* libNendAd.a */; };
+		0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC951192E452400966776 /* PurchaseAddonViewController.m */; };
+		0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC955192E45E100966776 /* InAppPurchaseManager.m */; };
+		0B3EC959192E467500966776 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC958192E467500966776 /* ConfigManager.m */; };
+		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
+		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
+		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
+		0BA5EB5D191A895000323F5F /* KotsuhiFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB5C191A895000323F5F /* KotsuhiFileManager.m */; };
+		0BA5EB66191F1A1F00323F5F /* MyPatternListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB65191F1A1F00323F5F /* MyPatternListViewController.m */; };
+		0BA5EB69191F1A4C00323F5F /* MyPatternInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB68191F1A4C00323F5F /* MyPatternInputViewController.m */; };
+		0BA5EB6C192A630500323F5F /* SelectMyPatternViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB6B192A630500323F5F /* SelectMyPatternViewController.m */; };
+		0BA5EB72192B930B00323F5F /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB6E192B930B00323F5F /* list.png */; };
+		0BA5EB73192B930B00323F5F /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB6F192B930B00323F5F /* list@2x.png */; };
+		0BA5EB74192B930B00323F5F /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB70192B930B00323F5F /* settings.png */; };
+		0BA5EB75192B930B00323F5F /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB71192B930B00323F5F /* settings@2x.png */; };
+		0BA5EB78192B935A00323F5F /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB76192B935A00323F5F /* book.png */; };
+		0BA5EB79192B935A00323F5F /* book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB77192B935A00323F5F /* book@2x.png */; };
+		0BA5EB7C192B94B600323F5F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB7A192B94B600323F5F /* icon.png */; };
+		0BA5EB7D192B94B600323F5F /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB7B192B94B600323F5F /* icon@2x.png */; };
+		0BA5EB82192B96E000323F5F /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB7E192B96E000323F5F /* icon-60@2x.png */; };
+		0BA5EB83192B96E000323F5F /* icon-small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB7F192B96E000323F5F /* icon-small-40@2x.png */; };
+		0BA5EB84192B96E000323F5F /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB80192B96E000323F5F /* icon-small.png */; };
+		0BA5EB85192B96E000323F5F /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB81192B96E000323F5F /* icon-small@2x.png */; };
+		0BA5EB8D192BAB7A00323F5F /* train_i_lb.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB88192BAB7A00323F5F /* train_i_lb.gif */; };
+		0BA5EB8E192BAB7A00323F5F /* train_i_lg.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB89192BAB7A00323F5F /* train_i_lg.gif */; };
+		0BA5EB8F192BAB7A00323F5F /* train_i_lo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB8A192BAB7A00323F5F /* train_i_lo.gif */; };
+		0BA5EB90192BAB7A00323F5F /* train_i_lr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB8B192BAB7A00323F5F /* train_i_lr.gif */; };
+		0BA5EB91192BAB7A00323F5F /* train_i_ly.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB8C192BAB7A00323F5F /* train_i_ly.gif */; };
+		0BA5EB95192CEA9B00323F5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */; };
+		0BA5EB96192CEA9B00323F5F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB93192CEA9B00323F5F /* Default.png */; };
+		0BA5EB97192CEA9B00323F5F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB94192CEA9B00323F5F /* Default@2x.png */; };
+		0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC80DE918E5B900008C01F8 /* ConfigViewController.m */; };
+		0BC80DED18E5BBF6008C01F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC80DEC18E5BBF6008C01F8 /* Main.storyboard */; };
+		0BC80DF018E5BCA0008C01F8 /* KotsuhiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC80DEF18E5BCA0008C01F8 /* KotsuhiListViewController.m */; };
+		0BC80DF318E5BCB8008C01F8 /* KotsuhiInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC80DF218E5BCB8008C01F8 /* KotsuhiInputViewController.m */; };
+		0BC80DF918E5C59A008C01F8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC80DF818E5C59A008C01F8 /* StoreKit.framework */; };
+		0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,22 +77,76 @@
 		0B091E3718CF5E5800C93391 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0B091E3918CF5E5800C93391 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0B091E3D18CF5E5800C93391 /* KotsuhiCalculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KotsuhiCalculator-Info.plist"; sourceTree = "<group>"; };
-		0B091E3F18CF5E5800C93391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B091E4118CF5E5800C93391 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0B091E4318CF5E5800C93391 /* KotsuhiCalculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KotsuhiCalculator-Prefix.pch"; sourceTree = "<group>"; };
 		0B091E4418CF5E5800C93391 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0B091E4518CF5E5800C93391 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0B091E4818CF5E5800C93391 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0B091E4A18CF5E5800C93391 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		0B091E4B18CF5E5800C93391 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		0B091E4D18CF5E5800C93391 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		0B091E4E18CF5E5800C93391 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		0B091E5018CF5E5800C93391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0B091E5618CF5E5800C93391 /* KotsuhiCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KotsuhiCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B091E5718CF5E5800C93391 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0B091E5F18CF5E5800C93391 /* KotsuhiCalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KotsuhiCalculatorTests-Info.plist"; sourceTree = "<group>"; };
-		0B091E6118CF5E5800C93391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorTests.m; sourceTree = "<group>"; };
+		0B096F61192E5FC900D8E127 /* FelloPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FelloPush.bundle; path = "../../Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug/FelloPush.bundle"; sourceTree = "<group>"; };
+		0B096F62192E5FC900D8E127 /* FelloPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FelloPush.framework; path = "../../Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug/FelloPush.framework"; sourceTree = "<group>"; };
+		0B096F65192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiCalculatorUIApplication.h; sourceTree = "<group>"; };
+		0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorUIApplication.m; sourceTree = "<group>"; };
+		0B3EC944192E32A300966776 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0B3EC947192E347000966776 /* libNendAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNendAd.a; sourceTree = "<group>"; };
+		0B3EC948192E347000966776 /* NADIconArrayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADIconArrayView.h; sourceTree = "<group>"; };
+		0B3EC949192E347000966776 /* NADIconLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADIconLoader.h; sourceTree = "<group>"; };
+		0B3EC94A192E347000966776 /* NADIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADIconView.h; sourceTree = "<group>"; };
+		0B3EC94B192E347000966776 /* NADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADView.h; sourceTree = "<group>"; };
+		0B3EC94C192E347000966776 /* NADView_readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NADView_readme.txt; sourceTree = "<group>"; };
+		0B3EC950192E452400966776 /* PurchaseAddonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseAddonViewController.h; sourceTree = "<group>"; };
+		0B3EC951192E452400966776 /* PurchaseAddonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseAddonViewController.m; sourceTree = "<group>"; };
+		0B3EC953192E45AF00966776 /* InAppPurchaseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseProtocol.h; sourceTree = "<group>"; };
+		0B3EC954192E45E100966776 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		0B3EC955192E45E100966776 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
+		0B3EC957192E467500966776 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
+		0B3EC958192E467500966776 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
+		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
+		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		0BA14AE219192C1900B94B16 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		0BA5EB58191A860D00323F5F /* MyPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPattern.h; sourceTree = "<group>"; };
+		0BA5EB59191A860D00323F5F /* MyPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPattern.m; sourceTree = "<group>"; };
+		0BA5EB5B191A895000323F5F /* KotsuhiFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiFileManager.h; sourceTree = "<group>"; };
+		0BA5EB5C191A895000323F5F /* KotsuhiFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiFileManager.m; sourceTree = "<group>"; };
+		0BA5EB64191F1A1F00323F5F /* MyPatternListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPatternListViewController.h; sourceTree = "<group>"; };
+		0BA5EB65191F1A1F00323F5F /* MyPatternListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPatternListViewController.m; sourceTree = "<group>"; };
+		0BA5EB67191F1A4C00323F5F /* MyPatternInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPatternInputViewController.h; sourceTree = "<group>"; };
+		0BA5EB68191F1A4C00323F5F /* MyPatternInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPatternInputViewController.m; sourceTree = "<group>"; };
+		0BA5EB6A192A630500323F5F /* SelectMyPatternViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMyPatternViewController.h; sourceTree = "<group>"; };
+		0BA5EB6B192A630500323F5F /* SelectMyPatternViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMyPatternViewController.m; sourceTree = "<group>"; };
+		0BA5EB6E192B930B00323F5F /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		0BA5EB6F192B930B00323F5F /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
+		0BA5EB70192B930B00323F5F /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		0BA5EB71192B930B00323F5F /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		0BA5EB76192B935A00323F5F /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		0BA5EB77192B935A00323F5F /* book@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book@2x.png"; sourceTree = "<group>"; };
+		0BA5EB7A192B94B600323F5F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0BA5EB7B192B94B600323F5F /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		0BA5EB7E192B96E000323F5F /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
+		0BA5EB7F192B96E000323F5F /* icon-small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small-40@2x.png"; sourceTree = "<group>"; };
+		0BA5EB80192B96E000323F5F /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
+		0BA5EB81192B96E000323F5F /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
+		0BA5EB88192BAB7A00323F5F /* train_i_lb.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train_i_lb.gif; sourceTree = "<group>"; };
+		0BA5EB89192BAB7A00323F5F /* train_i_lg.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train_i_lg.gif; sourceTree = "<group>"; };
+		0BA5EB8A192BAB7A00323F5F /* train_i_lo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train_i_lo.gif; sourceTree = "<group>"; };
+		0BA5EB8B192BAB7A00323F5F /* train_i_lr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train_i_lr.gif; sourceTree = "<group>"; };
+		0BA5EB8C192BAB7A00323F5F /* train_i_ly.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = train_i_ly.gif; sourceTree = "<group>"; };
+		0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0BA5EB93192CEA9B00323F5F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0BA5EB94192CEA9B00323F5F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0BC80DE818E5B900008C01F8 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		0BC80DE918E5B900008C01F8 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		0BC80DEC18E5BBF6008C01F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0BC80DEE18E5BCA0008C01F8 /* KotsuhiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiListViewController.h; sourceTree = "<group>"; };
+		0BC80DEF18E5BCA0008C01F8 /* KotsuhiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiListViewController.m; sourceTree = "<group>"; };
+		0BC80DF118E5BCB8008C01F8 /* KotsuhiInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiInputViewController.h; sourceTree = "<group>"; };
+		0BC80DF218E5BCB8008C01F8 /* KotsuhiInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiInputViewController.m; sourceTree = "<group>"; };
+		0BC80DF818E5C59A008C01F8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +154,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3EC94F192E34DF00966776 /* libNendAd.a in Frameworks */,
+				0B3EC945192E32A300966776 /* Security.framework in Frameworks */,
+				0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */,
+				0BC80DF918E5C59A008C01F8 /* StoreKit.framework in Frameworks */,
 				0B091E3818CF5E5800C93391 /* CoreGraphics.framework in Frameworks */,
 				0B091E3A18CF5E5800C93391 /* UIKit.framework in Frameworks */,
+				0B096F64192E5FC900D8E127 /* FelloPush.framework in Frameworks */,
 				0B091E3618CF5E5800C93391 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +183,7 @@
 			children = (
 				0B091E3B18CF5E5800C93391 /* KotsuhiCalculator */,
 				0B091E5D18CF5E5800C93391 /* KotsuhiCalculatorTests */,
+				0B3EC946192E347000966776 /* NendAd */,
 				0B091E3418CF5E5800C93391 /* Frameworks */,
 				0B091E3318CF5E5800C93391 /* Products */,
 			);
@@ -104,6 +201,11 @@
 		0B091E3418CF5E5800C93391 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B096F61192E5FC900D8E127 /* FelloPush.bundle */,
+				0B096F62192E5FC900D8E127 /* FelloPush.framework */,
+				0B3EC944192E32A300966776 /* Security.framework */,
+				0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */,
+				0BC80DF818E5C59A008C01F8 /* StoreKit.framework */,
 				0B091E3518CF5E5800C93391 /* Foundation.framework */,
 				0B091E3718CF5E5800C93391 /* CoreGraphics.framework */,
 				0B091E3918CF5E5800C93391 /* UIKit.framework */,
@@ -115,15 +217,41 @@
 		0B091E3B18CF5E5800C93391 /* KotsuhiCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				0BA5EB6D192B930B00323F5F /* images */,
+				0B091E3C18CF5E5800C93391 /* Supporting Files */,
+				0B091E5018CF5E5800C93391 /* Images.xcassets */,
 				0B091E4418CF5E5800C93391 /* AppDelegate.h */,
 				0B091E4518CF5E5800C93391 /* AppDelegate.m */,
-				0B091E4718CF5E5800C93391 /* Main.storyboard */,
-				0B091E4A18CF5E5800C93391 /* FirstViewController.h */,
-				0B091E4B18CF5E5800C93391 /* FirstViewController.m */,
-				0B091E4D18CF5E5800C93391 /* SecondViewController.h */,
-				0B091E4E18CF5E5800C93391 /* SecondViewController.m */,
-				0B091E5018CF5E5800C93391 /* Images.xcassets */,
-				0B091E3C18CF5E5800C93391 /* Supporting Files */,
+				0B096F65192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.h */,
+				0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */,
+				0BC80DEC18E5BBF6008C01F8 /* Main.storyboard */,
+				0BC80DEE18E5BCA0008C01F8 /* KotsuhiListViewController.h */,
+				0BC80DEF18E5BCA0008C01F8 /* KotsuhiListViewController.m */,
+				0BC80DF118E5BCB8008C01F8 /* KotsuhiInputViewController.h */,
+				0BC80DF218E5BCB8008C01F8 /* KotsuhiInputViewController.m */,
+				0BA5EB6A192A630500323F5F /* SelectMyPatternViewController.h */,
+				0BA5EB6B192A630500323F5F /* SelectMyPatternViewController.m */,
+				0BA5EB64191F1A1F00323F5F /* MyPatternListViewController.h */,
+				0BA5EB65191F1A1F00323F5F /* MyPatternListViewController.m */,
+				0BA5EB67191F1A4C00323F5F /* MyPatternInputViewController.h */,
+				0BA5EB68191F1A4C00323F5F /* MyPatternInputViewController.m */,
+				0BC80DE818E5B900008C01F8 /* ConfigViewController.h */,
+				0BC80DE918E5B900008C01F8 /* ConfigViewController.m */,
+				0B3EC950192E452400966776 /* PurchaseAddonViewController.h */,
+				0B3EC951192E452400966776 /* PurchaseAddonViewController.m */,
+				0BA14ADB191918E800B94B16 /* Kotsuhi.h */,
+				0BA14ADC191918E800B94B16 /* Kotsuhi.m */,
+				0BA5EB58191A860D00323F5F /* MyPattern.h */,
+				0BA5EB59191A860D00323F5F /* MyPattern.m */,
+				0BA5EB5B191A895000323F5F /* KotsuhiFileManager.h */,
+				0BA5EB5C191A895000323F5F /* KotsuhiFileManager.m */,
+				0B3EC957192E467500966776 /* ConfigManager.h */,
+				0B3EC958192E467500966776 /* ConfigManager.m */,
+				0BA14AE119192C1900B94B16 /* Utility.h */,
+				0BA14AE219192C1900B94B16 /* Utility.m */,
+				0B3EC953192E45AF00966776 /* InAppPurchaseProtocol.h */,
+				0B3EC954192E45E100966776 /* InAppPurchaseManager.h */,
+				0B3EC955192E45E100966776 /* InAppPurchaseManager.m */,
 			);
 			path = KotsuhiCalculator;
 			sourceTree = "<group>";
@@ -132,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				0B091E3D18CF5E5800C93391 /* KotsuhiCalculator-Info.plist */,
-				0B091E3E18CF5E5800C93391 /* InfoPlist.strings */,
 				0B091E4118CF5E5800C93391 /* main.m */,
 				0B091E4318CF5E5800C93391 /* KotsuhiCalculator-Prefix.pch */,
 			);
@@ -152,9 +279,49 @@
 			isa = PBXGroup;
 			children = (
 				0B091E5F18CF5E5800C93391 /* KotsuhiCalculatorTests-Info.plist */,
-				0B091E6018CF5E5800C93391 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B3EC946192E347000966776 /* NendAd */ = {
+			isa = PBXGroup;
+			children = (
+				0B3EC947192E347000966776 /* libNendAd.a */,
+				0B3EC948192E347000966776 /* NADIconArrayView.h */,
+				0B3EC949192E347000966776 /* NADIconLoader.h */,
+				0B3EC94A192E347000966776 /* NADIconView.h */,
+				0B3EC94B192E347000966776 /* NADView.h */,
+				0B3EC94C192E347000966776 /* NADView_readme.txt */,
+			);
+			name = NendAd;
+			path = KotsuhiCalculator/NendAd;
+			sourceTree = "<group>";
+		};
+		0BA5EB6D192B930B00323F5F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				0BA5EB6E192B930B00323F5F /* list.png */,
+				0BA5EB6F192B930B00323F5F /* list@2x.png */,
+				0BA5EB70192B930B00323F5F /* settings.png */,
+				0BA5EB71192B930B00323F5F /* settings@2x.png */,
+				0BA5EB76192B935A00323F5F /* book.png */,
+				0BA5EB77192B935A00323F5F /* book@2x.png */,
+				0BA5EB7A192B94B600323F5F /* icon.png */,
+				0BA5EB7B192B94B600323F5F /* icon@2x.png */,
+				0BA5EB7E192B96E000323F5F /* icon-60@2x.png */,
+				0BA5EB7F192B96E000323F5F /* icon-small-40@2x.png */,
+				0BA5EB80192B96E000323F5F /* icon-small.png */,
+				0BA5EB81192B96E000323F5F /* icon-small@2x.png */,
+				0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */,
+				0BA5EB93192CEA9B00323F5F /* Default.png */,
+				0BA5EB94192CEA9B00323F5F /* Default@2x.png */,
+				0BA5EB88192BAB7A00323F5F /* train_i_lb.gif */,
+				0BA5EB89192BAB7A00323F5F /* train_i_lg.gif */,
+				0BA5EB8A192BAB7A00323F5F /* train_i_lo.gif */,
+				0BA5EB8B192BAB7A00323F5F /* train_i_lr.gif */,
+				0BA5EB8C192BAB7A00323F5F /* train_i_ly.gif */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,7 +368,7 @@
 		0B091E2A18CF5E5800C93391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tatsuo Fujiwara";
 				TargetAttributes = {
 					0B091E5518CF5E5800C93391 = {
@@ -233,9 +400,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA5EB8F192BAB7A00323F5F /* train_i_lo.gif in Resources */,
+				0BA5EB8E192BAB7A00323F5F /* train_i_lg.gif in Resources */,
+				0BA5EB85192B96E000323F5F /* icon-small@2x.png in Resources */,
+				0B3EC94E192E347000966776 /* NADView_readme.txt in Resources */,
+				0BA5EB91192BAB7A00323F5F /* train_i_ly.gif in Resources */,
+				0BA5EB74192B930B00323F5F /* settings.png in Resources */,
+				0BA5EB95192CEA9B00323F5F /* Default-568h@2x.png in Resources */,
+				0BA5EB97192CEA9B00323F5F /* Default@2x.png in Resources */,
+				0BC80DED18E5BBF6008C01F8 /* Main.storyboard in Resources */,
+				0BA5EB79192B935A00323F5F /* book@2x.png in Resources */,
+				0BA5EB82192B96E000323F5F /* icon-60@2x.png in Resources */,
+				0BA5EB75192B930B00323F5F /* settings@2x.png in Resources */,
+				0BA5EB73192B930B00323F5F /* list@2x.png in Resources */,
+				0BA5EB90192BAB7A00323F5F /* train_i_lr.gif in Resources */,
+				0BA5EB7C192B94B600323F5F /* icon.png in Resources */,
 				0B091E5118CF5E5800C93391 /* Images.xcassets in Resources */,
-				0B091E4018CF5E5800C93391 /* InfoPlist.strings in Resources */,
-				0B091E4918CF5E5800C93391 /* Main.storyboard in Resources */,
+				0BA5EB78192B935A00323F5F /* book.png in Resources */,
+				0BA5EB8D192BAB7A00323F5F /* train_i_lb.gif in Resources */,
+				0BA5EB84192B96E000323F5F /* icon-small.png in Resources */,
+				0BA5EB72192B930B00323F5F /* list.png in Resources */,
+				0BA5EB83192B96E000323F5F /* icon-small-40@2x.png in Resources */,
+				0BA5EB7D192B94B600323F5F /* icon@2x.png in Resources */,
+				0BA5EB96192CEA9B00323F5F /* Default.png in Resources */,
+				0B096F63192E5FC900D8E127 /* FelloPush.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +431,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B091E6218CF5E5800C93391 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,10 +441,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B091E4F18CF5E5800C93391 /* SecondViewController.m in Sources */,
+				0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */,
+				0BA5EB6C192A630500323F5F /* SelectMyPatternViewController.m in Sources */,
+				0BA14AE319192C1900B94B16 /* Utility.m in Sources */,
 				0B091E4618CF5E5800C93391 /* AppDelegate.m in Sources */,
-				0B091E4C18CF5E5800C93391 /* FirstViewController.m in Sources */,
+				0BA5EB66191F1A1F00323F5F /* MyPatternListViewController.m in Sources */,
+				0B3EC959192E467500966776 /* ConfigManager.m in Sources */,
+				0BC80DF018E5BCA0008C01F8 /* KotsuhiListViewController.m in Sources */,
+				0BA5EB69191F1A4C00323F5F /* MyPatternInputViewController.m in Sources */,
+				0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */,
 				0B091E4218CF5E5800C93391 /* main.m in Sources */,
+				0BC80DF318E5BCB8008C01F8 /* KotsuhiInputViewController.m in Sources */,
+				0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */,
+				0B096F67192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m in Sources */,
+				0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */,
+				0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */,
+				0BA5EB5D191A895000323F5F /* KotsuhiFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,39 +478,11 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		0B091E3E18CF5E5800C93391 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B091E3F18CF5E5800C93391 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0B091E4718CF5E5800C93391 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B091E4818CF5E5800C93391 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0B091E6018CF5E5800C93391 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B091E6118CF5E5800C93391 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		0B091E6518CF5E5800C93391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -340,8 +511,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -350,7 +521,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -373,7 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -382,12 +552,31 @@
 		0B091E6818CF5E5800C93391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tatsuo Fujiwara (59Q7GGKNL2)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KotsuhiCalculator/NendAd",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					FelloPush,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "62DFB452-7761-4978-BF30-B43488DDA54C";
+				TARGETED_DEVICE_FAMILY = 1;
+				"VALID_ARCHS[sdk=*]" = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -395,12 +584,29 @@
 		0B091E6918CF5E5800C93391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tatsuo Fujiwara (59Q7GGKNL2)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KotsuhiCalculator/NendAd",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					FelloPush,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "62DFB452-7761-4978-BF30-B43488DDA54C";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -408,7 +614,6 @@
 		0B091E6B18CF5E5800C93391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KotsuhiCalculator.app/KotsuhiCalculator";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -431,7 +636,6 @@
 		0B091E6C18CF5E5800C93391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KotsuhiCalculator.app/KotsuhiCalculator";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -466,6 +670,7 @@
 				0B091E6918CF5E5800C93391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B091E6A18CF5E5800C93391 /* Build configuration list for PBXNativeTarget "KotsuhiCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +679,7 @@
 				0B091E6C18CF5E5800C93391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
