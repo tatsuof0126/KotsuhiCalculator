@@ -17,8 +17,6 @@
 		0B091E5918CF5E5800C93391 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3518CF5E5800C93391 /* Foundation.framework */; };
 		0B091E5A18CF5E5800C93391 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3918CF5E5800C93391 /* UIKit.framework */; };
 		0B091E6418CF5E5800C93391 /* KotsuhiCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */; };
-		0B096F63192E5FC900D8E127 /* FelloPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B096F61192E5FC900D8E127 /* FelloPush.bundle */; };
-		0B096F64192E5FC900D8E127 /* FelloPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B096F62192E5FC900D8E127 /* FelloPush.framework */; };
 		0B096F67192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */; };
 		0B3EC945192E32A300966776 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3EC944192E32A300966776 /* Security.framework */; };
 		0B3EC94E192E347000966776 /* NADView_readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B3EC94C192E347000966776 /* NADView_readme.txt */; };
@@ -26,6 +24,8 @@
 		0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC951192E452400966776 /* PurchaseAddonViewController.m */; };
 		0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC955192E45E100966776 /* InAppPurchaseManager.m */; };
 		0B3EC959192E467500966776 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC958192E467500966776 /* ConfigManager.m */; };
+		0B7A8AA219303764000B5397 /* FelloPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A8AA019303764000B5397 /* FelloPush.bundle */; };
+		0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A8AA119303764000B5397 /* FelloPush.framework */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
 		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
 		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
@@ -86,8 +86,6 @@
 		0B091E5718CF5E5800C93391 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0B091E5F18CF5E5800C93391 /* KotsuhiCalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KotsuhiCalculatorTests-Info.plist"; sourceTree = "<group>"; };
 		0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorTests.m; sourceTree = "<group>"; };
-		0B096F61192E5FC900D8E127 /* FelloPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FelloPush.bundle; path = "../../Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug/FelloPush.bundle"; sourceTree = "<group>"; };
-		0B096F62192E5FC900D8E127 /* FelloPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FelloPush.framework; path = "../../Users/tatsuo/Desktop/AppDev/交通費メモ/NotificationSDK_iOS_140516r1a/NotificationsSDK/Debug/FelloPush.framework"; sourceTree = "<group>"; };
 		0B096F65192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiCalculatorUIApplication.h; sourceTree = "<group>"; };
 		0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorUIApplication.m; sourceTree = "<group>"; };
 		0B3EC944192E32A300966776 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -104,6 +102,8 @@
 		0B3EC955192E45E100966776 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		0B3EC957192E467500966776 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		0B3EC958192E467500966776 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		0B7A8AA019303764000B5397 /* FelloPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FelloPush.bundle; sourceTree = "<group>"; };
+		0B7A8AA119303764000B5397 /* FelloPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FelloPush.framework; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -155,12 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B3EC94F192E34DF00966776 /* libNendAd.a in Frameworks */,
+				0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */,
 				0B3EC945192E32A300966776 /* Security.framework in Frameworks */,
 				0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */,
 				0BC80DF918E5C59A008C01F8 /* StoreKit.framework in Frameworks */,
 				0B091E3818CF5E5800C93391 /* CoreGraphics.framework in Frameworks */,
 				0B091E3A18CF5E5800C93391 /* UIKit.framework in Frameworks */,
-				0B096F64192E5FC900D8E127 /* FelloPush.framework in Frameworks */,
 				0B091E3618CF5E5800C93391 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,8 +201,8 @@
 		0B091E3418CF5E5800C93391 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B096F61192E5FC900D8E127 /* FelloPush.bundle */,
-				0B096F62192E5FC900D8E127 /* FelloPush.framework */,
+				0B7A8AA019303764000B5397 /* FelloPush.bundle */,
+				0B7A8AA119303764000B5397 /* FelloPush.framework */,
 				0B3EC944192E32A300966776 /* Security.framework */,
 				0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */,
 				0BC80DF818E5C59A008C01F8 /* StoreKit.framework */,
@@ -371,6 +371,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tatsuo Fujiwara";
 				TargetAttributes = {
+					0B091E3118CF5E5800C93391 = {
+						DevelopmentTeam = PNCW72YDW4;
+					};
 					0B091E5518CF5E5800C93391 = {
 						TestTargetID = 0B091E3118CF5E5800C93391;
 					};
@@ -410,6 +413,7 @@
 				0BA5EB97192CEA9B00323F5F /* Default@2x.png in Resources */,
 				0BC80DED18E5BBF6008C01F8 /* Main.storyboard in Resources */,
 				0BA5EB79192B935A00323F5F /* book@2x.png in Resources */,
+				0B7A8AA219303764000B5397 /* FelloPush.bundle in Resources */,
 				0BA5EB82192B96E000323F5F /* icon-60@2x.png in Resources */,
 				0BA5EB75192B930B00323F5F /* settings@2x.png in Resources */,
 				0BA5EB73192B930B00323F5F /* list@2x.png in Resources */,
@@ -423,7 +427,6 @@
 				0BA5EB83192B96E000323F5F /* icon-small-40@2x.png in Resources */,
 				0BA5EB7D192B94B600323F5F /* icon@2x.png in Resources */,
 				0BA5EB96192CEA9B00323F5F /* Default.png in Resources */,
-				0B096F63192E5FC900D8E127 /* FelloPush.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
