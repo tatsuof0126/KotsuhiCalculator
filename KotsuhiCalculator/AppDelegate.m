@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ConfigManager.h"
+#import "GAI.h"
 #import <FelloPush/KonectNotificationsAPI.h>
 
 @implementation AppDelegate
@@ -28,6 +29,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Google Analyticsの初期化
+    [self initializeGoogleAnalytics];
     
     // For AppBank Fello
     NSString* appId = @"10646";
@@ -108,6 +112,14 @@
                                     oldRect.size.width, oldRect.size.height);
         view.frame = newRect;
     }
+}
+
+- (void)initializeGoogleAnalytics {
+    // トラッキングIDを設定
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-23529359-4"];
+    
+    // 例外を Google Analytics に送る
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
 }
 
 @end

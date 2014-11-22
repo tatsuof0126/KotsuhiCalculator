@@ -10,6 +10,7 @@
 #import "InAppPurchaseManager.h"
 #import "AppDelegate.h"
 #import "Utility.h"
+#import "TrackingManager.h"
 
 #define APPSTORELABEL 1
 
@@ -36,6 +37,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"アドオン購入画面"];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +132,8 @@
     
     // アプリ内課金を呼び出し
     [purchaseManager requestProductData:productId];
+    
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"アドオン購入画面―広告を削除する" value:nil screen:@"アドオン購入画面"];
 }
 
 - (void)restoreAddon {
@@ -154,6 +161,8 @@
     
     // アプリ内課金（リストア）を呼び出し
     [purchaseManager restoreProduct];
+    
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"アドオン購入画面―購入済みアドオンをリストア" value:nil screen:@"アドオン購入画面"];
 }
 
 - (void)endConnecting {

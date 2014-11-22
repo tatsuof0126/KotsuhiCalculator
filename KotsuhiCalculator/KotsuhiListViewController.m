@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "KotsuhiFileManager.h"
 #import "ConfigManager.h"
+#import "TrackingManager.h"
 #import <FelloPush/KonectNotificationsAPI.h>
 
 #define REGIST_BTN 1
@@ -40,6 +41,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"交通費一覧画面"];
+    
     // TableViewの大きさ定義＆iPhone5対応
     kotsuhiListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:kotsuhiListView];
@@ -87,20 +91,34 @@
     
     int listyear = 0;
     int listmonth = 0;
+    int subTotalAmount = 0;
     
     NSMutableArray* kotsuhiSubList = [NSMutableArray array];
     
     for (Kotsuhi* kotsuhi in kotsuhiList) {
         if(listyear != kotsuhi.year || listmonth != kotsuhi.month){
-            [kotsuhiMonthList addObject:[NSString stringWithFormat:@"%d年%d月", kotsuhi.year, kotsuhi.month]];
+            if(listyear != 0){
+                [kotsuhiMonthList addObject:[NSString stringWithFormat:@"%d年%d月 合計%d円",
+                                         listyear, listmonth, subTotalAmount]];
+            }
+            
             listyear = kotsuhi.year;
             listmonth = kotsuhi.month;
+            subTotalAmount = 0;
             
             kotsuhiSubList = [NSMutableArray array];
             [kotsuhiListByMonth addObject:kotsuhiSubList];
         }
         [kotsuhiSubList addObject:kotsuhi];
+        subTotalAmount += [kotsuhi getTripAmount];
     }
+    
+    if(listyear != 0){
+        [kotsuhiMonthList addObject:[NSString stringWithFormat:@"%d年%d月 合計%d円",
+                                     listyear, listmonth, subTotalAmount]];
+    }
+    
+
     
 }
 
@@ -140,10 +158,8 @@
     }
     
     // メインテキスト
-    NSString* viewText = [NSString stringWithFormat:@"%d/%d %@ %d円",
-                          kotsuhi.month, kotsuhi.day, kotsuhi.visit, kotsuhi.amount];
-    
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
+    NSString* viewText = [NSString stringWithFormat:@"%d/%d %@ %d円%@",
+                          kotsuhi.month, kotsuhi.day, kotsuhi.visit, [kotsuhi getTripAmount], [kotsuhi getRoundTripString]];
     
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
     paragrahStyle.lineSpacing = - 2.0f;
@@ -156,15 +172,17 @@
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
-    NSString* viewDetailText = [NSString stringWithFormat:@" %@→%@(%@) %@ %@",
-                               kotsuhi.departure, kotsuhi.arrival, kotsuhi.transportation, kotsuhi.purpose, kotsuhi.route];
+    NSString* viewDetailText = [NSString stringWithFormat:@"  %@%@%@(%@) %@ %@",
+                               kotsuhi.departure, [kotsuhi getTripArrow], kotsuhi.arrival, kotsuhi.transportation, kotsuhi.purpose, kotsuhi.route];
     
     NSMutableAttributedString* detailStr
         = [[NSMutableAttributedString alloc] initWithString:viewDetailText];
     
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:14];
     cell.detailTextLabel.attributedText = detailStr;
     
     return cell;
@@ -200,6 +218,7 @@
         [self loadKotsuhiList];
         
         [kotsuhiListView reloadData];
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費一覧画面―削除" value:nil screen:@"交通費一覧画面"];
     }
     
 }
@@ -209,8 +228,9 @@
     
     int tag = (int)((UIView*)sender).tag;
     if(tag == REGIST_BTN){
-        // 追加ボタン
+        // 登録ボタン
         appDelegate.targetKotsuhi = nil;
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費一覧画面―登録" value:nil screen:@"交通費一覧画面"];
     } else {
         // 個別の交通費を選択
         NSIndexPath* indexPath = [kotsuhiListView indexPathForSelectedRow];
@@ -220,6 +240,7 @@
         
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         appDelegate.targetKotsuhi = kotsuhi;
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費一覧画面―既存選択" value:nil screen:@"交通費一覧画面"];
     }
 }
 

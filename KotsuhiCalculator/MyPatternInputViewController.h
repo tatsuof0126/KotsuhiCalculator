@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyPattern.h"
 #import "NADView.h"
+#import "CheckBoxButton.h"
 
 @interface MyPatternInputViewController : UIViewController <NADViewDelegate>
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *amount;
 @property (strong, nonatomic) IBOutlet UITextField *purpose;
 @property (strong, nonatomic) IBOutlet UITextField *route;
+@property (strong, nonatomic) IBOutlet CheckBoxButton *roundtrip;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;

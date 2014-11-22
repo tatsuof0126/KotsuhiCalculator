@@ -23,11 +23,16 @@
 @property int amount;
 @property (strong, nonatomic, readwrite) NSString *purpose;
 @property (strong, nonatomic, readwrite) NSString *route;
+@property BOOL roundtrip;
 
 - (NSData*)getKotsuhiNSData;
 
 + (Kotsuhi*)makeKotsuhi:(NSData*)data;
 
 - (NSComparisonResult)compareDate:(Kotsuhi*)data;
+
+- (int)getTripAmount;
+- (NSString*)getRoundTripString;
+- (NSString*)getTripArrow;
 
 @end

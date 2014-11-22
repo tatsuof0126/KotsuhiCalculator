@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
+#import "TrackingManager.h"
 
 @interface SelectMyPatternViewController ()
 
@@ -36,6 +37,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"マイパターン選択画面"];
     
     // TableViewの大きさ定義＆iPhone5対応
     selectMypatternView.frame = CGRectMake(0, 64, 320, 416);
@@ -105,10 +109,8 @@
     MyPattern* myPattern = [mypatternList objectAtIndex:indexPath.row];
     
     // メインテキスト
-    NSString* viewText = [NSString stringWithFormat:@"%@ %@ %d円",
-                          myPattern.patternName, myPattern.visit, myPattern.amount];
-    
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:18];
+    NSString* viewText = [NSString stringWithFormat:@"%@ %@ %d円%@",
+                          myPattern.patternName, myPattern.visit, [myPattern getTripAmount], [myPattern getRoundTripString]];
     
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
     paragrahStyle.lineSpacing = - 2.0f;
@@ -121,11 +123,12 @@
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:18];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
-    NSString* viewDetailText = [NSString stringWithFormat:@" %@→%@(%@) %@ %@",
-                                myPattern.departure, myPattern.arrival, myPattern.transportation, myPattern.purpose, myPattern.route];
+    NSString* viewDetailText = [NSString stringWithFormat:@" %@%@%@(%@) %@ %@",
+                                myPattern.departure, [myPattern getTripArrow], myPattern.arrival, myPattern.transportation, myPattern.purpose, myPattern.route];
     
     NSMutableAttributedString* detailStr
     = [[NSMutableAttributedString alloc] initWithString:viewDetailText];
@@ -136,6 +139,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン選択画面―選択" value:nil screen:@"マイパターン選択画面"];
+    
     MyPattern* myPattern = [mypatternList objectAtIndex:indexPath.row];
     
     KotsuhiInputViewController* viewController = (KotsuhiInputViewController*)[self presentingViewController];
@@ -146,6 +151,8 @@
     viewController.amount.text = [NSString stringWithFormat:@"%d", myPattern.amount];
     viewController.purpose.text = myPattern.purpose;
     viewController.route.text = myPattern.route;
+    viewController.roundtrip.checkBoxSelected = myPattern.roundtrip;
+    [viewController.roundtrip setState];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -20,11 +20,16 @@
 @property int amount;
 @property (strong, nonatomic, readwrite) NSString *purpose;
 @property (strong, nonatomic, readwrite) NSString *route;
+@property BOOL roundtrip;
 
 - (NSData*)getMyPatternNSData;
 
 + (MyPattern*)makeMyPattern:(NSData*)data;
 
 - (NSComparisonResult)compareMyPatternId:(MyPattern*)data;
+
+- (int)getTripAmount;
+- (NSString*)getRoundTripString;
+- (NSString*)getTripArrow;
 
 @end

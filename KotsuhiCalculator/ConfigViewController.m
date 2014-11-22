@@ -9,6 +9,7 @@
 #import "ConfigViewController.h"
 #import "AppDelegate.h"
 #import "ConfigManager.h"
+#import "TrackingManager.h"
 
 @interface ConfigViewController ()
 
@@ -35,6 +36,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"設定画面"];
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     versionName.text = [NSString stringWithFormat:@"version%@",version];
@@ -99,9 +103,11 @@
         
         NSURL *url = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id881505236"];
         [[UIApplication sharedApplication] openURL:url];
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―レビューを書く" value:nil screen:@"設定画面"];
     } else if(sender.view == otherappLabel){
         NSURL *url = [NSURL URLWithString:@"itms-apps://itunes.com/apps/TatsuoFujiwara"];
         [[UIApplication sharedApplication] openURL:url];
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―他のアプリを見る" value:nil screen:@"設定画面"];
     }
 }
 

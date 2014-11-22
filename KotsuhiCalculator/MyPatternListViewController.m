@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
+#import "TrackingManager.h"
 
 #define REGIST_BTN 1
 
@@ -38,6 +39,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"マイパターン画面"];
+        
     // TableViewの大きさ定義＆iPhone5対応
     mypatternListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:mypatternListView];
@@ -114,48 +118,49 @@
     MyPattern* myPattern = [mypatternList objectAtIndex:indexPath.row];
     
     // メインテキスト
-    NSString* viewText = [NSString stringWithFormat:@"%@ %@ %d円",
-                          myPattern.patternName, myPattern.visit, myPattern.amount];
-    
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
+    NSString* viewText = [NSString stringWithFormat:@"%@ %@ %d円%@",
+                          myPattern.patternName, myPattern.visit, [myPattern getTripAmount], [myPattern getRoundTripString]];
     
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
     paragrahStyle.lineSpacing = - 2.0f;
     paragrahStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     
     NSMutableAttributedString *attributedText
-    = [[NSMutableAttributedString alloc] initWithString:viewText];
+        = [[NSMutableAttributedString alloc] initWithString:viewText];
     
     [attributedText addAttribute:NSParagraphStyleAttributeName
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
-    NSString* viewDetailText = [NSString stringWithFormat:@" %@→%@(%@) %@ %@",
-                                myPattern.departure, myPattern.arrival, myPattern.transportation, myPattern.purpose, myPattern.route];
+    NSString* viewDetailText = [NSString stringWithFormat:@" %@%@%@(%@) %@ %@",
+                                myPattern.departure, [myPattern getTripArrow], myPattern.arrival, myPattern.transportation, myPattern.purpose, myPattern.route];
     
     NSMutableAttributedString* detailStr
-    = [[NSMutableAttributedString alloc] initWithString:viewDetailText];
+        = [[NSMutableAttributedString alloc] initWithString:viewDetailText];
     
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:14];
     cell.detailTextLabel.attributedText = detailStr;
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    targetField.text = [mypatternList objectAtIndex:indexPath.row];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     int tag = (int)((UIView*)sender).tag;
     if(tag == REGIST_BTN){
-        // 追加ボタン
+        // 登録ボタン
         appDelegate.targetMyPattern = nil;
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン画面―登録" value:nil screen:@"マイパターン画面"];
     } else {
         // 個別のマイパターンを選択
         NSIndexPath* indexPath = [mypatternListView indexPathForSelectedRow];
@@ -164,6 +169,7 @@
         
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         appDelegate.targetMyPattern = myPattern;
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン画面―既存選択" value:nil screen:@"マイパターン画面"];
     }
 }
 
@@ -187,6 +193,7 @@
         [self loadMyPatternList];
         
         [mypatternListView reloadData];
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン画面―削除" value:nil screen:@"マイパターン画面"];
     }
     
 }

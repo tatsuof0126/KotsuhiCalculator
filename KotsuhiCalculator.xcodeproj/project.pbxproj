@@ -24,6 +24,10 @@
 		0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC951192E452400966776 /* PurchaseAddonViewController.m */; };
 		0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC955192E45E100966776 /* InAppPurchaseManager.m */; };
 		0B3EC959192E467500966776 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC958192E467500966776 /* ConfigManager.m */; };
+		0B74824F1A0A770500F43758 /* CheckBoxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B74824E1A0A770500F43758 /* CheckBoxButton.m */; };
+		0B7482531A0A77BD00F43758 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482501A0A77BD00F43758 /* check.png */; };
+		0B7482541A0A77BD00F43758 /* disable_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482511A0A77BD00F43758 /* disable_check.png */; };
+		0B7482551A0A77BD00F43758 /* nocheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482521A0A77BD00F43758 /* nocheck.png */; };
 		0B7A8AA219303764000B5397 /* FelloPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A8AA019303764000B5397 /* FelloPush.bundle */; };
 		0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A8AA119303764000B5397 /* FelloPush.framework */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
@@ -53,6 +57,13 @@
 		0BA5EB95192CEA9B00323F5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */; };
 		0BA5EB96192CEA9B00323F5F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB93192CEA9B00323F5F /* Default.png */; };
 		0BA5EB97192CEA9B00323F5F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA5EB94192CEA9B00323F5F /* Default@2x.png */; };
+		0BAEEE2B19D9B37700BF1981 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE2A19D9B37700BF1981 /* libGoogleAnalyticsServices.a */; };
+		0BAEEE2D19D9B42100BF1981 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE2C19D9B42100BF1981 /* CoreData.framework */; };
+		0BAEEE2F19D9B42F00BF1981 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE2E19D9B42F00BF1981 /* SystemConfiguration.framework */; };
+		0BAEEE3119D9B43F00BF1981 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE3019D9B43F00BF1981 /* libz.dylib */; };
+		0BAEEE3619D9B6C500BF1981 /* TrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEEE3519D9B6C500BF1981 /* TrackingManager.m */; };
+		0BAEEE3819D9BD5600BF1981 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE3719D9BD5600BF1981 /* libAdIdAccess.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		0BAEEE3A19DD991F00BF1981 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEEE3919DD991F00BF1981 /* iAd.framework */; };
 		0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC80DE918E5B900008C01F8 /* ConfigViewController.m */; };
 		0BC80DED18E5BBF6008C01F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC80DEC18E5BBF6008C01F8 /* Main.storyboard */; };
 		0BC80DF018E5BCA0008C01F8 /* KotsuhiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC80DEF18E5BCA0008C01F8 /* KotsuhiListViewController.m */; };
@@ -102,6 +113,11 @@
 		0B3EC955192E45E100966776 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		0B3EC957192E467500966776 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		0B3EC958192E467500966776 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		0B74824D1A0A770500F43758 /* CheckBoxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxButton.h; sourceTree = "<group>"; };
+		0B74824E1A0A770500F43758 /* CheckBoxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBoxButton.m; sourceTree = "<group>"; };
+		0B7482501A0A77BD00F43758 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		0B7482511A0A77BD00F43758 /* disable_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_check.png; sourceTree = "<group>"; };
+		0B7482521A0A77BD00F43758 /* nocheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nocheck.png; sourceTree = "<group>"; };
 		0B7A8AA019303764000B5397 /* FelloPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FelloPush.bundle; sourceTree = "<group>"; };
 		0B7A8AA119303764000B5397 /* FelloPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FelloPush.framework; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
@@ -138,6 +154,24 @@
 		0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0BA5EB93192CEA9B00323F5F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0BA5EB94192CEA9B00323F5F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0BAEEE2019D9B37700BF1981 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		0BAEEE2119D9B37700BF1981 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		0BAEEE2219D9B37700BF1981 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		0BAEEE2319D9B37700BF1981 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		0BAEEE2419D9B37700BF1981 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		0BAEEE2519D9B37700BF1981 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		0BAEEE2619D9B37700BF1981 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		0BAEEE2719D9B37700BF1981 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		0BAEEE2819D9B37700BF1981 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		0BAEEE2919D9B37700BF1981 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		0BAEEE2A19D9B37700BF1981 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		0BAEEE2C19D9B42100BF1981 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0BAEEE2E19D9B42F00BF1981 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BAEEE3019D9B43F00BF1981 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0BAEEE3419D9B6C500BF1981 /* TrackingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingManager.h; sourceTree = "<group>"; };
+		0BAEEE3519D9B6C500BF1981 /* TrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingManager.m; sourceTree = "<group>"; };
+		0BAEEE3719D9BD5600BF1981 /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdIdAccess.a; sourceTree = "<group>"; };
+		0BAEEE3919DD991F00BF1981 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		0BC80DE818E5B900008C01F8 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		0BC80DE918E5B900008C01F8 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		0BC80DEC18E5BBF6008C01F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -154,7 +188,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B3EC94F192E34DF00966776 /* libNendAd.a in Frameworks */,
+				0BAEEE3A19DD991F00BF1981 /* iAd.framework in Frameworks */,
+				0BAEEE2D19D9B42100BF1981 /* CoreData.framework in Frameworks */,
+				0BAEEE2F19D9B42F00BF1981 /* SystemConfiguration.framework in Frameworks */,
 				0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */,
 				0B3EC945192E32A300966776 /* Security.framework in Frameworks */,
 				0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */,
@@ -162,6 +198,10 @@
 				0B091E3818CF5E5800C93391 /* CoreGraphics.framework in Frameworks */,
 				0B091E3A18CF5E5800C93391 /* UIKit.framework in Frameworks */,
 				0B091E3618CF5E5800C93391 /* Foundation.framework in Frameworks */,
+				0BAEEE3119D9B43F00BF1981 /* libz.dylib in Frameworks */,
+				0BAEEE3819D9BD5600BF1981 /* libAdIdAccess.a in Frameworks */,
+				0BAEEE2B19D9B37700BF1981 /* libGoogleAnalyticsServices.a in Frameworks */,
+				0B3EC94F192E34DF00966776 /* libNendAd.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +224,7 @@
 				0B091E3B18CF5E5800C93391 /* KotsuhiCalculator */,
 				0B091E5D18CF5E5800C93391 /* KotsuhiCalculatorTests */,
 				0B3EC946192E347000966776 /* NendAd */,
+				0BAEEE1F19D9B37700BF1981 /* GoogleAnalyticsLibrary */,
 				0B091E3418CF5E5800C93391 /* Frameworks */,
 				0B091E3318CF5E5800C93391 /* Products */,
 			);
@@ -201,6 +242,10 @@
 		0B091E3418CF5E5800C93391 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BAEEE3919DD991F00BF1981 /* iAd.framework */,
+				0BAEEE3019D9B43F00BF1981 /* libz.dylib */,
+				0BAEEE2E19D9B42F00BF1981 /* SystemConfiguration.framework */,
+				0BAEEE2C19D9B42100BF1981 /* CoreData.framework */,
 				0B7A8AA019303764000B5397 /* FelloPush.bundle */,
 				0B7A8AA119303764000B5397 /* FelloPush.framework */,
 				0B3EC944192E32A300966776 /* Security.framework */,
@@ -252,6 +297,10 @@
 				0B3EC953192E45AF00966776 /* InAppPurchaseProtocol.h */,
 				0B3EC954192E45E100966776 /* InAppPurchaseManager.h */,
 				0B3EC955192E45E100966776 /* InAppPurchaseManager.m */,
+				0BAEEE3419D9B6C500BF1981 /* TrackingManager.h */,
+				0BAEEE3519D9B6C500BF1981 /* TrackingManager.m */,
+				0B74824D1A0A770500F43758 /* CheckBoxButton.h */,
+				0B74824E1A0A770500F43758 /* CheckBoxButton.m */,
 			);
 			path = KotsuhiCalculator;
 			sourceTree = "<group>";
@@ -315,6 +364,9 @@
 				0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */,
 				0BA5EB93192CEA9B00323F5F /* Default.png */,
 				0BA5EB94192CEA9B00323F5F /* Default@2x.png */,
+				0B7482501A0A77BD00F43758 /* check.png */,
+				0B7482511A0A77BD00F43758 /* disable_check.png */,
+				0B7482521A0A77BD00F43758 /* nocheck.png */,
 				0BA5EB88192BAB7A00323F5F /* train_i_lb.gif */,
 				0BA5EB89192BAB7A00323F5F /* train_i_lg.gif */,
 				0BA5EB8A192BAB7A00323F5F /* train_i_lo.gif */,
@@ -322,6 +374,25 @@
 				0BA5EB8C192BAB7A00323F5F /* train_i_ly.gif */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		0BAEEE1F19D9B37700BF1981 /* GoogleAnalyticsLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEEE2019D9B37700BF1981 /* GAI.h */,
+				0BAEEE2119D9B37700BF1981 /* GAIDictionaryBuilder.h */,
+				0BAEEE2219D9B37700BF1981 /* GAIEcommerceFields.h */,
+				0BAEEE2319D9B37700BF1981 /* GAIEcommerceProduct.h */,
+				0BAEEE2419D9B37700BF1981 /* GAIEcommerceProductAction.h */,
+				0BAEEE2519D9B37700BF1981 /* GAIEcommercePromotion.h */,
+				0BAEEE2619D9B37700BF1981 /* GAIFields.h */,
+				0BAEEE2719D9B37700BF1981 /* GAILogger.h */,
+				0BAEEE2819D9B37700BF1981 /* GAITrackedViewController.h */,
+				0BAEEE2919D9B37700BF1981 /* GAITracker.h */,
+				0BAEEE3719D9BD5600BF1981 /* libAdIdAccess.a */,
+				0BAEEE2A19D9B37700BF1981 /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalyticsLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +439,7 @@
 		0B091E2A18CF5E5800C93391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Tatsuo Fujiwara";
 				TargetAttributes = {
 					0B091E3118CF5E5800C93391 = {
@@ -409,6 +480,7 @@
 				0B3EC94E192E347000966776 /* NADView_readme.txt in Resources */,
 				0BA5EB91192BAB7A00323F5F /* train_i_ly.gif in Resources */,
 				0BA5EB74192B930B00323F5F /* settings.png in Resources */,
+				0B7482531A0A77BD00F43758 /* check.png in Resources */,
 				0BA5EB95192CEA9B00323F5F /* Default-568h@2x.png in Resources */,
 				0BA5EB97192CEA9B00323F5F /* Default@2x.png in Resources */,
 				0BC80DED18E5BBF6008C01F8 /* Main.storyboard in Resources */,
@@ -421,8 +493,10 @@
 				0BA5EB7C192B94B600323F5F /* icon.png in Resources */,
 				0B091E5118CF5E5800C93391 /* Images.xcassets in Resources */,
 				0BA5EB78192B935A00323F5F /* book.png in Resources */,
+				0B7482551A0A77BD00F43758 /* nocheck.png in Resources */,
 				0BA5EB8D192BAB7A00323F5F /* train_i_lb.gif in Resources */,
 				0BA5EB84192B96E000323F5F /* icon-small.png in Resources */,
+				0B7482541A0A77BD00F43758 /* disable_check.png in Resources */,
 				0BA5EB72192B930B00323F5F /* list.png in Resources */,
 				0BA5EB83192B96E000323F5F /* icon-small-40@2x.png in Resources */,
 				0BA5EB7D192B94B600323F5F /* icon@2x.png in Resources */,
@@ -452,7 +526,9 @@
 				0B3EC959192E467500966776 /* ConfigManager.m in Sources */,
 				0BC80DF018E5BCA0008C01F8 /* KotsuhiListViewController.m in Sources */,
 				0BA5EB69191F1A4C00323F5F /* MyPatternInputViewController.m in Sources */,
+				0BAEEE3619D9B6C500BF1981 /* TrackingManager.m in Sources */,
 				0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */,
+				0B74824F1A0A770500F43758 /* CheckBoxButton.m in Sources */,
 				0B091E4218CF5E5800C93391 /* main.m in Sources */,
 				0BC80DF318E5BCB8008C01F8 /* KotsuhiInputViewController.m in Sources */,
 				0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */,
@@ -515,7 +591,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -569,12 +645,17 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KotsuhiCalculator/NendAd",
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
 					FelloPush,
+					"-framework",
+					AdSupport,
+					"-force_load",
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "62DFB452-7761-4978-BF30-B43488DDA54C";
@@ -601,10 +682,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KotsuhiCalculator/NendAd",
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					FelloPush,
+					"-framework",
+					AdSupport,
+					"-force_load",
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "62DFB452-7761-4978-BF30-B43488DDA54C";

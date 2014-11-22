@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Kotsuhi.h"
 #import "NADView.h"
+#import "CheckBoxButton.h"
 
 @interface KotsuhiInputViewController : UIViewController <NADViewDelegate>
 
@@ -27,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *amount;
 @property (strong, nonatomic) IBOutlet UITextField *purpose;
 @property (strong, nonatomic) IBOutlet UITextField *route;
+@property (strong, nonatomic) IBOutlet CheckBoxButton *roundtrip;
+
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *mypatternBtn;

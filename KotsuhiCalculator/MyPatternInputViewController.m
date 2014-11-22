@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
+#import "TrackingManager.h"
 
 @interface MyPatternInputViewController ()
 
@@ -36,6 +37,9 @@
 {
     [super viewDidLoad];
     
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"マイパターン登録画面"];
+    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     mypattern = appDelegate.targetMyPattern;
     
@@ -55,6 +59,8 @@
     _amount.text = [NSString stringWithFormat:@"%d",mypattern.amount];
     _purpose.text = mypattern.purpose;
     _route.text = mypattern.route;
+    _roundtrip.checkBoxSelected = mypattern.roundtrip;
+    [_roundtrip setState];
     
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 685);
@@ -247,6 +253,7 @@
         [KotsuhiFileManager saveMyPattern:mypattern];
         
         [self dismissViewControllerAnimated:YES completion:nil];
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン登録画面―登録" value:nil screen:@"マイパターン登録画面"];
     }
 }
 
@@ -268,6 +275,7 @@
     mypattern.amount = [_amount.text intValue];
     mypattern.purpose = _purpose.text;
     mypattern.route = _route.text;
+    mypattern.roundtrip = _roundtrip.checkBoxSelected;
 }
 
 @end

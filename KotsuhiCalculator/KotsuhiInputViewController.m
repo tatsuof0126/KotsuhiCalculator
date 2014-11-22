@@ -11,6 +11,7 @@
 #import "Utility.h"
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
+#import "TrackingManager.h"
 #import <FelloPush/KonectNotificationsAPI.h>
 
 #define REGIST_BTN 1
@@ -40,6 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 画面が開かれたときのトラッキング情報を送る
+    [TrackingManager sendScreenTracking:@"交通費入力画面"];
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     kotsuhi = appDelegate.targetKotsuhi;
@@ -73,6 +77,8 @@
     _amount.text = [NSString stringWithFormat:@"%d",kotsuhi.amount];
     _purpose.text = kotsuhi.purpose;
     _route.text = kotsuhi.route;
+    _roundtrip.checkBoxSelected = kotsuhi.roundtrip;
+    [_roundtrip setState];
     
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 726);
@@ -316,8 +322,13 @@
         if(alertView.tag == REGIST_AND_MYPATTERN_BTN){
             MyPattern* myPattern = [self makeMyPattern];
             [KotsuhiFileManager saveMyPattern:myPattern];
+            
+            [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費入力画面―登録＆マイパターン追加" value:nil screen:@"交通費入力画面"];
+            
+        } else {
+            [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費入力画面―登録" value:nil screen:@"交通費入力画面"];
         }
-
+        
         // インタースティシャル広告を表示
         if([ConfigManager isRemoveAdsFlg] == NO){
             [KonectNotificationsAPI beginInterstitial:nil];
@@ -351,6 +362,7 @@
     kotsuhi.amount = [_amount.text intValue];
     kotsuhi.purpose = _purpose.text;
     kotsuhi.route = _route.text;
+    kotsuhi.roundtrip = _roundtrip.checkBoxSelected;
 }
 
 - (MyPattern*)makeMyPattern {
@@ -364,6 +376,7 @@
     myPattern.amount = [_amount.text intValue];
     myPattern.purpose = _purpose.text;
     myPattern.route = _route.text;
+    myPattern.roundtrip = _roundtrip.checkBoxSelected;
     
     return myPattern;
 }

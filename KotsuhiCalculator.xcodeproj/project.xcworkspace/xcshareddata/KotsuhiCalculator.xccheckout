@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8D297EAA-3646-4470-9817-5D6C19F30FE6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>KotsuhiCalculator</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>20B5275A6E7C6E73F511E9F577BAC530424BC00E</key>
+		<string>https://github.com/tatsuof0126/KotsuhiCalculator.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KotsuhiCalculator.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>20B5275A6E7C6E73F511E9F577BAC530424BC00E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tatsuof0126/KotsuhiCalculator.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>20B5275A6E7C6E73F511E9F577BAC530424BC00E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>20B5275A6E7C6E73F511E9F577BAC530424BC00E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KotsuhiCalculator</string>
+		</dict>
+	</array>
+</dict>
+</plist>
