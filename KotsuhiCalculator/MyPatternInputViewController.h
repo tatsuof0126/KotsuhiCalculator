@@ -31,6 +31,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 
+@property (strong, nonatomic) IBOutlet UIButton *registBtn;
+
 - (IBAction)backButton:(id)sender;
 
 - (IBAction)registButton:(id)sender;

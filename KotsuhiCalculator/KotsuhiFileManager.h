@@ -28,4 +28,6 @@
 
 + (NSArray*)loadMyPatternList;
 
++ (void)makeSampleData;
+
 @end

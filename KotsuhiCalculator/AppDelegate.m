@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "GAI.h"
+#import "NADInterstitial.h"
+#import "KotsuhiFileManager.h"
 #import <FelloPush/KonectNotificationsAPI.h>
 
 @implementation AppDelegate
@@ -42,6 +44,15 @@
         [KonectNotificationsAPI setAdEnabled:NO];
     } else {
         [KonectNotificationsAPI setAdEnabled:YES];
+    }
+    
+    // For AppBank Network(nend)
+    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
+    
+    // SampleData
+    if(MAKE_SAMPLE_DATA == 1){
+        [ConfigManager setRemoveAdsFlg:YES];
+        [KotsuhiFileManager makeSampleData];
     }
     
     return YES;

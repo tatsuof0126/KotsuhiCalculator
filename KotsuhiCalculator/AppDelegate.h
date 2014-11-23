@@ -11,6 +11,8 @@
 #import "MyPattern.h"
 #import "InAppPurchaseManager.h"
 
+#define MAKE_SAMPLE_DATA 0
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

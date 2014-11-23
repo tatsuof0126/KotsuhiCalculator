@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--交通費一覧-->
@@ -343,6 +343,8 @@
                         <outlet property="month" destination="c9u-2t-9wi" id="0Fh-dy-vfp"/>
                         <outlet property="mypatternBtn" destination="TVi-Ro-g2N" id="E2O-in-MCH"/>
                         <outlet property="purpose" destination="EtE-hn-Xds" id="K1v-KK-wT5"/>
+                        <outlet property="registBtn" destination="Orj-6n-s90" id="EI3-hx-0TJ"/>
+                        <outlet property="registMypatternBtn" destination="BUt-aa-isC" id="QXN-UB-nTK"/>
                         <outlet property="roundtrip" destination="PJ5-Ze-VuD" id="kSQ-5d-NYw"/>
                         <outlet property="route" destination="ucM-bE-DSa" id="DfE-LN-m7j"/>
                         <outlet property="scrollView" destination="w8w-dq-DEh" id="RzA-df-ltQ"/>
@@ -590,10 +592,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="k0D-K9-HRq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zw8-rp-a36" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="923"/>
+            <point key="canvasLocation" x="132" y="1249"/>
         </scene>
         <!--マイパターン-->
         <scene sceneID="cal-8Q-iZE">
@@ -892,6 +895,7 @@
                         <outlet property="inputNavi" destination="gUU-KG-6sP" id="cxN-QZ-PC1"/>
                         <outlet property="patternName" destination="jRN-B9-CWy" id="PHd-pM-hzW"/>
                         <outlet property="purpose" destination="2B2-jo-WPB" id="COa-xH-9OZ"/>
+                        <outlet property="registBtn" destination="HXG-7t-PRE" id="r9f-vf-nxJ"/>
                         <outlet property="roundtrip" destination="BQg-z0-dPV" id="AQx-B1-K6y"/>
                         <outlet property="route" destination="PEl-wM-tDu" id="1hN-MV-CpI"/>
                         <outlet property="scrollView" destination="H6t-UL-epL" id="Fer-8F-BYT"/>

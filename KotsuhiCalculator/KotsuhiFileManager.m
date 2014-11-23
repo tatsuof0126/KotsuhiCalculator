@@ -216,4 +216,35 @@
     return maxid+1;
 }
 
++ (void)makeSampleData {
+    
+    NSArray* sampleKotsuhiArray =
+    [NSArray arrayWithObjects:
+     @"V2,1,F8FD4C79-FD9F-4A98-9A36-3BF18C74681D\n2014,11,21\n(株)トラトラ設計\n新宿\n高田馬場\n電車\n133\n進捗会議\n\n0\n",
+     @"V2,2,8AAA66D9-42CB-4EED-8D4B-F48D78EDF58C\n2014,11,12\n(株)アイフォン\n新宿\n虎ノ門\n電車\n165\n開発打ち合わせ\n赤坂見附\n1\n",
+     @"V2,3,A83CC806-46F8-4F19-AF1D-823F2146274B\n2014,10,20\n(株)トラトラ設計\n新宿\n高田馬場\n電車\n133\n進捗会議\n\n0\n",
+     @"V2,4,EA745169-984E-46D6-849B-9C94B7AD29B6\n2014,10,26\n東京国際フォーラム\n新宿\n有楽町\n電車\n194\nフォーラム参加\n\n0\n",
+     @"V2,5,325EC746-A9ED-45B7-8F49-836E0177230F\n2014,11,5\n四ツ谷開発(株)\n新宿\n四ツ谷\n電車\n154\n打合せ\n\n1\n",
+     nil];
+    
+    for (NSString* kotsuhiStr in sampleKotsuhiArray){
+        NSData* data = [kotsuhiStr dataUsingEncoding:NSUTF8StringEncoding];
+        Kotsuhi* kotsuhi = [Kotsuhi makeKotsuhi:data];
+        [self saveKotsuhi:kotsuhi];
+    }
+    
+    NSArray* sampleMyPatternArray =
+    [NSArray arrayWithObjects:
+     @"V2,1\n進捗会議\n(株)トラトラ設計\n新宿\n高田馬場\n電車\n133\n進捗会議\n\n0\n",
+     @"V2,2\nアイフォン社\n(株)アイフォン\n新宿\n虎ノ門\n電車\n165\n開発打合せ\n赤坂見附\n1\n",
+     nil];
+    
+    for (NSString* myPatternStr in sampleMyPatternArray){
+        NSData* data = [myPatternStr dataUsingEncoding:NSUTF8StringEncoding];
+        MyPattern* myPattern = [MyPattern makeMyPattern:data];
+        [self saveMyPattern:myPattern];
+    }
+    
+}
+
 @end

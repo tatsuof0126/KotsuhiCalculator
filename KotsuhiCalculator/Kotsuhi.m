@@ -109,7 +109,7 @@
     NSString* kotsuhiStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray* kotsuhiStrArray = [kotsuhiStr componentsSeparatedByString:@"\n"];
     
-//    NSLog(@"resultStr : %@", kotsuhiStr);
+//    NSLog(@"kotsuhiStr \n%@", kotsuhiStr);
     
     @try {
         // １行目にファイル形式とUUIDがあるはず

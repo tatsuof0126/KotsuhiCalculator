@@ -11,6 +11,7 @@
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
+#import "NADInterstitial.h"
 
 @interface MyPatternInputViewController ()
 
@@ -61,6 +62,10 @@
     _route.text = mypattern.route;
     _roundtrip.checkBoxSelected = mypattern.roundtrip;
     [_roundtrip setState];
+    
+    if(mypattern.mypatternid != 0 && MAKE_SAMPLE_DATA != 1){
+        [_registBtn setTitle:@"　更 新　" forState:UIControlStateNormal];
+    }
     
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 685);
@@ -252,7 +257,35 @@
 
         [KotsuhiFileManager saveMyPattern:mypattern];
         
+        // AppBank Network
+        [[NADInterstitial sharedInstance] showAd];
+        
+        /*
+        NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAd];
+        switch ( result ){
+            case AD_SHOW_SUCCESS:
+                NSLog(@"広告の表示に成功しました。");
+                break;
+            case AD_SHOW_ALREADY:
+                NSLog(@"既に広告が表示されています。");
+                break;
+            case AD_FREQUENCY_NOT_REACHABLE:
+                NSLog(@"広告のフリークエンシーカウントに達していません。");
+                break;
+            case AD_LOAD_INCOMPLETE:
+                NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
+                break;
+            case AD_REQUEST_INCOMPLETE:
+                NSLog(@"抽選リクエストに失敗しています。");
+                break;
+            case AD_DOWNLOAD_INCOMPLETE:
+                NSLog(@"広告のダウンロードが完了していません。");
+                break;
+        }
+        */
+        
         [self dismissViewControllerAnimated:YES completion:nil];
+        
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン登録画面―登録" value:nil screen:@"マイパターン登録画面"];
     }
 }

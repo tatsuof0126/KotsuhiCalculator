@@ -12,6 +12,7 @@
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
+#import "NADInterstitial.h"
 #import <FelloPush/KonectNotificationsAPI.h>
 
 #define REGIST_BTN 1
@@ -79,6 +80,11 @@
     _route.text = kotsuhi.route;
     _roundtrip.checkBoxSelected = kotsuhi.roundtrip;
     [_roundtrip setState];
+    
+    if(kotsuhi.kotsuhiid != 0 && MAKE_SAMPLE_DATA != 1){
+        [_registBtn setTitle:@"　更 新　" forState:UIControlStateNormal];
+        [_registMypatternBtn setTitle:@"更新 ＆ マイパターン追加" forState:UIControlStateNormal];
+    }
     
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 726);
@@ -331,7 +337,35 @@
         
         // インタースティシャル広告を表示
         if([ConfigManager isRemoveAdsFlg] == NO){
-            [KonectNotificationsAPI beginInterstitial:nil];
+            // AppBank fello →　やめた
+            // [KonectNotificationsAPI beginInterstitial:nil];
+            
+            // AppBank Network
+            [[NADInterstitial sharedInstance] showAd];
+
+/*
+            NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAd];
+            switch ( result ){
+                case AD_SHOW_SUCCESS:
+                    NSLog(@"広告の表示に成功しました。");
+                    break;
+                case AD_SHOW_ALREADY:
+                    NSLog(@"既に広告が表示されています。");
+                    break;
+                case AD_FREQUENCY_NOT_REACHABLE:
+                    NSLog(@"広告のフリークエンシーカウントに達していません。");
+                    break;
+                case AD_LOAD_INCOMPLETE:
+                    NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
+                    break;
+                case AD_REQUEST_INCOMPLETE:
+                    NSLog(@"抽選リクエストに失敗しています。");
+                    break;
+                case AD_DOWNLOAD_INCOMPLETE:
+                    NSLog(@"広告のダウンロードが完了していません。");
+                    break;
+            }
+ */
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];

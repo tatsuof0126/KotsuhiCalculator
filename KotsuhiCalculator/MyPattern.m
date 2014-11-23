@@ -94,7 +94,7 @@
     NSString* mypatternStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray* mypatternStrArray = [mypatternStr componentsSeparatedByString:@"\n"];
     
-    //    NSLog(@"resultStr : %@", resultStr);
+//    NSLog(@"mypatternStr \n%@", mypatternStr);
     
     @try {
         // １行目にファイル形式があるはず

@@ -34,6 +34,10 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *mypatternBtn;
 
+@property (strong, nonatomic) IBOutlet UIButton *registBtn;
+
+@property (strong, nonatomic) IBOutlet UIButton *registMypatternBtn;
+
 - (IBAction)registButton:(id)sender;
 
 - (IBAction)backButton:(id)sender;
