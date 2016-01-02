@@ -16,4 +16,6 @@
 
 + (NSDate*)getDate:(NSString*)year month:(NSString*)month day:(NSString*)day;
 
++ (NSString*)replaceComma:(NSString*)sourceString;
+
 @end

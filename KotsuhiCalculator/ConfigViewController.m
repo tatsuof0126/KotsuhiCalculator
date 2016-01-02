@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "TrackingManager.h"
+#import "KotsuhiFileManager.h"
+#import "Utility.h"
 
 @interface ConfigViewController ()
 
@@ -17,7 +19,7 @@
 
 @implementation ConfigViewController
 
-@synthesize nadView;
+@synthesize scrollView;
 @synthesize reviewLabel;
 @synthesize otherappLabel;
 @synthesize inputNavi;
@@ -40,25 +42,20 @@
     // 画面が開かれたときのトラッキング情報を送る
     [TrackingManager sendScreenTracking:@"設定画面"];
     
+    _transportationText.text = [ConfigManager getDefaultTransportation];
+    _purposeText.text = [ConfigManager getDefaultPurpose];
+    _sendTo.text = [ConfigManager getDefaultSendTo];
+    
+    _iccardSearch.checkBoxSelected = [ConfigManager isICCardSearch];
+    [_iccardSearch setState];
+    [_iccardSearch addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(iccardButton:)]];
+    
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     versionName.text = [NSString stringWithFormat:@"version%@",version];
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 381, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
-    }
-
-    // すでに広告が非表示ならボタンを消す
-    if([ConfigManager isRemoveAdsFlg] == YES){
+    // すでにアドオンをすべて購入済みならボタンを消す
+    if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
         inputNavi.rightBarButtonItem = nil;
     }
     
@@ -68,13 +65,79 @@
 
     otherappLabel.userInteractionEnabled = YES;
     [otherappLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)]];
-
+    
+    // ScrollViewの高さを定義＆iPhone5対応
+    scrollView.contentSize = CGSizeMake(320, 654);
+    scrollView.frame = CGRectMake(0, 64, 320, 366);
+    [AppDelegate adjustForiPhone5:scrollView];
+    
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
+    }
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
-    // NADViewを表示
-    [self.view addSubview:nadView];
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+    
+    // ScrollViewの大きさ定義＆iPhone5対応
+    scrollView.frame = CGRectMake(0, 64, 320, 316);
+    [AppDelegate adjustForiPhone5:scrollView];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self showDoneButton];
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    [self hiddenDoneButton];
+    return YES;
+}
+
+- (void)showDoneButton {
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
+        style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
+    inputNavi.rightBarButtonItem = btn;
+}
+
+- (void)hiddenDoneButton {
+    // すでにアドオンをすべて購入済みならボタンを消す
+    if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
+        inputNavi.rightBarButtonItem = nil;
+    } else {
+        inputNavi.rightBarButtonItem = _removeAdsBtn;
+    }
+}
+
+- (void)doneButton {
+    [_transportationText endEditing:YES];
+    [_purposeText endEditing:YES];
+    [_sendTo endEditing:YES];
+}
+
+- (IBAction)transportationEdited:(id)sender {
+    [ConfigManager setDefaultTransportation:((UITextField*)sender).text];
+}
+
+- (IBAction)purposeEdited:(id)sender {
+    [ConfigManager setDefaultPurpose:((UITextField*)sender).text];
+}
+
+- (IBAction)sendToEdited:(id)sender {
+    [ConfigManager setDefaultSendTo:((UITextField*)sender).text];
+}
+
+- (void)iccardButton:(UITapGestureRecognizer*)sender {
+    [_iccardSearch checkboxPush:_iccardSearch];
+    [ConfigManager setICCardSearch:_iccardSearch.selected];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +172,251 @@
         [[UIApplication sharedApplication] openURL:url];
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―他のアプリを見る" value:nil screen:@"設定画面"];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(_adg){
+        [_adg resumeRefresh];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
+}
+
+- (void)dealloc {
+    adg_.delegate = nil;
+    adg_ = nil;
+}
+
+- (IBAction)searchAddress:(id)sender {
+    // アドレス帳を呼び出す
+    ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
+    if (status == kABAuthorizationStatusNotDetermined) {
+        // 許可の判断をしていない場合
+        ABAddressBookRequestAccessWithCompletion(NULL, ^(bool granted, CFErrorRef error) {
+            if (granted) {
+                //許可有効時
+                [self openAddressBook];
+            }
+        });
+    } else if (status == kABAuthorizationStatusRestricted || status == kABAuthorizationStatusDenied) {
+        // アドレス帳へのアクセス制限とアクセス拒否の場合
+        [Utility showAlert:@"連絡先へのアクセスが拒否されています。"];
+    } else {
+        // 許可が出ている場合
+        [self openAddressBook];
+    }
+}
+
+- (void)openAddressBook {
+    ABPeoplePickerNavigationController *picker = [ABPeoplePickerNavigationController new];
+    picker.peoplePickerDelegate = self;
+    
+    // iOS8以上の場合
+    if([[[UIDevice currentDevice] systemVersion] compare:@"8" options:NSNumericSearch]
+           == NSOrderedDescending){
+        
+        // メールアドレスだけ利用する
+        picker.displayedProperties = @[@(kABPersonEmailProperty)];
+        
+        // メールアドレスを持ってない人を非表示にする
+        picker.predicateForEnablingPerson = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+        
+        // この条件に一致した人は peoplePickerNavigationController:didSelectPerson の処理
+        // 一致しない人は連絡帳の詳細画面に遷移してから peoplePickerNavigationController:didSelectPerson:property:identifier: の処理
+        picker.predicateForSelectionOfPerson = [NSPredicate predicateWithFormat:@"emailAddresses.@count = 1"];
+    }
+    
+    [self presentViewController:picker animated:YES completion: nil];
+}
+
+//閉じる
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//選択時処理　ios8対応
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person {
+    [self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person];
+}
+
+//選択時処理
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+    
+    ABMutableMultiValueRef multi = ABRecordCopyValue(person, kABPersonEmailProperty);
+    if (ABMultiValueGetCount(multi) > 1) {
+        //複数メールアドレスが有る
+        //メールアドレスだけを表示するようにして連絡帳の詳細画面に遷移する
+        [peoplePicker setDisplayedProperties:[NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonEmailProperty]]];
+        CFRelease(multi);
+        return YES;
+    } else if (ABMultiValueGetCount(multi) == 1) {
+        //メールアドレスが一件有る
+        NSString *email = (NSString*)CFBridgingRelease(ABMultiValueCopyValueAtIndex(multi, 0));
+        [self addAddress:email];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        CFRelease(multi);
+        return NO;
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        CFRelease(multi);
+        return NO;
+    }
+}
+
+//詳細画面から戻った処理 ios8対応
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    [self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
+}
+
+//詳細画面から戻った処理
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    ABMultiValueRef multi = ABRecordCopyValue(person, property);
+    CFIndex index = ABMultiValueGetIndexForIdentifier(multi, identifier);
+    
+    NSString *email = (NSString*)CFBridgingRelease(ABMultiValueCopyValueAtIndex(multi, index));
+    [self addAddress:email];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    CFRelease(multi);
+    return NO;
+}
+
+- (void)addAddress:(NSString*)email {
+    NSMutableString* targetEmail = [NSMutableString string];
+    
+    if (_sendTo.text != nil){
+        [targetEmail appendString:_sendTo.text];
+    }
+    
+    if ([targetEmail isEqualToString:@""] == YES ||
+        [targetEmail hasSuffix:@","] == YES){
+        [targetEmail appendString:email];
+    } else {
+        [targetEmail appendString:@","];
+        [targetEmail appendString:email];
+    }
+    
+    _sendTo.text = targetEmail;
+    
+    [ConfigManager setDefaultSendTo:targetEmail];
+}
+
+- (IBAction)sendUntreated:(id)sender {
+    if([ConfigManager isSendMailFlg] == NO){
+        [Utility showAlert:@"メール送信機能を利用するにはアドオンを購入してください。"];
+        return;
+    }
+    
+    NSArray* targetKotsuhiList = [KotsuhiFileManager loadUntreatedList];
+    [self sendMail:targetKotsuhiList sendAll:NO];
+}
+
+- (IBAction)sendAll:(id)sender {
+    if([ConfigManager isSendMailFlg] == NO){
+        [Utility showAlert:@"メール送信機能を利用するにはアドオンを購入してください。"];
+        return;
+    }
+    
+    NSArray* targetKotsuhiList = [KotsuhiFileManager loadKotsuhiList];
+    [self sendMail:targetKotsuhiList sendAll:YES];
+}
+
+- (void)sendMail:(NSArray*)kotsuhiList sendAll:(BOOL)sendAll {
+    // メールを利用できるかチェック
+    if ([MFMailComposeViewController canSendMail] == NO) {
+        return;
+    }
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:self];
+    
+    NSString* sendto = [ConfigManager getDefaultSendTo];
+    NSArray* sendtoArray = [sendto componentsSeparatedByString:@","];
+    [controller setToRecipients:sendtoArray];
+    
+    NSString* title = sendAll ? @"交通費一覧" : @"未処理交通費一覧";
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *date = [NSDate date];
+    NSDateComponents *dateComps
+    = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    int year = (int)dateComps.year;
+    int month = (int)dateComps.month;
+    int day = (int)dateComps.day;
+    
+    [controller setSubject:[NSString stringWithFormat:@"%@（%d年%d月%d日）",title, year, month, day]];
+    
+    [controller setMessageBody:@"交通費メモから送信" isHTML:NO];
+    
+    // 交通費データをNSdataに変換
+    NSString* dataStr = [self makeCsvString:kotsuhiList];
+    NSData* data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // ファイルを作成して添付。MimeTypeはtext/csv
+    NSString* fiilenameprefix = sendAll ? @"kotsuhiall" : @"kotsuhi";
+    NSString* filename = [NSString stringWithFormat:@"%@%04d%02d%02d.csv",fiilenameprefix, year, month, day];
+    [controller addAttachmentData:data mimeType:@"text/csv" fileName:filename];
+    
+    // メール送信用のビューを表示
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (NSString*)makeCsvString:(NSArray*)kotsuhiList {
+    NSMutableString* retString = [NSMutableString stringWithString:@""];
+
+    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額,往復,目的補足,経路,処理済\n"];
+
+    for(Kotsuhi* kotsuhi in kotsuhiList){
+        // 半角カンマを全角に置き換え
+        NSString* visit = [Utility replaceComma:kotsuhi.visit];
+        NSString* departure = [Utility replaceComma:kotsuhi.departure];
+        NSString* arrival = [Utility replaceComma:kotsuhi.arrival];
+        NSString* transportation = [Utility replaceComma:kotsuhi.transportation];
+        NSString* purpose = [Utility replaceComma:kotsuhi.purpose];
+        NSString* route = [Utility replaceComma:kotsuhi.route];
+        
+        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%@,%@,%@,%@\n",
+            kotsuhi.year, kotsuhi.month, kotsuhi.day, visit, departure, arrival, transportation,
+            kotsuhi.amount, kotsuhi.roundtrip ? @"往復" : @"",
+            purpose,route, kotsuhi.treated ? @"処理済" : @""]];
+    }
+    
+    return retString;
+}
+
+// メール送信処理完了時のイベント
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    switch (result){
+        // キャンセル
+        case MFMailComposeResultCancelled:
+            break;
+        // 保存
+        case MFMailComposeResultSaved:
+            break;
+        // 送信成功
+        case MFMailComposeResultSent:
+            [Utility showAlert:@"送信しました"];
+            break;
+        // 送信失敗
+        case MFMailComposeResultFailed:
+            [Utility showAlert:@"送信に失敗しました"];
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

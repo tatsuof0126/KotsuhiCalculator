@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ADG/ADGManagerViewController.h>
 #import "MyPattern.h"
-#import "NADView.h"
 #import "CheckBoxButton.h"
 
-@interface MyPatternInputViewController : UIViewController <NADViewDelegate>
+@interface MyPatternInputViewController : UIViewController <ADGManagerViewControllerDelegate> {
+    ADGManagerViewController *adg_;
+}
 
-@property (nonatomic, retain) NADView* nadView;
+@property (nonatomic, retain) ADGManagerViewController *adg;
 
 @property (strong, nonatomic) MyPattern* mypattern;
 @property BOOL edited;

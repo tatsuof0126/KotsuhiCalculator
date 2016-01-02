@@ -8,15 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Kotsuhi.h"
-#import "NADView.h"
 #import "CheckBoxButton.h"
+#import <ADG/ADGManagerViewController.h>
 
-@interface KotsuhiInputViewController : UIViewController <NADViewDelegate>
+@interface KotsuhiInputViewController : UIViewController <ADGManagerViewControllerDelegate> {
+    ADGManagerViewController *adg_;
+}
 
-@property (nonatomic, retain) NADView* nadView;
+@property (nonatomic, retain) ADGManagerViewController *adg;
 
 @property (strong, nonatomic) Kotsuhi *kotsuhi;
 @property BOOL edited;
+@property int mypatternid;
 
 @property (strong, nonatomic) IBOutlet UITextField *year;
 @property (strong, nonatomic) IBOutlet UITextField *month;
@@ -29,6 +32,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *purpose;
 @property (strong, nonatomic) IBOutlet UITextField *route;
 @property (strong, nonatomic) IBOutlet CheckBoxButton *roundtrip;
+@property (strong, nonatomic) IBOutlet CheckBoxButton *treated;
+@property (strong, nonatomic) IBOutlet CheckBoxButton *registmypattern;
+@property (strong, nonatomic) IBOutlet UILabel *treatedLabel;
+@property (strong, nonatomic) IBOutlet UILabel *mypatternLabel;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
@@ -36,9 +43,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *registBtn;
 
-@property (strong, nonatomic) IBOutlet UIButton *registMypatternBtn;
+// @property (strong, nonatomic) IBOutlet UIButton *registMypatternBtn;
 
 - (IBAction)registButton:(id)sender;
+
+- (IBAction)transitButton:(id)sender;
 
 - (IBAction)backButton:(id)sender;
 

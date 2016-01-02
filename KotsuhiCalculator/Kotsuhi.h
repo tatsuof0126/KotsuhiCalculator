@@ -24,6 +24,7 @@
 @property (strong, nonatomic, readwrite) NSString *purpose;
 @property (strong, nonatomic, readwrite) NSString *route;
 @property BOOL roundtrip;
+@property BOOL treated;
 
 - (NSData*)getKotsuhiNSData;
 

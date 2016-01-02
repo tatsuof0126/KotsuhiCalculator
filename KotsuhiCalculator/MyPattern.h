@@ -21,12 +21,13 @@
 @property (strong, nonatomic, readwrite) NSString *purpose;
 @property (strong, nonatomic, readwrite) NSString *route;
 @property BOOL roundtrip;
+@property int sort;
 
 - (NSData*)getMyPatternNSData;
 
 + (MyPattern*)makeMyPattern:(NSData*)data;
 
-- (NSComparisonResult)compareMyPatternId:(MyPattern*)data;
+- (NSComparisonResult)compareMyPattern:(MyPattern*)data;
 
 - (int)getTripAmount;
 - (NSString*)getRoundTripString;

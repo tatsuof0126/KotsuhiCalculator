@@ -55,7 +55,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if(section == 0){
-        return @"アドオンを購入して広告を削除";
+        return @"アドオンを購入";
     } else if(section == 1){
         return @"以前にアドオンを購入済みの方";
     } else {
@@ -64,15 +64,22 @@
 }
 
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if(section == 0){
+        return 2;
+    } else if(section == 1){
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int section = indexPath.section;
+    long section = indexPath.section;
+    long row = indexPath.row;
     
     UITableViewCell* cell;
     
-    NSString* cellName = [NSString stringWithFormat:@"%@%d",@"PurchaseCell",section];
+    NSString* cellName = [NSString stringWithFormat:@"%@%ld-%ld",@"PurchaseCell",section, row];
     cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -80,11 +87,13 @@
     }
     
     if(section == 0){
-        cell.textLabel.text = @"広告を削除する";
+        if(row == 0){
+            cell.textLabel.text = @"メール送信機能を追加する";
+        } else if (row == 1){
+            cell.textLabel.text = @"広告を削除する";
+        }
     } else if(section == 1){
         cell.textLabel.text = @"購入済みアドオンをリストア";
-    } else {
-        cell.textLabel.text = @"";
     }
     
     return cell;
@@ -94,7 +103,11 @@
     //    NSLog(@"Selected %d-%d",indexPath.section, indexPath.row);
     
     if(indexPath.section == 0){
-        [self requestAddon:@"com.tatsuo.KotsuhiCalculator.removeads"];
+        if(indexPath.row == 0){
+            [self requestAddon:@"com.tatsuo.KotsuhiCalculator.sendmail"];
+        } else if(indexPath.row == 1){
+            [self requestAddon:@"com.tatsuo.KotsuhiCalculator.removeads"];
+        }
     } else if(indexPath.section == 1){
         [self restoreAddon];
     }

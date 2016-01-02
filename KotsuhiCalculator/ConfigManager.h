@@ -14,4 +14,24 @@
 
 + (void)setRemoveAdsFlg:(BOOL)removeAdsFlg;
 
++ (BOOL)isSendMailFlg;
+
++ (void)setSendMailFlg:(BOOL)sendMailFlg;
+
++ (NSString*)getDefaultTransportation;
+
++ (void)setDefaultTransportation:(NSString*)transportation;
+
++ (NSString*)getDefaultPurpose;
+
++ (void)setDefaultPurpose:(NSString*)purpose;
+
++ (BOOL)isICCardSearch;
+
++ (void)setICCardSearch:(BOOL)icCardSearch;
+
++ (NSString*)getDefaultSendTo;
+
++ (void)setDefaultSendTo:(NSString*)sendTo;
+
 @end

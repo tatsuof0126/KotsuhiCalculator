@@ -7,11 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NADView.h"
+#import "CheckBoxButton.h"
+#import <ADG/ADGManagerViewController.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ConfigViewController : UIViewController <NADViewDelegate>
+@interface ConfigViewController : UIViewController <ADGManagerViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
+    ADGManagerViewController *adg_;
+}
 
-@property (nonatomic, retain) NADView* nadView;
+@property (nonatomic, retain) ADGManagerViewController *adg;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutlet UITextField *transportationText;
+
+@property (strong, nonatomic) IBOutlet UITextField *purposeText;
+
+@property (strong, nonatomic) IBOutlet CheckBoxButton *iccardSearch;
+
+@property (strong, nonatomic) IBOutlet UITextField *sendTo;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *removeAdsBtn;
 
 @property (strong, nonatomic) IBOutlet UILabel *reviewLabel;
 
@@ -20,5 +38,11 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 
 @property (strong, nonatomic) IBOutlet UILabel *versionName;
+
+- (IBAction)searchAddress:(id)sender;
+
+- (IBAction)sendUntreated:(id)sender;
+
+- (IBAction)sendAll:(id)sender;
 
 @end

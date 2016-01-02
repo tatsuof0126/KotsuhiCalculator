@@ -8,7 +8,7 @@
 
 #import "Kotsuhi.h"
 
-#define SAVE_VERSION 2
+#define SAVE_VERSION 3
 
 @implementation Kotsuhi
 
@@ -25,6 +25,7 @@
 @synthesize purpose;
 @synthesize route;
 @synthesize roundtrip;
+@synthesize treated;
 
 - (id)init {
     if(self = [super init]){
@@ -41,20 +42,20 @@
         purpose = @"";
         route = @"";
         roundtrip = NO;
+        treated = NO;
     }
     return self;
 }
 
 - (NSData*)getKotsuhiNSData {
-    if( SAVE_VERSION == 1 ||
-        SAVE_VERSION == 2){
+    if( SAVE_VERSION == 1 || SAVE_VERSION == 2 || SAVE_VERSION == 3 ){
         return [self getKotsuhiNSDataV1];
     } else {
         return [self getKotsuhiNSDataV1];
     }
 }
 
-// V1とV2に対応
+// V1〜V3に対応
 - (NSData*)getKotsuhiNSDataV1 {
     NSMutableString* kotsuhiStr = [NSMutableString string];
     
@@ -92,9 +93,14 @@
     // ９行目：経路
     [kotsuhiStr appendString:[NSString stringWithFormat:@"%@\n",route]];
     
-    if (SAVE_VERSION == 2){
-        // １０行目：往復フラグ（V2のみ）
+    if (SAVE_VERSION >= 2){
+        // １０行目：往復フラグ（V2以降）
         [kotsuhiStr appendString:[NSString stringWithFormat:@"%d\n",roundtrip]];
+    }
+    
+    if (SAVE_VERSION >= 3){
+        // １１行目：処理済みフラグ（V3以降）
+        [kotsuhiStr appendString:[NSString stringWithFormat:@"%d\n",treated]];
     }
     
 //    NSLog(@"kotsuhiStr : %@", kotsuhiStr);
@@ -118,7 +124,8 @@
         NSString* versionStr = [headerStrArray objectAtIndex:0];
         
         if([versionStr isEqualToString:@"V1"] == YES ||
-           [versionStr isEqualToString:@"V2"] == YES ){
+           [versionStr isEqualToString:@"V2"] == YES ||
+           [versionStr isEqualToString:@"V3"] == YES){
             // "V1"という文字列ならV1形式
             // "V2"という文字列ならV2形式（同じメソッドで処理）
             return [self makeKotsuhiV1:kotsuhiStrArray];
@@ -176,6 +183,11 @@
     if ([kotsuhiStrArray count] >= 10){
         // １０行目：往復フラグ
         kotsuhi.roundtrip = [[kotsuhiStrArray objectAtIndex:9] isEqualToString:@"1"];
+    }
+    
+    if ([kotsuhiStrArray count] >= 11){
+        // １１行目：処理済みフラグ
+        kotsuhi.treated = [[kotsuhiStrArray objectAtIndex:10] isEqualToString:@"1"];
     }
     
     return kotsuhi;

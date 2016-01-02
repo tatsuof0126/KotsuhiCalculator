@@ -7,11 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NADView.h"
+#import <ADG/ADGManagerViewController.h>
 
-@interface MyPatternListViewController : UIViewController <NADViewDelegate>
+@interface MyPatternListViewController : UIViewController <ADGManagerViewControllerDelegate> {
+    ADGManagerViewController *adg_;
+}
 
-@property (nonatomic, retain) NADView* nadView;
+@property (nonatomic, retain) ADGManagerViewController *adg;
+
+@property (strong, nonatomic) IBOutlet UINavigationItem *mypatternNavi;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *registBtn;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editBtn;
+
+- (IBAction)editButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *mypatternListView;
 @property (strong, nonatomic) IBOutlet UITextView *initialText;

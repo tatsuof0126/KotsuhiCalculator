@@ -122,7 +122,7 @@
     //    NSLog(@"--- paymentQueueRestoreCompletedTransactionsFinished ---");
     
     if([ConfigManager isRemoveAdsFlg] == NO){
-        [Utility showAlert:@"リストアしました" message:@"広告を削除にするには[広告を削除する]ボタンからアドオンを購入してください。"];
+        [Utility showAlert:@"リストアしました"];
     }
     
     [source endPurchase];
@@ -146,8 +146,15 @@
         } else {
             [Utility showAlert:@"リストアしました" message:@"次回起動時より広告が表示されなくなります。"];
         }
+    } else if([productId isEqualToString:@"com.tatsuo.KotsuhiCalculator.sendmail"]){
+        // メール送信アドオン
+        [ConfigManager setSendMailFlg:YES];
+        if(restore == NO){
+            [Utility showAlert:@"購入しました" message:@"メール送信機能が有効になりました。"];
+        } else {
+            [Utility showAlert:@"リストアしました" message:@"メール送信機能が有効になりました。"];
+        }
     }
 }
-
 
 @end

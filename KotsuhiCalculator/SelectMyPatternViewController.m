@@ -19,8 +19,6 @@
 
 @implementation SelectMyPatternViewController
 
-@synthesize nadView;
-
 @synthesize selectMypatternView;
 @synthesize mypatternList;
 
@@ -44,33 +42,30 @@
     // TableViewの大きさ定義＆iPhone5対応
     selectMypatternView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:selectMypatternView];
-    [AppDelegate adjustOriginForBeforeiOS6:selectMypatternView];
+//    [AppDelegate adjustOriginForBeforeiOS6:selectMypatternView];
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 431, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
     }
-    
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 431, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+    
     // TableViewの大きさ定義＆iPhone5対応
     selectMypatternView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:selectMypatternView];
-    [AppDelegate adjustOriginForBeforeiOS6:selectMypatternView];
-    
-    // NADViewを表示
-    [self.view addSubview:nadView];
+//    [AppDelegate adjustOriginForBeforeiOS6:selectMypatternView];
 }
 
 - (void)loadMyPatternList {
@@ -123,7 +118,7 @@
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:18];
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:18];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
@@ -154,13 +149,18 @@
     viewController.roundtrip.checkBoxSelected = myPattern.roundtrip;
     [viewController.roundtrip setState];
     
+    viewController.mypatternid = myPattern.mypatternid;
+    viewController.mypatternLabel.text = @"マイパターンを更新";
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)backButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    //    [nadView resume];
     
     [selectMypatternView deselectRowAtIndexPath:[selectMypatternView indexPathForSelectedRow] animated:NO];
     
@@ -168,19 +168,25 @@
     [selectMypatternView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
-    //    [nadView pause];
+    if(_adg){
+        [_adg resumeRefresh];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
 }
 
 - (void)dealloc {
-    //    [nadView setDelegate:nil];
-    //    nadView = nil;
-}
-
-- (IBAction)backButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    adg_.delegate = nil;
+    adg_ = nil;
 }
 
 @end

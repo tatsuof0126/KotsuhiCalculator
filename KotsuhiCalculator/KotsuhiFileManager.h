@@ -20,6 +20,8 @@
 
 + (NSArray*)loadKotsuhiList;
 
++ (NSArray*)loadUntreatedList;
+
 + (MyPattern*)loadMyPattern:(int)mypatternid;
 
 + (void)saveMyPattern:(MyPattern*)myPattern;

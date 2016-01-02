@@ -13,14 +13,14 @@
 #import "TrackingManager.h"
 
 #define REGIST_BTN 1
+#define EDIT_BTN 10
+#define CANCEL_BTN 11
 
 @interface MyPatternListViewController ()
 
 @end
 
 @implementation MyPatternListViewController
-
-@synthesize nadView;
 
 @synthesize mypatternListView;
 @synthesize mypatternList;
@@ -45,33 +45,30 @@
     // TableViewの大きさ定義＆iPhone5対応
     mypatternListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:mypatternListView];
-    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
+//    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 381, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
     }
-    
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+    
     // TableViewの大きさ定義＆iPhone5対応
     mypatternListView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:mypatternListView];
-    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
-    
-    // NADViewを表示
-    [self.view addSubview:nadView];
+//    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
 }
 
 - (void)loadMyPatternList {
@@ -132,7 +129,7 @@
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:16];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
@@ -198,10 +195,54 @@
     
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    NSMutableArray* newMypatternList = [mypatternList mutableCopy];
+    
+    MyPattern* myPattern = [newMypatternList objectAtIndex:sourceIndexPath.row];
+    [newMypatternList removeObjectAtIndex:sourceIndexPath.row];
+    [newMypatternList insertObject:myPattern atIndex:destinationIndexPath.row];
+    
+    int sort = 0;
+    for(MyPattern* myPattern in newMypatternList){
+        myPattern.sort = sort;
+        [KotsuhiFileManager saveMyPattern:myPattern];
+        sort++;
+    }
+    
+    mypatternList = newMypatternList;
+}
+
+- (IBAction)editButton:(id)sender {
+    int tag = (int)((UIView*)sender).tag;
+    if(tag == EDIT_BTN){
+        // TableViewを編集モードにする
+        [mypatternListView setEditing:YES animated:YES];
+        
+        _mypatternNavi.rightBarButtonItem = nil;
+        
+        _editBtn.title = @"キャンセル";
+        _editBtn.tag = CANCEL_BTN;
+    } else if(tag == CANCEL_BTN){
+        // TableViewの編集モードを終了
+        [mypatternListView setEditing:NO animated:YES];
+        
+        _mypatternNavi.rightBarButtonItem = _registBtn;
+        
+        _editBtn.title = @"並び替え";
+        _editBtn.tag = EDIT_BTN;
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [nadView resume];
     
     [mypatternListView deselectRowAtIndexPath:[mypatternListView indexPathForSelectedRow] animated:NO];
     
@@ -209,15 +250,25 @@
     [mypatternListView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
-    [nadView pause];
+    if(_adg){
+        [_adg resumeRefresh];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
 }
 
 - (void)dealloc {
-    [nadView setDelegate:nil];
-    nadView = nil;
+    adg_.delegate = nil;
+    adg_ = nil;
 }
 
 @end

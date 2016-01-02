@@ -8,7 +8,7 @@
 
 #import "MyPattern.h"
 
-#define SAVE_VERSION 2
+#define SAVE_VERSION 3
 
 @implementation MyPattern
 
@@ -22,6 +22,7 @@
 @synthesize purpose;
 @synthesize route;
 @synthesize roundtrip;
+@synthesize sort;
 
 - (id)init {
     if(self = [super init]){
@@ -35,13 +36,15 @@
         purpose = @"";
         route = @"";
         roundtrip = NO;
+        sort = 0;
     }
     return self;
 }
 
 - (NSData*)getMyPatternNSData {
     if( SAVE_VERSION == 1 ||
-        SAVE_VERSION == 2){
+        SAVE_VERSION == 2 ||
+        SAVE_VERSION == 3){
         return [self getMyPatternNSDataV1];
     } else {
         return [self getMyPatternNSDataV1];
@@ -78,11 +81,16 @@
     // ９行目：経路
     [mypatternStr appendString:[NSString stringWithFormat:@"%@\n",route]];
     
-    if (SAVE_VERSION == 2){
-        // １０行目：往復フラグ（V2のみ）
+    if (SAVE_VERSION >= 2){
+        // １０行目：往復フラグ（V2以降）
         [mypatternStr appendString:[NSString stringWithFormat:@"%d\n",roundtrip]];
     }
 
+    if (SAVE_VERSION >= 3){
+        // １１行目：ソート順（V3以降）
+        [mypatternStr appendString:[NSString stringWithFormat:@"%d\n",sort]];
+    }
+    
 //    NSLog(@"mypatternStr : %@", mypatternStr);
     
     NSData* data = [mypatternStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -103,9 +111,9 @@
         NSString* versionStr = [headerStrArray objectAtIndex:0];
         
         if([versionStr isEqualToString:@"V1"] == YES ||
-           [versionStr isEqualToString:@"V2"] == YES){
-            // "V1"という文字列ならV1形式
-            // "V2"という文字列ならV2形式（同じメソッドで処理）
+           [versionStr isEqualToString:@"V2"] == YES ||
+           [versionStr isEqualToString:@"V3"] == YES){
+            // V1〜V3とも同じ形式で処理
             return [self makeKotsuhiV1:mypatternStrArray];
         } else {
             // どのバージョンでもない場合はV1形式と見なす
@@ -158,16 +166,27 @@
         myPattern.roundtrip = [[mypatternStrArray objectAtIndex:9] isEqualToString:@"1"];
     }
     
+    if ([mypatternStrArray count] >= 11){
+        // １１行目：ソート順
+        myPattern.sort = [[mypatternStrArray objectAtIndex:10] intValue];
+    }
+    
     return myPattern;
 }
 
-- (NSComparisonResult)compareMyPatternId:(MyPattern*)data {
-    if (self.mypatternid > data.mypatternid){
-        return NSOrderedAscending;
-    } else if (self.mypatternid == data.mypatternid) {
-        return NSOrderedSame;
-    } else {
+- (NSComparisonResult)compareMyPattern:(MyPattern*)data {
+    if (self.sort > data.sort){
         return NSOrderedDescending;
+    } else if (self.sort == data.sort) {
+        if (self.mypatternid > data.mypatternid){
+            return NSOrderedDescending;
+        } else if (self.mypatternid == data.mypatternid) {
+            return NSOrderedSame;
+        } else {
+            return NSOrderedAscending;
+        }
+    } else {
+        return NSOrderedAscending;
     }
 }
 

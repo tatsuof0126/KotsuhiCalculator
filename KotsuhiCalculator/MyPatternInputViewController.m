@@ -11,15 +11,13 @@
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
-#import "NADInterstitial.h"
+#import "SelectInputViewController.h"
 
 @interface MyPatternInputViewController ()
 
 @end
 
 @implementation MyPatternInputViewController
-
-@synthesize nadView;
 
 @synthesize mypattern;
 @synthesize scrollView;
@@ -47,8 +45,9 @@
     if(mypattern == nil){
         mypattern = [[MyPattern alloc] init];
         
-        // 交通手段のデフォルトを電車に設定
-        mypattern.transportation = @"電車";
+        // 交通手段・目的補足のデフォルトを設定
+        mypattern.transportation = [ConfigManager getDefaultTransportation];
+        mypattern.purpose = [ConfigManager getDefaultPurpose];
     }
     
     // 初期値をセット
@@ -71,35 +70,32 @@
     scrollView.contentSize = CGSizeMake(320, 685);
     scrollView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:scrollView];
-    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
+//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
     
     edited = NO;
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 431, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
     }
-    
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
-    // TableViewの大きさ定義＆iPhone5対応
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 431, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+    
+    // Viewの大きさ定義＆iPhone5対応
     scrollView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:scrollView];
-    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
-    
-    // NADViewを表示
-    [self.view addSubview:nadView];
+//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,8 +121,15 @@
         textField.text = @"";
     }
     
+    // NSLog(@"y : %f", scrollView.contentOffset.y);
+
+    // 下の方の項目を入力する場合はスクロール
+    if((textField == _transportation || textField == _amount || textField == _purpose || textField == _route) &&
+       scrollView.contentOffset.y < 180.0f){
+        [scrollView setContentOffset:CGPointMake(0.0f, 180.0f) animated:YES];
+    }
+
     [self showDoneButton];
-    
     edited = YES;
 }
 
@@ -257,36 +260,31 @@
 
         [KotsuhiFileManager saveMyPattern:mypattern];
         
-        // AppBank Network
-        [[NADInterstitial sharedInstance] showAd];
-        
-        /*
-        NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAd];
-        switch ( result ){
-            case AD_SHOW_SUCCESS:
-                NSLog(@"広告の表示に成功しました。");
-                break;
-            case AD_SHOW_ALREADY:
-                NSLog(@"既に広告が表示されています。");
-                break;
-            case AD_FREQUENCY_NOT_REACHABLE:
-                NSLog(@"広告のフリークエンシーカウントに達していません。");
-                break;
-            case AD_LOAD_INCOMPLETE:
-                NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
-                break;
-            case AD_REQUEST_INCOMPLETE:
-                NSLog(@"抽選リクエストに失敗しています。");
-                break;
-            case AD_DOWNLOAD_INCOMPLETE:
-                NSLog(@"広告のダウンロードが完了していません。");
-                break;
-        }
-        */
+        // AppBank Network → やめた
+        // [[NADInterstitial sharedInstance] showAd];
         
         [self dismissViewControllerAnimated:YES completion:nil];
         
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"マイパターン登録画面―登録" value:nil screen:@"マイパターン登録画面"];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    NSString* segueStr = [segue identifier];
+    
+    NSString* labelStr = [NSString stringWithFormat:@"マイパターン登録画面―%@",segueStr];
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:labelStr value:nil screen:@"マイパターン登録"];
+    
+    SelectInputViewController* controller = [segue destinationViewController];
+    if ([segueStr isEqualToString:@"visitSegue"] == YES) {
+        controller.selectType = VISIT;
+        controller.targetTextField = _visit;
+    } else if ([segueStr isEqualToString:@"departureSegue"] == YES) {
+        controller.selectType = DEPARTURE;
+        controller.targetTextField = _departure;
+    } else if ([segueStr isEqualToString:@"arrivalSegue"] == YES) {
+        controller.selectType = ARRIVAL;
+        controller.targetTextField = _arrival;
     }
 }
 
@@ -309,6 +307,27 @@
     mypattern.purpose = _purpose.text;
     mypattern.route = _route.text;
     mypattern.roundtrip = _roundtrip.checkBoxSelected;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(_adg){
+        [_adg resumeRefresh];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
+}
+
+- (void)dealloc {
+    adg_.delegate = nil;
+    adg_ = nil;
 }
 
 @end

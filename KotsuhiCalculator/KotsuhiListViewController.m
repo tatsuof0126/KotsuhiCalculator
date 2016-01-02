@@ -11,7 +11,6 @@
 #import "KotsuhiFileManager.h"
 #import "ConfigManager.h"
 #import "TrackingManager.h"
-#import <FelloPush/KonectNotificationsAPI.h>
 
 #define REGIST_BTN 1
 
@@ -20,8 +19,6 @@
 @end
 
 @implementation KotsuhiListViewController
-
-@synthesize nadView;
 
 @synthesize kotsuhiListView;
 @synthesize kotsuhiListByMonth;
@@ -47,33 +44,30 @@
     // TableViewの大きさ定義＆iPhone5対応
     kotsuhiListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:kotsuhiListView];
-    [AppDelegate adjustOriginForBeforeiOS6:kotsuhiListView];
-    
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 381, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
+//    [AppDelegate adjustOriginForBeforeiOS6:kotsuhiListView];
+
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
     }
-    
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+    
     // TableViewの大きさ定義＆iPhone5対応
     kotsuhiListView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:kotsuhiListView];
-    [AppDelegate adjustOriginForBeforeiOS6:kotsuhiListView];
-    
-    // NADViewを表示
-    [self.view addSubview:nadView];
+//    [AppDelegate adjustOriginForBeforeiOS6:kotsuhiListView];
 }
 
 - (void)loadKotsuhiList {
@@ -157,6 +151,13 @@
                                       reuseIdentifier:cellName];
     }
     
+    UIColor* textColor = nil;
+    if(kotsuhi.treated == YES){
+        textColor = [UIColor blackColor];
+    } else {
+        textColor = [UIColor blueColor];
+    }
+    
     // メインテキスト
     NSString* viewText = [NSString stringWithFormat:@"%d/%d %@ %d円%@",
                           kotsuhi.month, kotsuhi.day, kotsuhi.visit, [kotsuhi getTripAmount], [kotsuhi getRoundTripString]];
@@ -172,7 +173,8 @@
                            value:paragrahStyle
                            range:NSMakeRange(0, attributedText.length)];
     
-    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:16];
+    cell.textLabel.textColor = textColor;
+    cell.textLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:16];
     cell.textLabel.attributedText = attributedText;
     
     // サブテキスト
@@ -182,6 +184,7 @@
     NSMutableAttributedString* detailStr
         = [[NSMutableAttributedString alloc] initWithString:viewDetailText];
     
+    cell.detailTextLabel.textColor = textColor;
     cell.detailTextLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:14];
     cell.detailTextLabel.attributedText = detailStr;
     
@@ -247,23 +250,31 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [nadView resume];
-    
     [kotsuhiListView deselectRowAtIndexPath:[kotsuhiListView indexPathForSelectedRow] animated:NO];
     
     [self loadKotsuhiList];
     [kotsuhiListView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
-    [nadView pause];
+    if(_adg){
+        [_adg resumeRefresh];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
 }
 
 - (void)dealloc {
-    [nadView setDelegate:nil];
-    nadView = nil;
+    adg_.delegate = nil;
+    adg_ = nil;
 }
 
 @end

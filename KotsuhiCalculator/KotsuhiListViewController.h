@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NADView.h"
+#import <ADG/ADGManagerViewController.h>
 
-@interface KotsuhiListViewController : UIViewController <NADViewDelegate>
+@interface KotsuhiListViewController : UIViewController <ADGManagerViewControllerDelegate> {
+    ADGManagerViewController *adg_;
+}
 
-@property (nonatomic, retain) NADView* nadView;
+@property (nonatomic, retain) ADGManagerViewController *adg;
 
 @property (strong, nonatomic) IBOutlet UITextView *initialText;
 

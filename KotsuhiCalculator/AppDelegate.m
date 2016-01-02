@@ -9,9 +9,7 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "GAI.h"
-#import "NADInterstitial.h"
 #import "KotsuhiFileManager.h"
-#import <FelloPush/KonectNotificationsAPI.h>
 
 @implementation AppDelegate
 
@@ -35,24 +33,36 @@
     // Google Analyticsの初期化
     [self initializeGoogleAnalytics];
     
-    // For AppBank Fello
-    NSString* appId = @"10646";
-    [KonectNotificationsAPI initialize:nil launchOptions:launchOptions appId:appId];
-    
-    // 広告削除アドオン購入済みなら広告表示しない
-    if([ConfigManager isRemoveAdsFlg] == YES){
-        [KonectNotificationsAPI setAdEnabled:NO];
-    } else {
-        [KonectNotificationsAPI setAdEnabled:YES];
-    }
+//    // For AppBank Fello → やめた
+//    NSString* appId = @"10646";
+//    [KonectNotificationsAPI initialize:nil launchOptions:launchOptions appId:appId];
+//
+//    // 広告削除アドオン購入済みなら広告表示しない
+//    if([ConfigManager isRemoveAdsFlg] == YES){
+//        [KonectNotificationsAPI setAdEnabled:NO];
+//    } else {
+//        [KonectNotificationsAPI setAdEnabled:YES];
+//    }
     
     // For AppBank Network(nend)
-    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
+//    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
     
     // SampleData
     if(MAKE_SAMPLE_DATA == 1){
-        [ConfigManager setRemoveAdsFlg:YES];
         [KotsuhiFileManager makeSampleData];
+    }
+    
+    if(SET_REMOVE_ADS == 1){
+        [ConfigManager setRemoveAdsFlg:YES];
+    }
+    if(SET_REMOVE_ADS == 2){
+        [ConfigManager setRemoveAdsFlg:NO];
+    }
+    if(SET_SEND_MAIL == 1){
+        [ConfigManager setSendMailFlg:YES];
+    }
+    if(SET_SEND_MAIL == 2){
+        [ConfigManager setSendMailFlg:NO];
     }
     
     return YES;
@@ -114,6 +124,7 @@
     }
 }
 
+/*
 + (void)adjustOriginForBeforeiOS6:(UIView*)view {
     // iOS5/6対応
     if([[[UIDevice currentDevice] systemVersion] compare:@"7" options:NSNumericSearch]
@@ -124,6 +135,7 @@
         view.frame = newRect;
     }
 }
+*/
 
 - (void)initializeGoogleAnalytics {
     // トラッキングIDを設定

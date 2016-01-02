@@ -8,15 +8,12 @@
 
 #import "KotsuhiInputViewController.h"
 #import "AppDelegate.h"
+#import "SelectInputViewController.h"
+#import "TransitViewController.h"
 #import "Utility.h"
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
-#import "NADInterstitial.h"
-#import <FelloPush/KonectNotificationsAPI.h>
-
-#define REGIST_BTN 1
-#define REGIST_AND_MYPATTERN_BTN 2
 
 @interface KotsuhiInputViewController ()
 
@@ -24,10 +21,9 @@
 
 @implementation KotsuhiInputViewController
 
-@synthesize nadView;
-
 @synthesize kotsuhi;
 @synthesize edited;
+@synthesize mypatternid;
 @synthesize scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,12 +54,13 @@
         NSDateComponents *dateComps
             = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
         
-        kotsuhi.year = dateComps.year;
-        kotsuhi.month = dateComps.month;
-        kotsuhi.day = dateComps.day;
+        kotsuhi.year = (int)dateComps.year;
+        kotsuhi.month = (int)dateComps.month;
+        kotsuhi.day = (int)dateComps.day;
         
-        // 交通手段のデフォルトを電車に設定
-        kotsuhi.transportation = @"電車";
+        // 交通手段・目的補足のデフォルトを設定
+        kotsuhi.transportation = [ConfigManager getDefaultTransportation];
+        kotsuhi.purpose = [ConfigManager getDefaultPurpose];
     }
     
     // 初期値をセット
@@ -80,44 +77,62 @@
     _route.text = kotsuhi.route;
     _roundtrip.checkBoxSelected = kotsuhi.roundtrip;
     [_roundtrip setState];
+    _treated.checkBoxSelected = kotsuhi.treated;
+    [_treated setState];
+    
+    mypatternid = 0;
+    _registmypattern.checkBoxSelected = NO;
+    [_registmypattern setState];
+    
+    if(kotsuhi.kotsuhiid == 0){
+        // 新規登録の場合は処理済チェックを消し、それ以下の項目を40px上に上げる
+        _treated.hidden = YES;
+        _treatedLabel.hidden = YES;
+        
+        [self setFrameOriginY:_registBtn originY:_registBtn.frame.origin.y-40];
+        [self setFrameOriginY:_registmypattern originY:_registmypattern.frame.origin.y-40];
+        [self setFrameOriginY:_mypatternLabel originY:_mypatternLabel.frame.origin.y-40];
+    }
     
     if(kotsuhi.kotsuhiid != 0 && MAKE_SAMPLE_DATA != 1){
         [_registBtn setTitle:@"　更 新　" forState:UIControlStateNormal];
-        [_registMypatternBtn setTitle:@"更新 ＆ マイパターン追加" forState:UIControlStateNormal];
+//        [_registMypatternBtn setTitle:@"更新 ＆ マイパターン追加" forState:UIControlStateNormal];
     }
     
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 726);
     scrollView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:scrollView];
-    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
+//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
     
     edited = NO;
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        // NADViewの作成（表示はこの時点ではしない）
-        nadView = [[NADView alloc] initWithFrame:CGRectMake(0, 431, 320, 50)];
-        [AppDelegate adjustOriginForiPhone5:nadView];
-        [AppDelegate adjustOriginForBeforeiOS6:nadView];
-        
-        [nadView setIsOutputLog:NO];
-        [nadView setNendID:@"b863bbfd62a267f888ef5aec544e06ec216b618b" spotID:@"178189"];
-        [nadView setDelegate:self];
-        
-        // NADViewの中身（広告）を読み込み
-        [nadView load];
-    }    
+    // 広告表示（AppBankSSP）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
+                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
+        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
+        self.adg = adgvc;
+        _adg.delegate = self;
+        [_adg setFillerRetry:NO];
+        [_adg loadRequest];
+    }
 }
 
--(void)nadViewDidFinishLoad:(NADView *)adView {
-    // NADViewの中身（広告）の読み込みに成功した場合
-    // TableViewの大きさ定義＆iPhone5対応
+- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    // 読み込みに成功したら広告を見える場所に移動
+    self.adg.view.frame = CGRectMake(0, 431, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+    
+    // Viewの大きさ定義＆iPhone5対応
     scrollView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:scrollView];
-    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
-    
-    // NADViewを表示
-    [self.view addSubview:nadView];
+//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
+}
+
+- (void)setFrameOriginY:(UIView*)view originY:(int)originY {
+    view.frame = CGRectMake(view.frame.origin.x, originY, view.frame.size.width, view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,37 +159,17 @@
         textField.text = @"";
     }
     
-    
     // NSLog(@"y : %f", scrollView.contentOffset.y);
-    
-    /*
-    
-    if ((textField == _daten || textField == _tokuten || textField == _steal) &&
-        scrollView.contentOffset.y < 155.0f+gameResult.battingResultArray.count*40){
-        [scrollView setContentOffset:CGPointMake(0.0f, 155.0f+gameResult.battingResultArray.count*40) animated:YES];
+
+    // 下の方の項目を入力する場合はスクロール
+    if((textField == _amount || textField == _purpose || textField == _route) &&
+       scrollView.contentOffset.y < 214.0f){
+        [scrollView setContentOffset:CGPointMake(0.0f, 214.0f) animated:YES];
     }
-    
-    if ((textField == _myscore || textField == _otherscore) &&
-        scrollView.contentOffset.y < 20.0f){
-        [scrollView setContentOffset:CGPointMake(0.0f, 20.0f) animated:YES];
-    }
-     
-    */
     
     [self showDoneButton];
-    
     edited = YES;
 }
-
-/*
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    // 数値入力項目で「0」の場合は入力時に「0」を消す
-    if(textField.tag == 1 && [textField.text isEqualToString:@"0"]){
-        textField.text = @"";
-    }
-    return YES;
-}
-*/
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     // 数値入力項目で空の場合は「0」を設定
@@ -183,21 +178,11 @@
     }
     
     [self hiddenDoneButton];
-    
     return YES;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    //    NSLog(@"y : %f", scrollView.contentOffset.y);
-    /*
-    if (textView == _memo &&
-        scrollView.contentOffset.y < 345.0f+gameResult.battingResultArray.count*40){
-        [scrollView setContentOffset:CGPointMake(0.0f, 345.0f+gameResult.battingResultArray.count*40) animated:YES];
-    }
-    */
-    
     [self showDoneButton];
-    
     edited = YES;
 }
 
@@ -256,8 +241,11 @@
     // 入力エラーがない場合は保存確認のダイアログを表示
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"保存してよろしいですか？"
         delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
-    [alert setTag:((UIButton*)sender).tag]; // ボタン種別を保持
+//    [alert setTag:((UIButton*)sender).tag]; // ボタン種別を保持
     [alert show];
+}
+
+- (IBAction)transitButton:(id)sender {
 }
 
 - (NSArray*)inputCheck {
@@ -324,8 +312,8 @@
         
         [KotsuhiFileManager saveKotsuhi:kotsuhi];
         
-        // 登録＋マイパターンボタンの場合はマイパターンも保存
-        if(alertView.tag == REGIST_AND_MYPATTERN_BTN){
+        // チェックが入っている場合はマイパターンにも登録
+        if(_registmypattern.checkBoxSelected == YES){
             MyPattern* myPattern = [self makeMyPattern];
             [KotsuhiFileManager saveMyPattern:myPattern];
             
@@ -340,32 +328,8 @@
             // AppBank fello →　やめた
             // [KonectNotificationsAPI beginInterstitial:nil];
             
-            // AppBank Network
-            [[NADInterstitial sharedInstance] showAd];
-
-/*
-            NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAd];
-            switch ( result ){
-                case AD_SHOW_SUCCESS:
-                    NSLog(@"広告の表示に成功しました。");
-                    break;
-                case AD_SHOW_ALREADY:
-                    NSLog(@"既に広告が表示されています。");
-                    break;
-                case AD_FREQUENCY_NOT_REACHABLE:
-                    NSLog(@"広告のフリークエンシーカウントに達していません。");
-                    break;
-                case AD_LOAD_INCOMPLETE:
-                    NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
-                    break;
-                case AD_REQUEST_INCOMPLETE:
-                    NSLog(@"抽選リクエストに失敗しています。");
-                    break;
-                case AD_DOWNLOAD_INCOMPLETE:
-                    NSLog(@"広告のダウンロードが完了していません。");
-                    break;
-            }
- */
+            // AppBank Network → やめた
+            // [[NADInterstitial sharedInstance] showAd];
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -385,9 +349,9 @@
     NSDateComponents *dateComps
         = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
     
-    kotsuhi.year = dateComps.year;
-    kotsuhi.month = dateComps.month;
-    kotsuhi.day = dateComps.day;
+    kotsuhi.year = (int)dateComps.year;
+    kotsuhi.month = (int)dateComps.month;
+    kotsuhi.day = (int)dateComps.day;
     
     kotsuhi.visit = _visit.text;
     kotsuhi.departure = _departure.text;
@@ -397,12 +361,20 @@
     kotsuhi.purpose = _purpose.text;
     kotsuhi.route = _route.text;
     kotsuhi.roundtrip = _roundtrip.checkBoxSelected;
+    kotsuhi.treated = _treated.checkBoxSelected;
 }
 
 - (MyPattern*)makeMyPattern {
-    MyPattern* myPattern = [[MyPattern alloc] init];
+    MyPattern* myPattern = nil;
+
+    if(mypatternid != 0){
+        myPattern = [KotsuhiFileManager loadMyPattern:mypatternid];
+    } else {
+        myPattern = [[MyPattern alloc] init];
+        myPattern.patternName = _visit.text;
+    }
     
-    myPattern.patternName = _visit.text;
+    myPattern.mypatternid = mypatternid;
     myPattern.visit = _visit.text;
     myPattern.departure = _departure.text;
     myPattern.arrival = _arrival.text;
@@ -415,19 +387,61 @@
     return myPattern;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [nadView resume];
+-(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    NSString* segueStr = [segue identifier];
+    
+    NSString* labelStr = [NSString stringWithFormat:@"交通費入力画面―%@",segueStr];
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:labelStr value:nil screen:@"交通費入力画面"];
+    
+    if ([segueStr isEqualToString:@"visitSegue"] == YES) {
+        SelectInputViewController* controller = [segue destinationViewController];
+        controller.selectType = VISIT;
+        controller.targetTextField = _visit;
+    } else if ([segueStr isEqualToString:@"departureSegue"] == YES) {
+        SelectInputViewController* controller = [segue destinationViewController];
+        controller.selectType = DEPARTURE;
+        controller.targetTextField = _departure;
+    } else if ([segueStr isEqualToString:@"arrivalSegue"] == YES) {
+        SelectInputViewController* controller = [segue destinationViewController];
+        controller.selectType = ARRIVAL;
+        controller.targetTextField = _arrival;
+    } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
+        TransitViewController* controller = [segue destinationViewController];
+        
+        NSString* departureStr = [_departure.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        NSString* arrivalStr = [_arrival.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        NSString* routeStr = [_route.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        
+        NSString* iccardStr;
+        if([ConfigManager isICCardSearch] == YES){
+            iccardStr = @"ic";
+        } else {
+            iccardStr = @"normal";
+        }
+        
+        controller.targetUrl = [NSString stringWithFormat:@"http://transit.yahoo.co.jp/search/result?from=%@&via=%@&to=%@&type=5&al=1&shin=1&ex=1&hb=1&lb=1&sr=1&s=0&expkind=1&ws=2&ticket=%@",departureStr, routeStr, arrivalStr, iccardStr];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(_adg){
+        [_adg resumeRefresh];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [nadView pause];
+    [super viewWillDisappear:animated];
+    
+    if(adg_){
+        [adg_ pauseRefresh];
+    }
 }
 
 - (void)dealloc {
-    [nadView setDelegate:nil];
-    nadView = nil;
+    adg_.delegate = nil;
+    adg_ = nil;
 }
 
 @end
