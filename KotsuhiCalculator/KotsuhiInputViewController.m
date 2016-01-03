@@ -163,8 +163,8 @@
 
     // 下の方の項目を入力する場合はスクロール
     if((textField == _amount || textField == _purpose || textField == _route) &&
-       scrollView.contentOffset.y < 214.0f){
-        [scrollView setContentOffset:CGPointMake(0.0f, 214.0f) animated:YES];
+       scrollView.contentOffset.y < 174.0f){
+        [scrollView setContentOffset:CGPointMake(0.0f, 174.0f) animated:YES];
     }
     
     [self showDoneButton];
@@ -246,6 +246,12 @@
 }
 
 - (IBAction)transitButton:(id)sender {
+    if(_departure.text.length == 0 || _arrival.text.length == 0){
+        [Utility showAlert:@"出発地と到着地を入力してください"];
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"transitSegue" sender:self];
 }
 
 - (NSArray*)inputCheck {

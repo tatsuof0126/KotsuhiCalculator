@@ -195,8 +195,13 @@
     
 }
 
+// TableView編集時は削除ボタンを出さない
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleNone;
+    if(mypatternListView.editing == YES){
+        return UITableViewCellEditingStyleNone;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -228,7 +233,7 @@
         
         _mypatternNavi.rightBarButtonItem = nil;
         
-        _editBtn.title = @"キャンセル";
+        _editBtn.title = @"戻る";
         _editBtn.tag = CANCEL_BTN;
     } else if(tag == CANCEL_BTN){
         // TableViewの編集モードを終了

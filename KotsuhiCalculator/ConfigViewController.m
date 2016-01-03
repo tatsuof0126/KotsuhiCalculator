@@ -358,7 +358,7 @@
     
     [controller setMessageBody:@"交通費メモから送信" isHTML:NO];
     
-    // 交通費データをNSdataに変換
+    // 交通費データをNSDataに変換
     NSString* dataStr = [self makeCsvString:kotsuhiList];
     NSData* data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -374,8 +374,8 @@
 - (NSString*)makeCsvString:(NSArray*)kotsuhiList {
     NSMutableString* retString = [NSMutableString stringWithString:@""];
 
-    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額,往復,目的補足,経路,処理済\n"];
-
+    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額(片道),金額,往復,目的補足,経路,処理済\n"];
+    
     for(Kotsuhi* kotsuhi in kotsuhiList){
         // 半角カンマを全角に置き換え
         NSString* visit = [Utility replaceComma:kotsuhi.visit];
@@ -385,9 +385,9 @@
         NSString* purpose = [Utility replaceComma:kotsuhi.purpose];
         NSString* route = [Utility replaceComma:kotsuhi.route];
         
-        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%@,%@,%@,%@\n",
+        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%d,%@,%@,%@,%@\n",
             kotsuhi.year, kotsuhi.month, kotsuhi.day, visit, departure, arrival, transportation,
-            kotsuhi.amount, kotsuhi.roundtrip ? @"往復" : @"",
+            kotsuhi.amount, [kotsuhi getTripAmount], kotsuhi.roundtrip ? @"往復" : @"",
             purpose,route, kotsuhi.treated ? @"処理済" : @""]];
     }
     

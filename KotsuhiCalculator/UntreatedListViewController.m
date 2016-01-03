@@ -74,12 +74,16 @@
 - (void)loadUntreatedList {
     NSArray* untreatedList = [KotsuhiFileManager loadUntreatedList];
     
-    // 交通費が0件の場合はメッセージを表示
+    // 交通費が0件の場合はメッセージを表示、処理済にするボタンを削除
     if(untreatedList.count == 0){
         _initialText.hidden = NO;
+        listNavi.leftBarButtonItem = nil;
     } else {
         _initialText.hidden = YES;
+        listNavi.leftBarButtonItem = _editBtn;
     }
+    
+    untreatedListView.allowsMultipleSelectionDuringEditing = NO;
     
     untreatedListByMonth = [NSMutableArray array];
     untreatedMonthList = [NSMutableArray array];
@@ -173,6 +177,15 @@
     return [untreatedMonthList objectAtIndex:section];
 }
 
+// TableView編集時は削除ボタンを出さない
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(untreatedListView.editing == YES){
+        return UITableViewCellEditingStyleNone;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -243,6 +256,7 @@
 
 - (void)startEditing {
     // TableViewを編集モードにする
+    untreatedListView.allowsMultipleSelectionDuringEditing = YES;
     [untreatedListView setEditing:YES animated:YES];
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"処理済"
@@ -255,18 +269,13 @@
 
 - (void)endEditing {
     // TableViewの編集モードを終了
+    untreatedListView.allowsMultipleSelectionDuringEditing = NO;
     [untreatedListView setEditing:NO animated:YES];
     
     listNavi.rightBarButtonItem = _registBtn;
     
     _editBtn.title = @"処理済にする";
     _editBtn.tag = EDIT_BTN;
-}
-
-// TableView編集時、削除ボタンを出さない
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellEditingStyleNone;
 }
 
 - (void)treatButton:(id)sender {

@@ -369,7 +369,6 @@
                                         </state>
                                         <connections>
                                             <action selector="transitButton:" destination="KsY-Ne-yI5" eventType="touchUpInside" id="36u-OS-zXl"/>
-                                            <segue destination="3sU-sW-y7o" kind="modal" identifier="transitSegue" modalTransitionStyle="crossDissolve" id="9EG-a2-Vra"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -398,6 +397,7 @@
                         <outlet property="treatedLabel" destination="Hi3-kV-Ir3" id="wgW-oE-JaJ"/>
                         <outlet property="visit" destination="2Bg-Qd-pPt" id="gJL-aV-5La"/>
                         <outlet property="year" destination="TPL-pk-0ME" id="Amr-dA-RUV"/>
+                        <segue destination="3sU-sW-y7o" kind="modal" identifier="transitSegue" modalTransitionStyle="crossDissolve" id="giW-1K-sx0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P31-fe-4Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -593,7 +593,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nro-QZ-R6G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nro-QZ-R6G">
                                 <rect key="frame" x="0.0" y="64" width="320" height="394"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -963,7 +963,7 @@
                                                 <action selector="editButton:" destination="wbR-Qd-m5b" id="ijB-eN-gvm"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" tag="1" title="登録" id="sJN-j5-RbB">
+                                        <barButtonItem key="rightBarButtonItem" tag="1" title="追加" id="sJN-j5-RbB">
                                             <connections>
                                                 <segue destination="Ztv-5n-OOa" kind="modal" modalTransitionStyle="crossDissolve" id="eCg-fO-XMH"/>
                                             </connections>

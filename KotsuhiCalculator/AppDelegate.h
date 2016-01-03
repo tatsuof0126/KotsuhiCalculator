@@ -11,10 +11,10 @@
 #import "MyPattern.h"
 #import "InAppPurchaseManager.h"
 
-#define AD_VIEW 1 // 1=表示,0=非表示
-#define MAKE_SAMPLE_DATA 0
-#define SET_REMOVE_ADS 0 // 0=何もしない、1=購入済みにセット、2=未購入にセット
-#define SET_SEND_MAIL 0 // 0=何もしない、1=購入済みにセット、2=未購入にセット
+#define AD_VIEW 1 // 1=広告表示（リリース時）、0=広告非表示
+#define MAKE_SAMPLE_DATA 0 // 0=何もしない（リリース時）、1=テストデータ作成
+#define SET_REMOVE_ADS 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
+#define SET_SEND_MAIL 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

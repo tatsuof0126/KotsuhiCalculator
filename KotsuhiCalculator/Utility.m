@@ -20,24 +20,6 @@
     [alert show];
 }
 
-/*
-+ (NSDate*)getDate:(NSString*)year month:(NSString*)month day:(NSString*)day {
-    NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@ 00:00", year, month, day];
-    
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    [formatter setLocale:[NSLocale systemLocale]];
-    [formatter setTimeZone:[NSTimeZone systemTimeZone]];
-    
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [formatter setCalendar:calendar];
-    
-    NSDate *date = [formatter dateFromString:dateStr];
-       
-    return date;
-}
-*/
- 
 + (NSDate*)getDate:(NSString*)year month:(NSString*)month day:(NSString*)day {
     NSString* dateStr = [NSString stringWithFormat:@"%@-%@-%@ 00:00", year, month, day];
     
