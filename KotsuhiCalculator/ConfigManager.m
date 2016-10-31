@@ -68,9 +68,6 @@
 
 + (BOOL)isICCardSearch {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    if([defaults objectForKey:@"ICCARDSEARCH"] == nil){
-        [self setRemoveAdsFlg:NO];
-    }
     return [defaults boolForKey:@"ICCARDSEARCH"];
 }
 
@@ -83,7 +80,7 @@
 + (NSString*)getDefaultSendTo {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     if([defaults objectForKey:@"SENDTO"] == nil){
-        [self setDefaultPurpose:@""];
+        [self setDefaultSendTo:@""];
     }
     return [defaults stringForKey:@"SENDTO"];
 }
@@ -91,6 +88,20 @@
 + (void)setDefaultSendTo:(NSString*)sendTo {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:sendTo forKey:@"SENDTO"];
+    [defaults synchronize];
+}
+
++ (BOOL)isForWindows {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"FORWINDOWS"] == nil){
+        [self setForWindows:NO];
+    }
+    return [defaults boolForKey:@"FORWINDOWS"];
+}
+
++ (void)setForWindows:(BOOL)forWindows {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:forWindows forKey:@"FORWINDOWS"];
     [defaults synchronize];
 }
 

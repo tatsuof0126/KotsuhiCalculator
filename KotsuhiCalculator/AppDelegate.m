@@ -10,6 +10,8 @@
 #import "ConfigManager.h"
 #import "GAI.h"
 #import "KotsuhiFileManager.h"
+#import "TrackingManager.h"
+#import "NADInterstitial.h"
 
 @implementation AppDelegate
 
@@ -17,6 +19,8 @@
 
 @synthesize targetKotsuhi;
 @synthesize targetMyPattern;
+
+@synthesize showInterstitialFlg;
 
 @synthesize visit;
 @synthesize departure;
@@ -45,7 +49,7 @@
 //    }
     
     // For AppBank Network(nend)
-//    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
+    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
     
     // SampleData
     if(MAKE_SAMPLE_DATA == 1){
@@ -143,6 +147,44 @@
     
     // 例外を Google Analytics に送る
     [GAI sharedInstance].trackUncaughtExceptions = YES;
+}
+
++ (void)showInterstitial:(UIViewController*)controller {
+    @try {
+        // インタースティシャル広告を表示（AppBank Network(Nend)）
+        if([ConfigManager isRemoveAdsFlg] == NO){
+            [[NADInterstitial sharedInstance] showAdFromViewController:controller];
+            
+            /*
+            NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAdFromViewController:controller];
+            switch ( result ){
+                case AD_SHOW_SUCCESS:
+                    NSLog(@"広告の表示に成功しました。");
+                    break;
+                case AD_SHOW_ALREADY:
+                    NSLog(@"既に広告が表示されています。");
+                    break;
+                case AD_FREQUENCY_NOT_REACHABLE:
+                    NSLog(@"広告のフリークエンシーカウントに達していません。");
+                    break;
+                case AD_LOAD_INCOMPLETE:
+                    NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
+                    break;
+                case AD_REQUEST_INCOMPLETE:
+                    NSLog(@"抽選リクエストに失敗しています。");
+                    break;
+                case AD_DOWNLOAD_INCOMPLETE:
+                    NSLog(@"広告のダウンロードが完了していません。");
+                    break;
+                case AD_CANNOT_DISPLAY:
+                    NSLog(@"指定されたViewControllerに広告が表示できませんでした。");
+                    break;
+            }
+             */
+        }
+    } @catch (NSException *exception) {
+        [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"showInterstitial" value:nil screen:@"showInterstitial"];
+    }
 }
 
 @end

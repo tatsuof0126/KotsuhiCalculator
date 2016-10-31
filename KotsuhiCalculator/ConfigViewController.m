@@ -53,6 +53,11 @@
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     versionName.text = [NSString stringWithFormat:@"version%@",version];
+
+    _forWindows.checkBoxSelected = [ConfigManager isForWindows];
+    [_forWindows setState];
+    [_forWindows addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(forWindowsButton:)]];
     
     // すでにアドオンをすべて購入済みならボタンを消す
     if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
@@ -102,6 +107,12 @@
     return YES;
 }
 
+// 改行を押したらキーボードを閉じる
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)showDoneButton {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
         style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
@@ -138,6 +149,11 @@
 - (void)iccardButton:(UITapGestureRecognizer*)sender {
     [_iccardSearch checkboxPush:_iccardSearch];
     [ConfigManager setICCardSearch:_iccardSearch.selected];
+}
+
+- (void)forWindowsButton:(UITapGestureRecognizer*)sender {
+    [_forWindows checkboxPush:_forWindows];
+    [ConfigManager setForWindows:_forWindows.selected];
 }
 
 - (void)didReceiveMemoryWarning
@@ -358,9 +374,14 @@
     
     [controller setMessageBody:@"交通費メモから送信" isHTML:NO];
     
-    // 交通費データをNSDataに変換
+    // 交通費データをNSDataに変換（Windows用が指定されていた場合はSJISでエンコード）
     NSString* dataStr = [self makeCsvString:kotsuhiList];
-    NSData* data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* data = nil;
+    if([ConfigManager isForWindows]){
+        data = [dataStr dataUsingEncoding:NSShiftJISStringEncoding];
+    } else {
+        data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+    }
     
     // ファイルを作成して添付。MimeTypeはtext/csv
     NSString* fiilenameprefix = sendAll ? @"kotsuhiall" : @"kotsuhi";
@@ -374,7 +395,11 @@
 - (NSString*)makeCsvString:(NSArray*)kotsuhiList {
     NSMutableString* retString = [NSMutableString stringWithString:@""];
 
-    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額(片道),金額,往復,目的補足,経路,処理済\n"];
+    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額(片道),金額,往復,目的補足,経路,処理済"];
+    if([ConfigManager isForWindows]){
+        [retString appendString:@"\r"];
+    }
+    [retString appendString:@"\n"];
     
     for(Kotsuhi* kotsuhi in kotsuhiList){
         // 半角カンマを全角に置き換え
@@ -385,10 +410,14 @@
         NSString* purpose = [Utility replaceComma:kotsuhi.purpose];
         NSString* route = [Utility replaceComma:kotsuhi.route];
         
-        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%d,%@,%@,%@,%@\n",
+        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%d,%@,%@,%@,%@",
             kotsuhi.year, kotsuhi.month, kotsuhi.day, visit, departure, arrival, transportation,
             kotsuhi.amount, [kotsuhi getTripAmount], kotsuhi.roundtrip ? @"往復" : @"",
             purpose,route, kotsuhi.treated ? @"処理済" : @""]];
+        if([ConfigManager isForWindows]){
+            [retString appendString:@"\r"];
+        }
+        [retString appendString:@"\n"];
     }
     
     return retString;

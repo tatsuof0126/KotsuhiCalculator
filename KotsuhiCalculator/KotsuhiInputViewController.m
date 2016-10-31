@@ -14,6 +14,7 @@
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
+#import "NADInterstitial.h"
 
 @interface KotsuhiInputViewController ()
 
@@ -191,6 +192,12 @@
     return YES;
 }
 
+// 改行を押したらキーボードを閉じる
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)showDoneButton {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
         style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
@@ -329,13 +336,10 @@
             [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"交通費入力画面―登録" value:nil screen:@"交通費入力画面"];
         }
         
-        // インタースティシャル広告を表示
+        // インタースティシャル広告表示フラグを立てる
         if([ConfigManager isRemoveAdsFlg] == NO){
-            // AppBank fello →　やめた
-            // [KonectNotificationsAPI beginInterstitial:nil];
-            
-            // AppBank Network → やめた
-            // [[NADInterstitial sharedInstance] showAd];
+            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            appDelegate.showInterstitialFlg = YES;
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];

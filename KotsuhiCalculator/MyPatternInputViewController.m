@@ -155,6 +155,12 @@
     return YES;
 }
 
+// 改行を押したらキーボードを閉じる
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)showDoneButton {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
                                                             style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
@@ -260,8 +266,11 @@
 
         [KotsuhiFileManager saveMyPattern:mypattern];
         
-        // AppBank Network → やめた
-        // [[NADInterstitial sharedInstance] showAd];
+        // インタースティシャル広告表示フラグを立てる
+        if([ConfigManager isRemoveAdsFlg] == NO){
+            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            appDelegate.showInterstitialFlg = YES;
+        }
         
         [self dismissViewControllerAnimated:YES completion:nil];
         

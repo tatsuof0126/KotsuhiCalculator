@@ -29,6 +29,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *sendTo;
 
+@property (strong, nonatomic) IBOutlet CheckBoxButton *forWindows;
+
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *removeAdsBtn;
 
 @property (strong, nonatomic) IBOutlet UILabel *reviewLabel;

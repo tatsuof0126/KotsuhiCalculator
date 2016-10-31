@@ -32,9 +32,13 @@
 @property (strong, nonatomic) UITextField *purpose;
 @property (strong, nonatomic) UITextField *route;
 
+@property BOOL showInterstitialFlg;
+
 @property (strong, nonatomic) InAppPurchaseManager* purchaseManager;
 
 - (InAppPurchaseManager*)getInAppPurchaseManager;
+
++ (void)showInterstitial:(UIViewController*)controller;
 
 + (void)adjustForiPhone5:(UIView*)view;
 

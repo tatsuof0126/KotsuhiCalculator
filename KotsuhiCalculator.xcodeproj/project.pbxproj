@@ -18,6 +18,9 @@
 		0B091E5A18CF5E5800C93391 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B091E3918CF5E5800C93391 /* UIKit.framework */; };
 		0B091E6418CF5E5800C93391 /* KotsuhiCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */; };
 		0B096F67192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */; };
+		0B0B3AB81DBBE837007B7F5E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0B3AB71DBBE837007B7F5E /* libsqlite3.0.tbd */; };
+		0B0B3AC81DBFC57C007B7F5E /* NADView_readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B0B3AC51DBFC57C007B7F5E /* NADView_readme.txt */; };
+		0B0B3AC91DBFC66E007B7F5E /* libNendAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0B3ABA1DBFC57C007B7F5E /* libNendAd.a */; };
 		0B381F311A20EE0200BF5C8B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381F301A20EE0200BF5C8B /* ImageIO.framework */; };
 		0B381F341A21B30100BF5C8B /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F321A21B30100BF5C8B /* Default-667h@2x.png */; };
 		0B381F351A21B30200BF5C8B /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F331A21B30100BF5C8B /* Default-736h@3x.png */; };
@@ -40,7 +43,6 @@
 		0B381F591A21B31D00BF5C8B /* Icon-Spotlight-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F461A21B31D00BF5C8B /* Icon-Spotlight-40@3x.png */; };
 		0B381F5A1A21B31D00BF5C8B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F471A21B31D00BF5C8B /* Icon.png */; };
 		0B381F5B1A21B31D00BF5C8B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F481A21B31D00BF5C8B /* Icon@2x.png */; };
-		0B381F5D1A21B45800BF5C8B /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B381F5C1A21B45800BF5C8B /* Images-2.xcassets */; };
 		0B3EC945192E32A300966776 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3EC944192E32A300966776 /* Security.framework */; };
 		0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC951192E452400966776 /* PurchaseAddonViewController.m */; };
 		0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC955192E45E100966776 /* InAppPurchaseManager.m */; };
@@ -57,8 +59,6 @@
 		0B7482531A0A77BD00F43758 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482501A0A77BD00F43758 /* check.png */; };
 		0B7482541A0A77BD00F43758 /* disable_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482511A0A77BD00F43758 /* disable_check.png */; };
 		0B7482551A0A77BD00F43758 /* nocheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482521A0A77BD00F43758 /* nocheck.png */; };
-		0B7A8AA219303764000B5397 /* FelloPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A8AA019303764000B5397 /* FelloPush.bundle */; };
-		0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A8AA119303764000B5397 /* FelloPush.framework */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
 		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
 		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
@@ -123,6 +123,21 @@
 		0B091E6318CF5E5800C93391 /* KotsuhiCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorTests.m; sourceTree = "<group>"; };
 		0B096F65192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KotsuhiCalculatorUIApplication.h; sourceTree = "<group>"; };
 		0B096F66192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KotsuhiCalculatorUIApplication.m; sourceTree = "<group>"; };
+		0B0B3AB21DBBE29F007B7F5E /* libNendAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNendAd.a; path = NendAd/libNendAd.a; sourceTree = "<group>"; };
+		0B0B3AB71DBBE837007B7F5E /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		0B0B3ABA1DBFC57C007B7F5E /* libNendAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNendAd.a; sourceTree = "<group>"; };
+		0B0B3ABB1DBFC57C007B7F5E /* NADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADInterstitial.h; sourceTree = "<group>"; };
+		0B0B3ABC1DBFC57C007B7F5E /* NADNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNative.h; sourceTree = "<group>"; };
+		0B0B3ABD1DBFC57C007B7F5E /* NADNativeClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeClient.h; sourceTree = "<group>"; };
+		0B0B3ABE1DBFC57C007B7F5E /* NADNativeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeError.h; sourceTree = "<group>"; };
+		0B0B3ABF1DBFC57C007B7F5E /* NADNativeImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeImageView.h; sourceTree = "<group>"; };
+		0B0B3AC01DBFC57C007B7F5E /* NADNativeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeLabel.h; sourceTree = "<group>"; };
+		0B0B3AC11DBFC57C007B7F5E /* NADNativeLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeLogger.h; sourceTree = "<group>"; };
+		0B0B3AC21DBFC57C007B7F5E /* NADNativeTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeTableViewHelper.h; sourceTree = "<group>"; };
+		0B0B3AC31DBFC57C007B7F5E /* NADNativeTableViewPlacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeTableViewPlacement.h; sourceTree = "<group>"; };
+		0B0B3AC41DBFC57C007B7F5E /* NADNativeViewRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADNativeViewRendering.h; sourceTree = "<group>"; };
+		0B0B3AC51DBFC57C007B7F5E /* NADView_readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NADView_readme.txt; sourceTree = "<group>"; };
+		0B0B3AC61DBFC57C007B7F5E /* NADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADView.h; sourceTree = "<group>"; };
 		0B381F301A20EE0200BF5C8B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		0B381F321A21B30100BF5C8B /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		0B381F331A21B30100BF5C8B /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
@@ -145,7 +160,6 @@
 		0B381F461A21B31D00BF5C8B /* Icon-Spotlight-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Spotlight-40@3x.png"; sourceTree = "<group>"; };
 		0B381F471A21B31D00BF5C8B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		0B381F481A21B31D00BF5C8B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		0B381F5C1A21B45800BF5C8B /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		0B3EC944192E32A300966776 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0B3EC950192E452400966776 /* PurchaseAddonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseAddonViewController.h; sourceTree = "<group>"; };
 		0B3EC951192E452400966776 /* PurchaseAddonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseAddonViewController.m; sourceTree = "<group>"; };
@@ -169,8 +183,6 @@
 		0B7482501A0A77BD00F43758 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0B7482511A0A77BD00F43758 /* disable_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_check.png; sourceTree = "<group>"; };
 		0B7482521A0A77BD00F43758 /* nocheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nocheck.png; sourceTree = "<group>"; };
-		0B7A8AA019303764000B5397 /* FelloPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FelloPush.bundle; sourceTree = "<group>"; };
-		0B7A8AA119303764000B5397 /* FelloPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FelloPush.framework; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -235,6 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0B3AC91DBFC66E007B7F5E /* libNendAd.a in Frameworks */,
+				0B0B3AB81DBBE837007B7F5E /* libsqlite3.0.tbd in Frameworks */,
 				0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */,
 				0B4871401BB450B000AD55DD /* QuartzCore.framework in Frameworks */,
 				0B48713E1BB4509B00AD55DD /* MediaPlayer.framework in Frameworks */,
@@ -242,7 +256,6 @@
 				0BAEEE3A19DD991F00BF1981 /* iAd.framework in Frameworks */,
 				0BAEEE2D19D9B42100BF1981 /* CoreData.framework in Frameworks */,
 				0BAEEE2F19D9B42F00BF1981 /* SystemConfiguration.framework in Frameworks */,
-				0B7A8AA319303764000B5397 /* FelloPush.framework in Frameworks */,
 				0B381F311A20EE0200BF5C8B /* ImageIO.framework in Frameworks */,
 				0B48713A1BB4505900AD55DD /* ADG.framework in Frameworks */,
 				0B3EC945192E32A300966776 /* Security.framework in Frameworks */,
@@ -293,6 +306,8 @@
 		0B091E3418CF5E5800C93391 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B0B3AB71DBBE837007B7F5E /* libsqlite3.0.tbd */,
+				0B0B3AB21DBBE29F007B7F5E /* libNendAd.a */,
 				0B48713F1BB450B000AD55DD /* QuartzCore.framework */,
 				0B48713D1BB4509B00AD55DD /* MediaPlayer.framework */,
 				0B48713B1BB4508B00AD55DD /* CoreTelephony.framework */,
@@ -301,8 +316,6 @@
 				0BAEEE3019D9B43F00BF1981 /* libz.dylib */,
 				0BAEEE2E19D9B42F00BF1981 /* SystemConfiguration.framework */,
 				0BAEEE2C19D9B42100BF1981 /* CoreData.framework */,
-				0B7A8AA019303764000B5397 /* FelloPush.bundle */,
-				0B7A8AA119303764000B5397 /* FelloPush.framework */,
 				0B3EC944192E32A300966776 /* Security.framework */,
 				0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */,
 				0BC80DF818E5C59A008C01F8 /* StoreKit.framework */,
@@ -317,6 +330,7 @@
 		0B091E3B18CF5E5800C93391 /* KotsuhiCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				0B0B3AB91DBFC52F007B7F5E /* NendAd */,
 				0BA5EB6D192B930B00323F5F /* images */,
 				0B091E3C18CF5E5800C93391 /* Supporting Files */,
 				0B091E5018CF5E5800C93391 /* Images.xcassets */,
@@ -362,7 +376,6 @@
 				0BAEEE3519D9B6C500BF1981 /* TrackingManager.m */,
 				0B74824D1A0A770500F43758 /* CheckBoxButton.h */,
 				0B74824E1A0A770500F43758 /* CheckBoxButton.m */,
-				0B381F5C1A21B45800BF5C8B /* Images-2.xcassets */,
 			);
 			path = KotsuhiCalculator;
 			sourceTree = "<group>";
@@ -392,6 +405,26 @@
 				0B091E5F18CF5E5800C93391 /* KotsuhiCalculatorTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B0B3AB91DBFC52F007B7F5E /* NendAd */ = {
+			isa = PBXGroup;
+			children = (
+				0B0B3ABA1DBFC57C007B7F5E /* libNendAd.a */,
+				0B0B3ABB1DBFC57C007B7F5E /* NADInterstitial.h */,
+				0B0B3ABC1DBFC57C007B7F5E /* NADNative.h */,
+				0B0B3ABD1DBFC57C007B7F5E /* NADNativeClient.h */,
+				0B0B3ABE1DBFC57C007B7F5E /* NADNativeError.h */,
+				0B0B3ABF1DBFC57C007B7F5E /* NADNativeImageView.h */,
+				0B0B3AC01DBFC57C007B7F5E /* NADNativeLabel.h */,
+				0B0B3AC11DBFC57C007B7F5E /* NADNativeLogger.h */,
+				0B0B3AC21DBFC57C007B7F5E /* NADNativeTableViewHelper.h */,
+				0B0B3AC31DBFC57C007B7F5E /* NADNativeTableViewPlacement.h */,
+				0B0B3AC41DBFC57C007B7F5E /* NADNativeViewRendering.h */,
+				0B0B3AC51DBFC57C007B7F5E /* NADView_readme.txt */,
+				0B0B3AC61DBFC57C007B7F5E /* NADView.h */,
+			);
+			name = NendAd;
 			sourceTree = "<group>";
 		};
 		0B4871381BB4505900AD55DD /* ADG_iOSSDK */ = {
@@ -512,7 +545,7 @@
 		0B091E2A18CF5E5800C93391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Tatsuo Fujiwara";
 				TargetAttributes = {
 					0B091E3118CF5E5800C93391 = {
@@ -571,13 +604,13 @@
 				0BA5EB79192B935A00323F5F /* book@2x.png in Resources */,
 				0B381F4D1A21B31D00BF5C8B /* Icon-72@2x.png in Resources */,
 				0B381F511A21B31D00BF5C8B /* icon-small-40@2x.png in Resources */,
-				0B7A8AA219303764000B5397 /* FelloPush.bundle in Resources */,
 				0B381F551A21B31D00BF5C8B /* Icon-Small@2x.png in Resources */,
 				0BA5EB75192B930B00323F5F /* settings@2x.png in Resources */,
 				0BA5EB73192B930B00323F5F /* list@2x.png in Resources */,
 				0BA5EB90192BAB7A00323F5F /* train_i_lr.gif in Resources */,
 				0B091E5118CF5E5800C93391 /* Images.xcassets in Resources */,
 				0BA5EB78192B935A00323F5F /* book.png in Resources */,
+				0B0B3AC81DBFC57C007B7F5E /* NADView_readme.txt in Resources */,
 				0B381F521A21B31D00BF5C8B /* Icon-Small-50.png in Resources */,
 				0B6CBDE31BB30C04005E118A /* browser_window.png in Resources */,
 				0B7482551A0A77BD00F43758 /* nocheck.png in Resources */,
@@ -590,7 +623,6 @@
 				0B381F561A21B31D00BF5C8B /* Icon-Small@3x.png in Resources */,
 				0B381F4F1A21B31D00BF5C8B /* Icon-76@2x.png in Resources */,
 				0BA5EB96192CEA9B00323F5F /* Default.png in Resources */,
-				0B381F5D1A21B45800BF5C8B /* Images-2.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +701,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -726,11 +759,13 @@
 		0B091E6818CF5E5800C93391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-8";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-8";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -738,18 +773,22 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/GoogleAnalyticsLibrary";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
+					"$(PROJECT_DIR)/KotsuhiCalculator",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-framework",
-					FelloPush,
+					"-ObjC",
 					"-framework",
 					AdSupport,
 					"-force_load",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -760,11 +799,13 @@
 		0B091E6918CF5E5800C93391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-8";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-8";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -772,17 +813,21 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/GoogleAnalyticsLibrary";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
+					"$(PROJECT_DIR)/KotsuhiCalculator",
+				);
 				OTHER_LDFLAGS = (
-					"-framework",
-					FelloPush,
+					"-ObjC",
 					"-framework",
 					AdSupport,
 					"-force_load",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -807,6 +852,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "KotsuhiCalculatorTests/KotsuhiCalculatorTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -825,6 +871,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
 				INFOPLIST_FILE = "KotsuhiCalculatorTests/KotsuhiCalculatorTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

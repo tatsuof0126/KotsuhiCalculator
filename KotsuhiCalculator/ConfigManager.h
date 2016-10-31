@@ -34,4 +34,8 @@
 
 + (void)setDefaultSendTo:(NSString*)sendTo;
 
++ (BOOL)isForWindows;
+
++ (void)setForWindows:(BOOL)forWindows;
+
 @end

@@ -321,6 +321,16 @@
     if(_adg){
         [_adg resumeRefresh];
     }
+    
+    // 広告表示フラグが立っていたら広告表示（表示されるかどうかはランダム）
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(appDelegate.showInterstitialFlg == YES){
+        if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+            [AppDelegate showInterstitial:self];
+            appDelegate.showInterstitialFlg = NO;
+        }
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
