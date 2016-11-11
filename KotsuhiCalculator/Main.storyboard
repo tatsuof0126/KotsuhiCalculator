@@ -198,7 +198,7 @@
                                         <rect key="frame" x="90" y="61" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="ENw-oy-z4J"/>
                                         </connections>
@@ -234,7 +234,7 @@
                                         <rect key="frame" x="100" y="101" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="9TV-qg-Bnh"/>
                                         </connections>
@@ -243,7 +243,7 @@
                                         <rect key="frame" x="100" y="141" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="SPM-Sm-BIs"/>
                                         </connections>
@@ -252,7 +252,7 @@
                                         <rect key="frame" x="100" y="181" width="100" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="ih1-ru-YTI"/>
                                         </connections>
@@ -276,7 +276,7 @@
                                         <rect key="frame" x="100" y="261" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="8Ne-cE-iop"/>
                                         </connections>
@@ -291,7 +291,7 @@
                                         <rect key="frame" x="100" y="300" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="KsY-Ne-yI5" id="ORe-BJ-Yik"/>
                                         </connections>
@@ -376,6 +376,9 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="T2K-Os-WMC" appends="YES" id="Jrx-j2-MLP"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="nvK-Z1-kuW"/>
                     <connections>
@@ -402,6 +405,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P31-fe-4Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="T2K-Os-WMC">
+                    <connections>
+                        <action selector="onTap:" destination="KsY-Ne-yI5" id="j44-Rq-3p1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1233" y="-339"/>
         </scene>
@@ -699,7 +707,7 @@
                                         <rect key="frame" x="120" y="51" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <action selector="transportationEdited:" destination="Z22-8g-kxX" eventType="editingDidEnd" id="A22-hr-thW"/>
                                             <outlet property="delegate" destination="Z22-8g-kxX" id="kv8-fU-JgF"/>
@@ -721,7 +729,7 @@
                                         <rect key="frame" x="120" y="86" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <action selector="purposeEdited:" destination="Z22-8g-kxX" eventType="editingDidEnd" id="Q8i-er-Ttz"/>
                                             <outlet property="delegate" destination="Z22-8g-kxX" id="BHr-fo-lAi"/>
@@ -799,7 +807,7 @@
                                         <rect key="frame" x="72" y="211" width="200" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                                         <connections>
                                             <action selector="sendToEdited:" destination="Z22-8g-kxX" eventType="editingDidEnd" id="8MH-mf-5Lm"/>
                                             <outlet property="delegate" destination="Z22-8g-kxX" id="6x5-jN-v3m"/>
@@ -835,6 +843,9 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="SgQ-wn-61S" appends="YES" id="mrD-fi-Hhl"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="設定/メール送信" image="settings.png" id="lUz-L6-Bqf"/>
                     <connections>
@@ -852,6 +863,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dah-Fj-DKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="SgQ-wn-61S">
+                    <connections>
+                        <action selector="onTap:" destination="Z22-8g-kxX" id="EUs-OB-Q6S"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="140" y="1203"/>
         </scene>
@@ -1136,7 +1152,7 @@
                                         <rect key="frame" x="90" y="66" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="gAQ-Ms-jLr"/>
                                         </connections>
@@ -1151,7 +1167,7 @@
                                         <rect key="frame" x="120" y="16" width="170" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="XSc-eZ-fhO"/>
                                         </connections>
@@ -1160,7 +1176,7 @@
                                         <rect key="frame" x="100" y="111" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="eyD-G6-yTE"/>
                                         </connections>
@@ -1169,7 +1185,7 @@
                                         <rect key="frame" x="100" y="151" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="0z0-l9-ppw"/>
                                         </connections>
@@ -1178,7 +1194,7 @@
                                         <rect key="frame" x="100" y="191" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="9BK-xc-fKY"/>
                                         </connections>
@@ -1202,7 +1218,7 @@
                                         <rect key="frame" x="100" y="271" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="VFz-X8-fEo"/>
                                         </connections>
@@ -1217,7 +1233,7 @@
                                         <rect key="frame" x="100" y="311" width="120" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="Ztv-5n-OOa" id="ech-8n-5vz"/>
                                         </connections>
@@ -1290,6 +1306,9 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9oX-Sc-1hw" appends="YES" id="RIj-6G-hcS"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="fyx-ec-QFd"/>
                     <connections>
@@ -1308,6 +1327,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGd-kb-AG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="9oX-Sc-1hw">
+                    <connections>
+                        <action selector="onTap:" destination="Ztv-5n-OOa" id="vXf-ha-Soz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1161" y="1106"/>
         </scene>
@@ -1345,8 +1369,8 @@
         <image name="train_i_ly.gif" width="53" height="53"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NVL-tN-U3x"/>
-        <segue reference="roX-ev-jZw"/>
         <segue reference="V9D-iZ-P7G"/>
+        <segue reference="roX-ev-jZw"/>
+        <segue reference="NVL-tN-U3x"/>
     </inferredMetricsTieBreakers>
 </document>

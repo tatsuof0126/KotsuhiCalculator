@@ -47,4 +47,6 @@
 
 - (IBAction)sendAll:(id)sender;
 
+- (IBAction)onTap:(id)sender;
+
 @end
