@@ -187,4 +187,15 @@
     }
 }
 
++ (GADBannerView*)makeGadView:(UIViewController<GADBannerViewDelegate>*)controller {
+    GADBannerView* gadView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    gadView.delegate = controller;
+    gadView.adUnitID = @"ca-app-pub-6719193336347757/1143075455";
+    gadView.rootViewController = controller;
+    GADRequest* request = [GADRequest request];
+    request.testDevices = @[kGADSimulatorID, @"2dc8fc8942df647fb90b48c2272a59e6"];
+    [gadView loadRequest:request];
+    return gadView;
+}
+
 @end

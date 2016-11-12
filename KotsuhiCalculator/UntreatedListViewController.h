@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <ADG/ADGManagerViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface UntreatedListViewController : UIViewController <ADGManagerViewControllerDelegate> {
+@interface UntreatedListViewController : UIViewController <ADGManagerViewControllerDelegate, GADBannerViewDelegate> {
     ADGManagerViewController *adg_;
 }
 
 @property (nonatomic, retain) ADGManagerViewController *adg;
+
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property (strong, nonatomic) IBOutlet UINavigationItem *listNavi;
 

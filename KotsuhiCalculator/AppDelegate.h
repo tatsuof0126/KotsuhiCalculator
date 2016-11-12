@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "Kotsuhi.h"
 #import "MyPattern.h"
 #import "InAppPurchaseManager.h"
@@ -43,6 +44,8 @@
 + (void)adjustForiPhone5:(UIView*)view;
 
 + (void)adjustOriginForiPhone5:(UIView*)view;
+
++ (GADBannerView*)makeGadView:(UIViewController<GADBannerViewDelegate>*)controller;
 
 // + (void)adjustOriginForBeforeiOS6:(UIView*)view;
 

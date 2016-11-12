@@ -94,6 +94,7 @@
 		0BC80DF918E5C59A008C01F8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC80DF818E5C59A008C01F8 /* StoreKit.framework */; };
 		0BC80DFB18E5C5A3008C01F8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0BD75EAF1BB6EE7900FA8617 /* SelectInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD75EAE1BB6EE7900FA8617 /* SelectInputViewController.m */; };
+		4E04BA1C3D85A439D595EDB2 /* libPods-KotsuhiCalculator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECA22EEF2899DCFB5EC735D /* libPods-KotsuhiCalculator.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0B091E3118CF5E5800C93391;
 			remoteInfo = KotsuhiCalculator;
+		};
+		0B7CCA6E1DD62E1200E8C19F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E6D64D04630E16789DCE87CEF935DC5;
+			remoteInfo = "Pods-KotsuhiCalculator";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -183,6 +191,7 @@
 		0B7482501A0A77BD00F43758 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0B7482511A0A77BD00F43758 /* disable_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_check.png; sourceTree = "<group>"; };
 		0B7482521A0A77BD00F43758 /* nocheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nocheck.png; sourceTree = "<group>"; };
+		0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -240,6 +249,9 @@
 		0BC80DFA18E5C5A3008C01F8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		0BD75EAD1BB6EE7900FA8617 /* SelectInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectInputViewController.h; sourceTree = "<group>"; };
 		0BD75EAE1BB6EE7900FA8617 /* SelectInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectInputViewController.m; sourceTree = "<group>"; };
+		380DEABCE350D17D1D7844B7 /* Pods-KotsuhiCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KotsuhiCalculator.release.xcconfig"; path = "Pods/Target Support Files/Pods-KotsuhiCalculator/Pods-KotsuhiCalculator.release.xcconfig"; sourceTree = "<group>"; };
+		3ECA22EEF2899DCFB5EC735D /* libPods-KotsuhiCalculator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KotsuhiCalculator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		935E882BE9895CF093A079F2 /* Pods-KotsuhiCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KotsuhiCalculator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KotsuhiCalculator/Pods-KotsuhiCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +278,7 @@
 				0BAEEE3119D9B43F00BF1981 /* libz.dylib in Frameworks */,
 				0BAEEE3819D9BD5600BF1981 /* libAdIdAccess.a in Frameworks */,
 				0BAEEE2B19D9B37700BF1981 /* libGoogleAnalyticsServices.a in Frameworks */,
+				4E04BA1C3D85A439D595EDB2 /* libPods-KotsuhiCalculator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +304,7 @@
 				0B091E3418CF5E5800C93391 /* Frameworks */,
 				0B091E3318CF5E5800C93391 /* Products */,
 				0B4871381BB4505900AD55DD /* ADG_iOSSDK */,
+				CEB140575D5DC65E81334CDB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -323,6 +337,7 @@
 				0B091E3718CF5E5800C93391 /* CoreGraphics.framework */,
 				0B091E3918CF5E5800C93391 /* UIKit.framework */,
 				0B091E5718CF5E5800C93391 /* XCTest.framework */,
+				3ECA22EEF2899DCFB5EC735D /* libPods-KotsuhiCalculator.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -435,6 +450,14 @@
 			path = ADG_iOSSDK;
 			sourceTree = "<group>";
 		};
+		0B7CCA6B1DD62E1200E8C19F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B7CCA6F1DD62E1200E8C19F /* libPods-KotsuhiCalculator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0BA5EB6D192B930B00323F5F /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +524,16 @@
 			path = GoogleAnalyticsLibrary;
 			sourceTree = "<group>";
 		};
+		CEB140575D5DC65E81334CDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */,
+				935E882BE9895CF093A079F2 /* Pods-KotsuhiCalculator.debug.xcconfig */,
+				380DEABCE350D17D1D7844B7 /* Pods-KotsuhiCalculator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,9 +541,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B091E6718CF5E5800C93391 /* Build configuration list for PBXNativeTarget "KotsuhiCalculator" */;
 			buildPhases = (
+				169CD1594F3AE0F991C5F37F /* [CP] Check Pods Manifest.lock */,
 				0B091E2E18CF5E5800C93391 /* Sources */,
 				0B091E2F18CF5E5800C93391 /* Frameworks */,
 				0B091E3018CF5E5800C93391 /* Resources */,
+				569377E9059F0FD86E28024B /* [CP] Embed Pods Frameworks */,
+				C9F50786F997561818B83546 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -567,6 +603,12 @@
 			mainGroup = 0B091E2918CF5E5800C93391;
 			productRefGroup = 0B091E3318CF5E5800C93391 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0B7CCA6B1DD62E1200E8C19F /* Products */;
+					ProjectRef = 0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0B091E3118CF5E5800C93391 /* KotsuhiCalculator */,
@@ -574,6 +616,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0B7CCA6F1DD62E1200E8C19F /* libPods-KotsuhiCalculator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-KotsuhiCalculator.a";
+			remoteRef = 0B7CCA6E1DD62E1200E8C19F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0B091E3018CF5E5800C93391 /* Resources */ = {
@@ -634,6 +686,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		169CD1594F3AE0F991C5F37F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		569377E9059F0FD86E28024B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KotsuhiCalculator/Pods-KotsuhiCalculator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9F50786F997561818B83546 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KotsuhiCalculator/Pods-KotsuhiCalculator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0B091E2E18CF5E5800C93391 /* Sources */ = {
@@ -758,6 +858,7 @@
 		};
 		0B091E6818CF5E5800C93391 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 935E882BE9895CF093A079F2 /* Pods-KotsuhiCalculator.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-8";
@@ -773,7 +874,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -787,6 +888,7 @@
 					AdSupport,
 					"-force_load",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -798,6 +900,7 @@
 		};
 		0B091E6918CF5E5800C93391 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 380DEABCE350D17D1D7844B7 /* Pods-KotsuhiCalculator.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-8";
@@ -813,7 +916,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -826,6 +929,7 @@
 					AdSupport,
 					"-force_load",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary/libAdIdAccess.a",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatsuo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

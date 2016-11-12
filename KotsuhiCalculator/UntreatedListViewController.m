@@ -22,6 +22,7 @@
 
 @implementation UntreatedListViewController
 
+@synthesize gadView;
 @synthesize listNavi;
 @synthesize untreatedListView;
 @synthesize untreatedListByMonth;
@@ -47,6 +48,11 @@
     [AppDelegate adjustForiPhone5:untreatedListView];
 //    [AppDelegate adjustOriginForBeforeiOS6:untreatedListView];
     
+    // 広告表示（Google Ads）
+    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+        gadView = [AppDelegate makeGadView:self];
+    }
+    
     // 広告表示（AppBankSSP）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
         NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
@@ -59,7 +65,19 @@
     }
 }
 
+- (void)adViewDidReceiveAd:(GADBannerView*)adView {
+    // 読み込みに成功したら広告を表示
+    gadView.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:gadView];
+    [self.view addSubview:gadView];
+    
+    // TableViewの大きさ定義＆iPhone5対応
+    untreatedListView.frame = CGRectMake(0, 64, 320, 316);
+    [AppDelegate adjustForiPhone5:untreatedListView];
+}
+
 - (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
+    /*
     // 読み込みに成功したら広告を見える場所に移動
     self.adg.view.frame = CGRectMake(0, 381, 320, 50);
     [AppDelegate adjustOriginForiPhone5:self.adg.view];
@@ -69,6 +87,7 @@
     untreatedListView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:untreatedListView];
 //    [AppDelegate adjustOriginForBeforeiOS6:untreatedListView];
+     */
 }
 
 - (void)loadUntreatedList {
@@ -306,8 +325,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)removeAdsBar {
+    if(gadView != nil && [ConfigManager isRemoveAdsFlg] == YES){
+    //if(gadView != nil && arc4random_uniform(5) == 1){
+        // 広告表示していて、広告削除した場合は表示を消す
+        [gadView removeFromSuperview];
+        gadView.delegate = nil;
+        gadView = nil;
+        
+        // TableViewの大きさ定義＆iPhone5対応
+        untreatedListView.frame = CGRectMake(0, 64, 320, 366);
+        [AppDelegate adjustForiPhone5:untreatedListView];
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self removeAdsBar];
     
     [untreatedListView deselectRowAtIndexPath:[untreatedListView indexPathForSelectedRow] animated:NO];
     
@@ -347,4 +382,3 @@
 }
 
 @end
-
