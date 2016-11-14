@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ADG/ADGManagerViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "MyPattern.h"
 #import "CheckBoxButton.h"
 
-@interface MyPatternInputViewController : UIViewController <ADGManagerViewControllerDelegate> {
-    ADGManagerViewController *adg_;
-}
+@interface MyPatternInputViewController : UIViewController <GADBannerViewDelegate>
 
-@property (nonatomic, retain) ADGManagerViewController *adg;
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property (strong, nonatomic) MyPattern* mypattern;
 @property BOOL edited;

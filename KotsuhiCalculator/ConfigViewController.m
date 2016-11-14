@@ -19,6 +19,7 @@
 
 @implementation ConfigViewController
 
+@synthesize gadView;
 @synthesize scrollView;
 @synthesize reviewLabel;
 @synthesize otherappLabel;
@@ -76,24 +77,19 @@
     scrollView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:scrollView];
     
-    // 広告表示（AppBankSSP）
+    // 広告表示（admob）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
-                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
-        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
-        self.adg = adgvc;
-        _adg.delegate = self;
-        [_adg setFillerRetry:NO];
-        [_adg loadRequest];
+        gadView = [AppDelegate makeGadView:self];
     }
 }
 
-- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
-    // 読み込みに成功したら広告を見える場所に移動
-    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
-    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+- (void)adViewDidReceiveAd:(GADBannerView*)adView {
+    // 読み込みに成功したら広告を表示
+    gadView.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:gadView];
+    [self.view addSubview:gadView];
     
-    // ScrollViewの大きさ定義＆iPhone5対応
+    // TableViewの大きさ定義＆iPhone5対応
     scrollView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:scrollView];
 }
@@ -188,27 +184,6 @@
         [[UIApplication sharedApplication] openURL:url];
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―他のアプリを見る" value:nil screen:@"設定画面"];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    if(_adg){
-        [_adg resumeRefresh];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if(adg_){
-        [adg_ pauseRefresh];
-    }
-}
-
-- (void)dealloc {
-    adg_.delegate = nil;
-    adg_ = nil;
 }
 
 - (IBAction)searchAddress:(id)sender {
@@ -354,6 +329,8 @@
         return;
     }
     
+    _sendAll = sendAll;
+    
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];
     
@@ -435,7 +412,7 @@
             break;
         // 送信成功
         case MFMailComposeResultSent:
-            [Utility showAlert:@"送信しました"];
+            [self mailSent];
             break;
         // 送信失敗
         case MFMailComposeResultFailed:
@@ -448,8 +425,59 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)mailSent {
+    if(_sendAll == YES){
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―メール送信（全件）" value:nil screen:@"設定画面"];
+        [Utility showAlert:@"送信完了" message:@"メールを送信しました"];
+    } else {
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―メール送信（未処理）" value:nil screen:@"設定画面"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"送信完了"
+            message:@"メールを送信しました。\n送信した交通費データを処理済にしますか？" delegate:self
+            cancelButtonTitle:nil otherButtonTitles:@"変更しない", @"処理済にする", nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1){
+        NSArray* untreatedKotsuhiList = [KotsuhiFileManager loadUntreatedList];
+        for(Kotsuhi* kotsuhi in untreatedKotsuhiList){
+            kotsuhi.treated = YES;
+            [KotsuhiFileManager saveKotsuhi:kotsuhi];
+        }
+        
+        [Utility showAlert:@"処理済に変更しました。"];
+        
+        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―メール送信後の処理済" value:nil screen:@"設定画面"];
+    }
+}
+
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (void)removeAdsBar {
+    if(gadView != nil && [ConfigManager isRemoveAdsFlg] == YES){
+        // 広告表示していて、広告削除した場合は表示を消す
+        [gadView removeFromSuperview];
+        gadView.delegate = nil;
+        gadView = nil;
+        
+        // TableViewの大きさ定義＆iPhone5対応
+        scrollView.frame = CGRectMake(0, 64, 320, 366);
+        [AppDelegate adjustForiPhone5:scrollView];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self removeAdsBar];
+}
+
+- (void)dealloc {
+    gadView.delegate = nil;
+    gadView = nil;
 }
 
 @end

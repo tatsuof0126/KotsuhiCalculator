@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CheckBoxButton.h"
-#import <ADG/ADGManagerViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface ConfigViewController : UIViewController <ADGManagerViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
-    ADGManagerViewController *adg_;
-}
+@interface ConfigViewController : UIViewController <GADBannerViewDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, retain) ADGManagerViewController *adg;
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -40,6 +38,8 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 
 @property (strong, nonatomic) IBOutlet UILabel *versionName;
+
+@property BOOL sendAll;
 
 - (IBAction)searchAddress:(id)sender;
 

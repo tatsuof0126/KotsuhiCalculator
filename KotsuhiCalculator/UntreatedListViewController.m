@@ -46,22 +46,10 @@
     // TableViewの大きさ定義＆iPhone5対応
     untreatedListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:untreatedListView];
-//    [AppDelegate adjustOriginForBeforeiOS6:untreatedListView];
     
-    // 広告表示（Google Ads）
+    // 広告表示（admob）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
         gadView = [AppDelegate makeGadView:self];
-    }
-    
-    // 広告表示（AppBankSSP）
-    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
-                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
-        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
-        self.adg = adgvc;
-        _adg.delegate = self;
-        [_adg setFillerRetry:NO];
-        [_adg loadRequest];
     }
 }
 
@@ -74,20 +62,6 @@
     // TableViewの大きさ定義＆iPhone5対応
     untreatedListView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:untreatedListView];
-}
-
-- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
-    /*
-    // 読み込みに成功したら広告を見える場所に移動
-    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
-    [AppDelegate adjustOriginForiPhone5:self.adg.view];
-//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
-    
-    // TableViewの大きさ定義＆iPhone5対応
-    untreatedListView.frame = CGRectMake(0, 64, 320, 316);
-    [AppDelegate adjustForiPhone5:untreatedListView];
-//    [AppDelegate adjustOriginForBeforeiOS6:untreatedListView];
-     */
 }
 
 - (void)loadUntreatedList {
@@ -138,12 +112,12 @@
     
 }
 
--(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray* array = [untreatedListByMonth objectAtIndex:section];
     return array.count;
 }
 
--(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     NSArray* array = [untreatedListByMonth objectAtIndex:indexPath.section];
     Kotsuhi* kotsuhi = [array objectAtIndex:indexPath.row];
     
@@ -152,7 +126,6 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     
     if(cell == nil){
-        NSLog(@"cell == nil");
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:cellName];
     }
@@ -188,11 +161,11 @@
     return cell;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return untreatedMonthList.count;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
     return [untreatedMonthList objectAtIndex:section];
 }
 
@@ -212,7 +185,7 @@
         Kotsuhi* kotsuhi = [array objectAtIndex:indexPath.row];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"削除してよろしいですか？" delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
+            message:@"削除してよろしいですか？" delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
         alert.tag = kotsuhi.kotsuhiid;
         [alert show];
     }
@@ -327,7 +300,6 @@
 
 - (void)removeAdsBar {
     if(gadView != nil && [ConfigManager isRemoveAdsFlg] == YES){
-    //if(gadView != nil && arc4random_uniform(5) == 1){
         // 広告表示していて、広告削除した場合は表示を消す
         [gadView removeFromSuperview];
         gadView.delegate = nil;
@@ -339,7 +311,7 @@
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self removeAdsBar];
@@ -353,10 +325,6 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    if(_adg){
-        [_adg resumeRefresh];
-    }
-    
     // 広告表示フラグが立っていたら広告表示（表示されるかどうかはランダム）
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(appDelegate.showInterstitialFlg == YES){
@@ -368,17 +336,9 @@
 
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if(adg_){
-        [adg_ pauseRefresh];
-    }
-}
-
 - (void)dealloc {
-    adg_.delegate = nil;
-    adg_ = nil;
+    gadView.delegate = nil;
+    gadView = nil;
 }
 
 @end

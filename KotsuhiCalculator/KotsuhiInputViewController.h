@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "Kotsuhi.h"
 #import "CheckBoxButton.h"
-#import <ADG/ADGManagerViewController.h>
 
-@interface KotsuhiInputViewController : UIViewController <ADGManagerViewControllerDelegate> {
-    ADGManagerViewController *adg_;
-}
+@interface KotsuhiInputViewController : UIViewController <GADBannerViewDelegate>
 
-@property (nonatomic, retain) ADGManagerViewController *adg;
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property (strong, nonatomic) Kotsuhi *kotsuhi;
 @property BOOL edited;
@@ -42,8 +40,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *mypatternBtn;
 
 @property (strong, nonatomic) IBOutlet UIButton *registBtn;
-
-// @property (strong, nonatomic) IBOutlet UIButton *registMypatternBtn;
 
 - (IBAction)registButton:(id)sender;
 

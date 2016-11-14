@@ -7,17 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ADG/ADGManagerViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #define VISIT     1
 #define DEPARTURE 2
 #define ARRIVAL   3
 
-@interface SelectInputViewController : UIViewController <ADGManagerViewControllerDelegate> {
-    ADGManagerViewController *adg_;
-}
+@interface SelectInputViewController : UIViewController <GADBannerViewDelegate>
 
-@property (nonatomic, retain) ADGManagerViewController *adg;
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property int selectType;
 

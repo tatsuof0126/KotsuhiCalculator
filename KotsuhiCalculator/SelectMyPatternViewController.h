@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ADG/ADGManagerViewController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface SelectMyPatternViewController : UIViewController <ADGManagerViewControllerDelegate> {
-    ADGManagerViewController *adg_;
-}
+@interface SelectMyPatternViewController : UIViewController <GADBannerViewDelegate>
 
-@property (nonatomic, retain) ADGManagerViewController *adg;
+@property (strong, nonatomic) GADBannerView *gadView;
 
 @property (strong, nonatomic) IBOutlet UITableView *selectMypatternView;
 

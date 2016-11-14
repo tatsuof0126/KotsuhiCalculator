@@ -19,6 +19,7 @@
 
 @implementation MyPatternInputViewController
 
+@synthesize gadView;
 @synthesize mypattern;
 @synthesize scrollView;
 @synthesize edited;
@@ -66,36 +67,28 @@
         [_registBtn setTitle:@"　更 新　" forState:UIControlStateNormal];
     }
     
+    edited = NO;
+    
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 685);
     scrollView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:scrollView];
-//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
     
-    edited = NO;
-    
-    // 広告表示（AppBankSSP）
+    // 広告表示（admob）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
-                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
-        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
-        self.adg = adgvc;
-        _adg.delegate = self;
-        [_adg setFillerRetry:NO];
-        [_adg loadRequest];
+        gadView = [AppDelegate makeGadView:self];
     }
 }
 
-- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
-    // 読み込みに成功したら広告を見える場所に移動
-    self.adg.view.frame = CGRectMake(0, 431, 320, 50);
-    [AppDelegate adjustOriginForiPhone5:self.adg.view];
-//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+- (void)adViewDidReceiveAd:(GADBannerView*)adView {
+    // 読み込みに成功したら広告を表示
+    gadView.frame = CGRectMake(0, 431, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:gadView];
+    [self.view addSubview:gadView];
     
-    // Viewの大きさ定義＆iPhone5対応
+    // TableViewの大きさ定義＆iPhone5対応
     scrollView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:scrollView];
-//    [AppDelegate adjustOriginForBeforeiOS6:scrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -322,25 +315,9 @@
     [self.view endEditing:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    if(_adg){
-        [_adg resumeRefresh];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if(adg_){
-        [adg_ pauseRefresh];
-    }
-}
-
 - (void)dealloc {
-    adg_.delegate = nil;
-    adg_ = nil;
+    gadView.delegate = nil;
+    gadView = nil;
 }
 
 @end

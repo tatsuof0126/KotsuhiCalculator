@@ -22,6 +22,7 @@
 
 @implementation MyPatternListViewController
 
+@synthesize gadView;
 @synthesize mypatternListView;
 @synthesize mypatternList;
 
@@ -45,30 +46,22 @@
     // TableViewの大きさ定義＆iPhone5対応
     mypatternListView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:mypatternListView];
-//    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
     
-    // 広告表示（AppBankSSP）
+    // 広告表示（admob）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
-                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
-        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
-        self.adg = adgvc;
-        _adg.delegate = self;
-        [_adg setFillerRetry:NO];
-        [_adg loadRequest];
+        gadView = [AppDelegate makeGadView:self];
     }
 }
 
-- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
-    // 読み込みに成功したら広告を見える場所に移動
-    self.adg.view.frame = CGRectMake(0, 381, 320, 50);
-    [AppDelegate adjustOriginForiPhone5:self.adg.view];
-//    [AppDelegate adjustOriginForBeforeiOS6:self.adg.view];
+- (void)adViewDidReceiveAd:(GADBannerView*)adView {
+    // 読み込みに成功したら広告を表示
+    gadView.frame = CGRectMake(0, 381, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:gadView];
+    [self.view addSubview:gadView];
     
     // TableViewの大きさ定義＆iPhone5対応
     mypatternListView.frame = CGRectMake(0, 64, 320, 316);
     [AppDelegate adjustForiPhone5:mypatternListView];
-//    [AppDelegate adjustOriginForBeforeiOS6:mypatternListView];
 }
 
 - (void)loadMyPatternList {
@@ -100,11 +93,11 @@
 }
 */
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     return mypatternList.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     NSString* cellName = @"MypatternCell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     if(cell == nil){
@@ -246,8 +239,23 @@
     }
 }
 
+- (void)removeAdsBar {
+    if(gadView != nil && [ConfigManager isRemoveAdsFlg] == YES){
+        // 広告表示していて、広告削除した場合は表示を消す
+        [gadView removeFromSuperview];
+        gadView.delegate = nil;
+        gadView = nil;
+        
+        // TableViewの大きさ定義＆iPhone5対応
+        mypatternListView.frame = CGRectMake(0, 64, 320, 366);
+        [AppDelegate adjustForiPhone5:mypatternListView];
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self removeAdsBar];
     
     [mypatternListView deselectRowAtIndexPath:[mypatternListView indexPathForSelectedRow] animated:NO];
     
@@ -257,10 +265,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    if(_adg){
-        [_adg resumeRefresh];
-    }
     
     // 広告表示フラグが立っていたら広告表示（表示されるかどうかはランダム）
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -273,17 +277,9 @@
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if(adg_){
-        [adg_ pauseRefresh];
-    }
-}
-
 - (void)dealloc {
-    adg_.delegate = nil;
-    adg_ = nil;
+    gadView.delegate = nil;
+    gadView = nil;
 }
 
 @end

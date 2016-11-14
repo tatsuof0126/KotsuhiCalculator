@@ -17,6 +17,7 @@
 
 @implementation TransitViewController
 
+@synthesize gadView;
 @synthesize webView;
 @synthesize targetUrl;
 
@@ -33,36 +34,31 @@
     // WebViewの大きさ定義＆iPhone5対応
     webView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:webView];
-
-    // 広告表示（AppBankSSP）
+    
+    // 広告表示（admob）
     if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        NSDictionary *adgparam = @{@"locationid" : @"28513", @"adtype" : @(kADG_AdType_Sp),
-                                   @"originx" : @(0), @"originy" : @(581), @"w" : @(320), @"h" : @(50)};
-        ADGManagerViewController *adgvc = [[ADGManagerViewController alloc] initWithAdParams:adgparam adView:self.view];
-        self.adg = adgvc;
-        _adg.delegate = self;
-        [_adg setFillerRetry:NO];
-        [_adg loadRequest];
+        gadView = [AppDelegate makeGadView:self];
     }
 }
 
-- (void)ADGManagerViewControllerReceiveAd:(ADGManagerViewController *)adgManagerViewController {
-    // 読み込みに成功したら広告を見える場所に移動
-    self.adg.view.frame = CGRectMake(0, 431, 320, 50);
-    [AppDelegate adjustOriginForiPhone5:self.adg.view];
+- (void)adViewDidReceiveAd:(GADBannerView*)adView {
+    // 読み込みに成功したら広告を表示
+    gadView.frame = CGRectMake(0, 431, 320, 50);
+    [AppDelegate adjustOriginForiPhone5:gadView];
+    [self.view addSubview:gadView];
     
-    // WebViewの大きさ定義＆iPhone5対応
+    // TableViewの大きさ定義＆iPhone5対応
     webView.frame = CGRectMake(0, 64, 320, 366);
     [AppDelegate adjustForiPhone5:webView];
 }
 
 // ページ読込開始時にインジケータをくるくるさせる
--(void)webViewDidStartLoad:(UIWebView*)webView{
+- (void)webViewDidStartLoad:(UIWebView*)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 // ページ読込完了時にインジケータを非表示にする
--(void)webViewDidFinishLoad:(UIWebView*)webView{
+- (void)webViewDidFinishLoad:(UIWebView*)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
@@ -83,6 +79,11 @@
 
 - (IBAction)backButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dealloc {
+    gadView.delegate = nil;
+    gadView = nil;
 }
 
 @end
