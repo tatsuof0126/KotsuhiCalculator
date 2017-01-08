@@ -13,6 +13,9 @@
 #import "KotsuhiFileManager.h"
 #import "Utility.h"
 
+#define ALERT_DONE 1
+#define ALERT_MOVE_ADDON 2
+
 @interface ConfigViewController ()
 
 @end
@@ -305,7 +308,7 @@
 
 - (IBAction)sendUntreated:(id)sender {
     if([ConfigManager isSendMailFlg] == NO){
-        [Utility showAlert:@"メール送信機能を利用するにはアドオンを購入してください。"];
+        [self showMoveAddonView:@"メール送信機能を利用するにはアドオンを購入してください。\n\nすでに購入済みの場合はアドオン購入画面からリストアをお試しください。"];
         return;
     }
     
@@ -315,7 +318,7 @@
 
 - (IBAction)sendAll:(id)sender {
     if([ConfigManager isSendMailFlg] == NO){
-        [Utility showAlert:@"メール送信機能を利用するにはアドオンを購入してください。"];
+        [self showMoveAddonView:@"メール送信機能を利用するにはアドオンを購入してください。\n\nすでに購入済みの場合はアドオン購入画面からリストアをお試しください。"];
         return;
     }
     
@@ -323,9 +326,17 @@
     [self sendMail:targetKotsuhiList sendAll:YES];
 }
 
+- (void)showMoveAddonView:(NSString*)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+        message:message delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"アドオン購入画面へ", nil];
+    alert.tag = ALERT_MOVE_ADDON;
+    [alert show];
+}
+
 - (void)sendMail:(NSArray*)kotsuhiList sendAll:(BOOL)sendAll {
     // メールを利用できるかチェック
     if ([MFMailComposeViewController canSendMail] == NO) {
+        [Utility showAlert:@"メールアカウントが設定されていません。\niPhoneの設定アプリからメールアカウントを設定してください。"];
         return;
     }
     
@@ -434,21 +445,29 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"送信完了"
             message:@"メールを送信しました。\n送信した交通費データを処理済にしますか？" delegate:self
             cancelButtonTitle:nil otherButtonTitles:@"変更しない", @"処理済にする", nil];
+        alert.tag = ALERT_DONE;
         [alert show];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 1){
-        NSArray* untreatedKotsuhiList = [KotsuhiFileManager loadUntreatedList];
-        for(Kotsuhi* kotsuhi in untreatedKotsuhiList){
-            kotsuhi.treated = YES;
-            [KotsuhiFileManager saveKotsuhi:kotsuhi];
+    if(alertView.tag == ALERT_DONE){
+        if(buttonIndex == 1){
+            NSArray* untreatedKotsuhiList = [KotsuhiFileManager loadUntreatedList];
+            for(Kotsuhi* kotsuhi in untreatedKotsuhiList){
+                kotsuhi.treated = YES;
+                [KotsuhiFileManager saveKotsuhi:kotsuhi];
+            }
+        
+            [Utility showAlert:@"処理済に変更しました。"];
+        
+            [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―メール送信後の処理済" value:nil screen:@"設定画面"];
         }
-        
-        [Utility showAlert:@"処理済に変更しました。"];
-        
-        [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―メール送信後の処理済" value:nil screen:@"設定画面"];
+    } else if(alertView.tag == ALERT_MOVE_ADDON){
+        if(buttonIndex == 1){
+            [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"設定画面―アドオン入手画面へ遷移" value:nil screen:@"設定画面"];
+            [self performSegueWithIdentifier:@"getaddon" sender:self];
+        }
     }
 }
 

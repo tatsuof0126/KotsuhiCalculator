@@ -687,7 +687,7 @@
                                     <navigationItem title="設定/メール送信" id="Qxt-dt-Ioe">
                                         <barButtonItem key="rightBarButtonItem" title="アドオン" id="A8s-Ik-GrJ">
                                             <connections>
-                                                <segue destination="tRo-fk-ZcF" kind="modal" modalTransitionStyle="crossDissolve" id="wNP-cN-SXV"/>
+                                                <segue destination="tRo-fk-ZcF" kind="modal" identifier="getaddon" modalTransitionStyle="crossDissolve" id="wNP-cN-SXV"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1191,7 +1191,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="iJ0-7P-mMt">
-                                        <rect key="frame" x="100" y="191" width="120" height="30"/>
+                                        <rect key="frame" x="100" y="191" width="100" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1302,6 +1302,16 @@
                                             <action selector="registButton:" destination="Ztv-5n-OOa" eventType="touchUpInside" id="ND1-gO-YWI"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8n9-CN-JdD">
+                                        <rect key="frame" x="215" y="190" width="90" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="運賃を調べる">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="transitButton:" destination="Ztv-5n-OOa" eventType="touchUpInside" id="sgM-Fl-JLd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -1324,6 +1334,7 @@
                         <outlet property="scrollView" destination="H6t-UL-epL" id="Fer-8F-BYT"/>
                         <outlet property="transportation" destination="iJ0-7P-mMt" id="sZe-6N-JoQ"/>
                         <outlet property="visit" destination="vm8-RN-g7R" id="tKy-c3-5Jn"/>
+                        <segue destination="3sU-sW-y7o" kind="modal" identifier="transitSegue" modalTransitionStyle="crossDissolve" id="LEt-Z7-Aiy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGd-kb-AG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1369,8 +1380,9 @@
         <image name="train_i_ly.gif" width="53" height="53"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V9D-iZ-P7G"/>
-        <segue reference="roX-ev-jZw"/>
         <segue reference="NVL-tN-U3x"/>
+        <segue reference="roX-ev-jZw"/>
+        <segue reference="LEt-Z7-Aiy"/>
+        <segue reference="V9D-iZ-P7G"/>
     </inferredMetricsTieBreakers>
 </document>

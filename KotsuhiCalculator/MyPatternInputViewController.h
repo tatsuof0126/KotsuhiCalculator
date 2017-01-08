@@ -33,9 +33,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *registBtn;
 
-- (IBAction)backButton:(id)sender;
-
 - (IBAction)registButton:(id)sender;
+
+- (IBAction)transitButton:(id)sender;
+
+- (IBAction)backButton:(id)sender;
 
 - (IBAction)onTap:(id)sender;
 

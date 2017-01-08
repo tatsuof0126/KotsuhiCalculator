@@ -12,6 +12,8 @@
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
 #import "SelectInputViewController.h"
+#import "TransitViewController.h"
+#import "Utility.h"
 
 @interface MyPatternInputViewController ()
 
@@ -271,7 +273,7 @@
     }
 }
 
--(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     NSString* segueStr = [segue identifier];
     
     NSString* labelStr = [NSString stringWithFormat:@"マイパターン登録画面―%@",segueStr];
@@ -287,11 +289,35 @@
     } else if ([segueStr isEqualToString:@"arrivalSegue"] == YES) {
         controller.selectType = ARRIVAL;
         controller.targetTextField = _arrival;
+    } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
+        TransitViewController* controller = [segue destinationViewController];
+        
+        NSString* departureStr = [_departure.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        NSString* arrivalStr = [_arrival.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        NSString* routeStr = [_route.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+        
+        NSString* iccardStr;
+        if([ConfigManager isICCardSearch] == YES){
+            iccardStr = @"ic";
+        } else {
+            iccardStr = @"normal";
+        }
+        
+        controller.targetUrl = [NSString stringWithFormat:@"http://transit.yahoo.co.jp/search/result?from=%@&via=%@&to=%@&type=5&al=1&shin=1&ex=1&hb=1&lb=1&sr=1&s=0&expkind=1&ws=2&ticket=%@",departureStr, routeStr, arrivalStr, iccardStr];
     }
 }
 
 - (IBAction)backButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)transitButton:(id)sender {
+    if(_departure.text.length == 0 || _arrival.text.length == 0){
+        [Utility showAlert:@"出発地と到着地を入力してください"];
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"transitSegue" sender:self];
 }
 
 - (void)updateMyPattern {
