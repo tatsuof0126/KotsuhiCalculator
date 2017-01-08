@@ -51,10 +51,10 @@
         kotsuhi = [[Kotsuhi alloc] init];
         
         // 日付を今日に初期設定
-        NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDate *date = [NSDate date];
         NSDateComponents *dateComps
-            = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+            = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
         
         kotsuhi.year = (int)dateComps.year;
         kotsuhi.month = (int)dateComps.month;
@@ -346,9 +346,9 @@
     NSDate* date = [Utility getDate:_year.text month:_month.text day:_day.text];
     
     // 日時をカレンダーで年月日に分解する
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComps
-        = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+        = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
     kotsuhi.year = (int)dateComps.year;
     kotsuhi.month = (int)dateComps.month;
@@ -420,7 +420,7 @@
             iccardStr = @"normal";
         }
         
-        controller.targetUrl = [NSString stringWithFormat:@"http://transit.yahoo.co.jp/search/result?from=%@&via=%@&to=%@&type=5&al=1&shin=1&ex=1&hb=1&lb=1&sr=1&s=0&expkind=1&ws=2&ticket=%@",departureStr, routeStr, arrivalStr, iccardStr];
+        controller.targetUrl = [NSString stringWithFormat:@"https://transit.yahoo.co.jp/search/result?from=%@&via=%@&to=%@&type=5&al=1&shin=1&ex=1&hb=1&lb=1&sr=1&s=0&expkind=1&ws=2&ticket=%@",departureStr, routeStr, arrivalStr, iccardStr];
     }
 }
 

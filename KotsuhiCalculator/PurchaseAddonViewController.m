@@ -121,7 +121,7 @@
         return;
     }
     
-    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     InAppPurchaseManager* purchaseManager = [delegate getInAppPurchaseManager];
     
     // アプリ内課金が許可されていない場合はダイアログを出す
@@ -157,7 +157,7 @@
         return;
     }
     
-    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     InAppPurchaseManager* purchaseManager = [delegate getInAppPurchaseManager];
     
     // アプリ内課金が許可されていない場合はダイアログを出す

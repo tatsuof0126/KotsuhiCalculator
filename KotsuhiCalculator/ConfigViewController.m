@@ -189,6 +189,7 @@
     }
 }
 
+/*
 - (IBAction)searchAddress:(id)sender {
     // アドレス帳を呼び出す
     ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
@@ -305,6 +306,7 @@
     
     [ConfigManager setDefaultSendTo:targetEmail];
 }
+*/
 
 - (IBAction)sendUntreated:(id)sender {
     if([ConfigManager isSendMailFlg] == NO){
@@ -350,10 +352,11 @@
     [controller setToRecipients:sendtoArray];
     
     NSString* title = sendAll ? @"交通費一覧" : @"未処理交通費一覧";
-    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *date = [NSDate date];
     NSDateComponents *dateComps
-    = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+        = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     int year = (int)dateComps.year;
     int month = (int)dateComps.month;
     int day = (int)dateComps.day;

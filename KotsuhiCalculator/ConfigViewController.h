@@ -41,7 +41,7 @@
 
 @property BOOL sendAll;
 
-- (IBAction)searchAddress:(id)sender;
+// - (IBAction)searchAddress:(id)sender;
 
 - (IBAction)sendUntreated:(id)sender;
 
