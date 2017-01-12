@@ -121,9 +121,7 @@
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     //    NSLog(@"--- paymentQueueRestoreCompletedTransactionsFinished ---");
     
-    if([ConfigManager isRemoveAdsFlg] == NO){
-        [Utility showAlert:@"リストアしました"];
-    }
+    [Utility showAlert:@"リストアしました"];
     
     [source endPurchase];
     source = nil;
@@ -140,21 +138,28 @@
     // 購入したアドオンを判定
     if([productId isEqualToString:@"com.tatsuo.KotsuhiCalculator.removeads"]){
         // 広告削除アドオン
-        [ConfigManager setRemoveAdsFlg:YES];
         if(restore == NO){
-            [Utility showAlert:@"購入しました" message:@"次回起動時より広告が表示されなくなります。"];
+            [ConfigManager setRemoveAdsFlg:YES];
+            [Utility showAlert:@"購入しました" message:@"広告が表示されなくなりました。"];
         } else {
-            [Utility showAlert:@"リストアしました" message:@"次回起動時より広告が表示されなくなります。"];
+            if([ConfigManager isRemoveAdsFlg] == NO){
+                [ConfigManager setRemoveAdsFlg:YES];
+                [Utility showAlert:@"リストアしました" message:@"広告が表示されなくなりました。"];
+            }
         }
-    } else if([productId isEqualToString:@"com.tatsuo.KotsuhiCalculator.sendmail"]){
+    } else if ([productId isEqualToString:@"com.tatsuo.KotsuhiCalculator.sendmail"]){
         // メール送信アドオン
-        [ConfigManager setSendMailFlg:YES];
         if(restore == NO){
+            [ConfigManager setSendMailFlg:YES];
             [Utility showAlert:@"購入しました" message:@"メール送信機能が有効になりました。"];
         } else {
-            [Utility showAlert:@"リストアしました" message:@"メール送信機能が有効になりました。"];
+            if([ConfigManager isSendMailFlg] == NO){
+                [ConfigManager setSendMailFlg:YES];
+                [Utility showAlert:@"リストアしました" message:@"メール送信機能が有効になりました。"];
+            }
         }
     }
+
 }
 
 @end

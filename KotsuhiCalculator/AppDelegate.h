@@ -16,8 +16,9 @@
 #define MAKE_SAMPLE_DATA 0 // 0=何もしない（リリース時）、1=テストデータ作成
 #define SET_REMOVE_ADS 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
 #define SET_SEND_MAIL 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
+#define INTERSTITIAL_FREQ 25 // インタースティシャル広告の表示割合（％）
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GADInterstitialDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -33,13 +34,14 @@
 @property (strong, nonatomic) UITextField *purpose;
 @property (strong, nonatomic) UITextField *route;
 
+@property(nonatomic, strong) GADInterstitial *gadInterstitial;
 @property BOOL showInterstitialFlg;
 
 @property (strong, nonatomic) InAppPurchaseManager* purchaseManager;
 
 - (InAppPurchaseManager*)getInAppPurchaseManager;
 
-+ (void)showInterstitial:(UIViewController*)controller;
+// + (void)showInterstitial:(UIViewController*)controller;
 
 + (void)adjustForiPhone5:(UIView*)view;
 
@@ -47,6 +49,10 @@
 
 + (GADBannerView*)makeGadView:(UIViewController<GADBannerViewDelegate>*)controller;
 
-// + (void)adjustOriginForBeforeiOS6:(UIView*)view;
+- (void)prepareGadInterstitial;
+
+- (void)showGadInterstitial:(UIViewController*)controller;
+
+- (void)interstitialDidDismissScreen:(GADInterstitial*)interstitial;
 
 @end

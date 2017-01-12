@@ -267,11 +267,11 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(appDelegate.showInterstitialFlg == YES){
         if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-            [AppDelegate showInterstitial:self];
+            [appDelegate showGadInterstitial:self];
+            // [AppDelegate showInterstitial:self];
             appDelegate.showInterstitialFlg = NO;
         }
     }
-    
 }
 
 - (void)dealloc {

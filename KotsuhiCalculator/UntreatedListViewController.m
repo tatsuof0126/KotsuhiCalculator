@@ -11,6 +11,7 @@
 #import "KotsuhiFileManager.h"
 #import "ConfigManager.h"
 #import "TrackingManager.h"
+#import "Utility.h"
 
 #define REGIST_BTN 1
 #define EDIT_BTN 10
@@ -271,8 +272,23 @@
 }
 
 - (void)treatButton:(id)sender {
-    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"未処理一覧画面―処理済" value:nil screen:@"未処理一覧画面"];
+    NSArray* selectedRows = [self.untreatedListView indexPathsForSelectedRows];
+    if(selectedRows.count == 0){
+        [Utility showAlert:@"処理済にする交通費を選択してください。"];
+        return;
+    }
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"選択した交通費を処理済にします。\nよろしいですか？" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"キャンセル" style:UIAlertActionStyleCancel handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self treatKotsuhi];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
+- (void)treatKotsuhi {
+    [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"未処理一覧画面―処理済" value:nil screen:@"未処理一覧画面"];
+    
     NSArray* selectedRows = [self.untreatedListView indexPathsForSelectedRows];
     
     for(NSIndexPath* indexPath in selectedRows){
@@ -290,7 +306,6 @@
     [self loadUntreatedList];
     [untreatedListView reloadData];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -329,7 +344,8 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(appDelegate.showInterstitialFlg == YES){
         if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-            [AppDelegate showInterstitial:self];
+            [appDelegate showGadInterstitial:self];
+            // [AppDelegate showInterstitial:self];
             appDelegate.showInterstitialFlg = NO;
         }
     }

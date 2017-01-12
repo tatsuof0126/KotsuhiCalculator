@@ -174,16 +174,6 @@
     return YES;
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    [self showDoneButton];
-    edited = YES;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    [self hiddenDoneButton];
-    return YES;
-}
-
 // 改行を押したらキーボードを閉じる
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     [textField resignFirstResponder];
@@ -241,6 +231,14 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"保存してよろしいですか？"
         delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
     [alert show];
+}
+
+- (IBAction)changeButton:(id)sender {
+    NSString* departureStr = _departure.text;
+    NSString* arrivalStr = _arrival.text;
+    _departure.text = arrivalStr;
+    _arrival.text = departureStr;
+    edited = YES;
 }
 
 - (IBAction)transitButton:(id)sender {
@@ -338,7 +336,24 @@
 }
 
 - (IBAction)backButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(edited == YES){
+        // 入力・編集していたら警告ダイアログを出す
+        NSString* messageStr = nil;
+        if(kotsuhi.kotsuhiid == 0){
+            messageStr = @"入力内容は保存されませんが、\nよろしいですか？";
+        } else {
+            messageStr = @"編集内容は保存されませんが、\nよろしいですか？";
+        }
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:messageStr preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"キャンセル" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)updateKotsuhi {

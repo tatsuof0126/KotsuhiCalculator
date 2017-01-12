@@ -139,9 +139,15 @@
     return YES;
 }
 
+// 改行を押したらキーボードを閉じる
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+/*
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     [self showDoneButton];
-    
     edited = YES;
 }
 
@@ -149,16 +155,11 @@
     [self hiddenDoneButton];
     return YES;
 }
-
-// 改行を押したらキーボードを閉じる
-- (BOOL)textFieldShouldReturn:(UITextField*)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
+*/
+ 
 - (void)showDoneButton {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
-                                                            style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
+        style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
     _inputNavi.rightBarButtonItem = btn;
 }
 
@@ -205,6 +206,14 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"保存してよろしいですか？"
                                                    delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"OK", nil];
     [alert show];
+}
+
+- (IBAction)changeButton:(id)sender {
+    NSString* departureStr = _departure.text;
+    NSString* arrivalStr = _arrival.text;
+    _departure.text = arrivalStr;
+    _arrival.text = departureStr;
+    edited = YES;
 }
 
 - (NSArray*)inputCheck {
@@ -308,7 +317,24 @@
 }
 
 - (IBAction)backButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(edited == YES){
+        // 入力・編集していたら警告ダイアログを出す
+        NSString* messageStr = nil;
+        if(mypattern.mypatternid == 0){
+            messageStr = @"入力内容は保存されませんが、\nよろしいですか？";
+        } else {
+            messageStr = @"編集内容は保存されませんが、\nよろしいですか？";
+        }
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:messageStr preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"キャンセル" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)transitButton:(id)sender {

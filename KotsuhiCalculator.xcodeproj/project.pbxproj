@@ -47,6 +47,7 @@
 		0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC951192E452400966776 /* PurchaseAddonViewController.m */; };
 		0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC955192E45E100966776 /* InAppPurchaseManager.m */; };
 		0B3EC959192E467500966776 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3EC958192E467500966776 /* ConfigManager.m */; };
+		0B41A8271E2532F800D42B30 /* change.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B41A8261E2532F800D42B30 /* change.png */; };
 		0B4871361BB4494D00AD55DD /* UntreatedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4871351BB4494D00AD55DD /* UntreatedListViewController.m */; };
 		0B48713A1BB4505900AD55DD /* ADG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B4871391BB4505900AD55DD /* ADG.framework */; };
 		0B48713C1BB4508B00AD55DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B48713B1BB4508B00AD55DD /* CoreTelephony.framework */; };
@@ -176,6 +177,7 @@
 		0B3EC955192E45E100966776 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		0B3EC957192E467500966776 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		0B3EC958192E467500966776 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		0B41A8261E2532F800D42B30 /* change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change.png; sourceTree = "<group>"; };
 		0B4871351BB4494D00AD55DD /* UntreatedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UntreatedListViewController.m; sourceTree = "<group>"; };
 		0B4871371BB4497500AD55DD /* UntreatedListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UntreatedListViewController.h; sourceTree = "<group>"; };
 		0B4871391BB4505900AD55DD /* ADG.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADG.framework; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				0BA5EB71192B930B00323F5F /* settings@2x.png */,
 				0BA5EB76192B935A00323F5F /* book.png */,
 				0BA5EB77192B935A00323F5F /* book@2x.png */,
+				0B41A8261E2532F800D42B30 /* change.png */,
 				0BA5EB92192CEA9B00323F5F /* Default-568h@2x.png */,
 				0BA5EB93192CEA9B00323F5F /* Default.png */,
 				0BA5EB94192CEA9B00323F5F /* Default@2x.png */,
@@ -643,6 +646,7 @@
 				0BA5EB74192B930B00323F5F /* settings.png in Resources */,
 				0B7482531A0A77BD00F43758 /* check.png in Resources */,
 				0B381F541A21B31D00BF5C8B /* Icon-Small.png in Resources */,
+				0B41A8271E2532F800D42B30 /* change.png in Resources */,
 				0B381F4A1A21B31D00BF5C8B /* Icon-60@2x.png in Resources */,
 				0B381F591A21B31D00BF5C8B /* Icon-Spotlight-40@3x.png in Resources */,
 				0BA5EB95192CEA9B00323F5F /* Default-568h@2x.png in Resources */,
@@ -884,7 +888,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds/\"",
+				);
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -926,7 +935,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds/\"",
+				);
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (

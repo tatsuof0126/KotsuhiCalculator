@@ -64,9 +64,9 @@
                                          initWithTarget:self action:@selector(forWindowsButton:)]];
     
     // すでにアドオンをすべて購入済みならボタンを消す
-    if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
-        inputNavi.rightBarButtonItem = nil;
-    }
+    // if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
+    //     inputNavi.rightBarButtonItem = nil;
+    // }
     
     // AppStoreへリンクのタップを受け取るため
     reviewLabel.userInteractionEnabled = YES;
@@ -120,11 +120,11 @@
 
 - (void)hiddenDoneButton {
     // すでにアドオンをすべて購入済みならボタンを消す
-    if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
-        inputNavi.rightBarButtonItem = nil;
-    } else {
+    // if([ConfigManager isRemoveAdsFlg] == YES && [ConfigManager isSendMailFlg] == YES){
+    //     inputNavi.rightBarButtonItem = nil;
+    // } else {
         inputNavi.rightBarButtonItem = _removeAdsBtn;
-    }
+    // }
 }
 
 - (void)doneButton {

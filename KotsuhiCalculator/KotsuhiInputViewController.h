@@ -43,6 +43,8 @@
 
 - (IBAction)registButton:(id)sender;
 
+- (IBAction)changeButton:(id)sender;
+
 - (IBAction)transitButton:(id)sender;
 
 - (IBAction)backButton:(id)sender;

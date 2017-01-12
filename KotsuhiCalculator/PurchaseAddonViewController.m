@@ -10,6 +10,7 @@
 #import "InAppPurchaseManager.h"
 #import "AppDelegate.h"
 #import "Utility.h"
+#import "ConfigManager.h"
 #import "TrackingManager.h"
 
 #define APPSTORELABEL 1
@@ -73,10 +74,40 @@
     }
 }
 
--(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     long section = indexPath.section;
     long row = indexPath.row;
     
+    NSString* cellName = @"PurchaseCell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:cellName];
+    }
+    
+    NSString* text = @"";
+    NSString* detailText = @"";
+    
+    if(section == 0 && row == 0){
+        text = @"メール送信機能を追加する";
+        if([ConfigManager isSendMailFlg] == YES){
+            detailText = @"購入済み";
+        }
+    } else if(section == 0 && row == 1){
+        text = @"広告を削除する";
+        if([ConfigManager isRemoveAdsFlg] == YES){
+            detailText = @"購入済み";
+        }
+    } else if(section == 1){
+        text = @"購入済みアドオンをリストア";
+    }
+    
+    cell.textLabel.text = text;
+    cell.detailTextLabel.text = detailText;
+    
+    return cell;
+
+    /*
     UITableViewCell* cell;
     
     NSString* cellName = [NSString stringWithFormat:@"%@%ld-%ld",@"PurchaseCell",section, row];
@@ -97,16 +128,23 @@
     }
     
     return cell;
+     */
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //    NSLog(@"Selected %d-%d",indexPath.section, indexPath.row);
     
-    if(indexPath.section == 0){
-        if(indexPath.row == 0){
+    if(indexPath.section == 0 && indexPath.row == 0){
+        if([ConfigManager isSendMailFlg] == NO){
             [self requestAddon:@"com.tatsuo.KotsuhiCalculator.sendmail"];
-        } else if(indexPath.row == 1){
+        } else {
+            [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
+        }
+    } else if(indexPath.section == 0 && indexPath.row == 1){
+        if([ConfigManager isRemoveAdsFlg] == NO){
             [self requestAddon:@"com.tatsuo.KotsuhiCalculator.removeads"];
+        } else {
+            [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
         }
     } else if(indexPath.section == 1){
         [self restoreAddon];
@@ -184,6 +222,7 @@
 
 - (void)endPurchase {
     doingPurchase = NO;
+    [addonTableView reloadData];
 }
 
 /*

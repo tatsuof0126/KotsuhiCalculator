@@ -9,9 +9,10 @@
 #import "AppDelegate.h"
 #import "ConfigManager.h"
 #import "GAI.h"
+#import "GADInterstitial.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
-#import "NADInterstitial.h"
+// #import "NADInterstitial.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,7 @@
 @synthesize targetKotsuhi;
 @synthesize targetMyPattern;
 
+@synthesize gadInterstitial;
 @synthesize showInterstitialFlg;
 
 @synthesize visit;
@@ -49,7 +51,10 @@
 //    }
     
     // For AppBank Network(nend)
-    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
+//    [[NADInterstitial sharedInstance] loadAdWithApiKey:@"bf39fc35e2e4bc28a3b24db609a5778123a335c2" spotId:@"268809"];
+    
+    // インタースティシャル広告を初期化
+    [self prepareGadInterstitial];
     
     // SampleData
     if(MAKE_SAMPLE_DATA == 1){
@@ -149,13 +154,13 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
 }
 
+/*
 + (void)showInterstitial:(UIViewController*)controller {
     @try {
         // インタースティシャル広告を表示（AppBank Network(Nend)）
         if([ConfigManager isRemoveAdsFlg] == NO){
             [[NADInterstitial sharedInstance] showAdFromViewController:controller];
             
-            /*
             NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAdFromViewController:controller];
             switch ( result ){
                 case AD_SHOW_SUCCESS:
@@ -180,12 +185,12 @@
                     NSLog(@"指定されたViewControllerに広告が表示できませんでした。");
                     break;
             }
-             */
         }
     } @catch (NSException *exception) {
         [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"showInterstitial" value:nil screen:@"showInterstitial"];
     }
 }
+ */
 
 + (GADBannerView*)makeGadView:(UIViewController<GADBannerViewDelegate>*)controller {
     GADBannerView* gadView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
@@ -198,5 +203,46 @@
     [gadView loadRequest:request];
     return gadView;
 }
+
+- (void)prepareGadInterstitial {
+    @try {
+        gadInterstitial = [[GADInterstitial alloc] initWithAdUnitID:
+                           @"ca-app-pub-6719193336347757/4148097455"];
+        gadInterstitial.delegate = self;
+        [gadInterstitial loadRequest:[GADRequest request]];
+    } @catch (NSException *exception) {
+        NSLog(@"Exception : %@", [exception description]);
+        [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"prepareGadInterstitial" value:nil screen:@"prepareGadInterstitial"];
+    }
+}
+
+- (void)showGadInterstitial:(UIViewController*)controller {
+    int rand = (int)arc4random_uniform(100);
+    if(rand >= INTERSTITIAL_FREQ){
+        return;
+    }
+    
+    @try {
+        if ([gadInterstitial isReady]) {
+            [gadInterstitial presentFromRootViewController:controller];
+        } else {
+            // 広告の準備ができてないならロード失敗と判断して、次回に備え再読み込み
+            [self prepareGadInterstitial];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Exception : %@", [exception description]);
+        [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"showGadInterstitial" value:nil screen:@"showGadInterstitial"];
+    }
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial*)interstitial {
+    [self prepareGadInterstitial];
+}
+
+// インタースティシャル広告のロードに失敗した場合
+- (void)interstitial:(GADInterstitial*)interstitial didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"didFailToReceiveAdWithError : %@", [error description]);
+}
+
 
 @end
