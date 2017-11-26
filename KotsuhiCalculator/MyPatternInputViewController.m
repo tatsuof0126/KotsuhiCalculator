@@ -298,6 +298,9 @@
     } else if ([segueStr isEqualToString:@"arrivalSegue"] == YES) {
         controller.selectType = ARRIVAL;
         controller.targetTextField = _arrival;
+    } else if ([segueStr isEqualToString:@"purposeSegue"] == YES) {
+        controller.selectType = PURPOSE;
+        controller.targetTextField = _purpose;
     } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
         TransitViewController* controller = [segue destinationViewController];
         

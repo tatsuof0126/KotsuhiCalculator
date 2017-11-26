@@ -170,6 +170,11 @@
         textField.text = @"0";
     }
     
+    // 編集項目が出発地または到着地だった場合は、過去履歴から金額をセット
+    if(textField == _departure || textField == _arrival){
+        [self fulfillAmount];
+    }
+    
     [self hiddenDoneButton];
     return YES;
 }
@@ -178,6 +183,45 @@
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)fulfillAmount {
+    NSString* depString = _departure.text;
+    NSString* arrString = _arrival.text;
+    BOOL canFulfill = NO;
+    int amount = 0;
+    int matchCount = 0;
+    
+    // 出発地・到着地の両方が入力済みで金額が0円の場合は過去履歴から金額をセットする
+    if([depString isEqualToString:@""] == NO &&
+       [arrString isEqualToString:@""] == NO &&
+       [_amount.text isEqualToString:@"0"]){
+        NSArray* kotsuhiList = [KotsuhiFileManager loadKotsuhiList];
+        for(Kotsuhi* kotsuhi in kotsuhiList){
+            if(matchCount >= 3){
+                // 3件同じならその金額をセットするのでbreak
+                break;
+            }
+            
+            if([depString isEqualToString:kotsuhi.departure] &&
+               [arrString isEqualToString:kotsuhi.arrival]){
+                if(amount == 0){
+                    canFulfill = YES;
+                    amount = kotsuhi.amount;
+                    matchCount++;
+                } else if(amount == kotsuhi.amount){
+                    matchCount++;
+                } else {
+                    canFulfill = NO;
+                    matchCount = 99;
+                }
+            }
+        }
+    }
+    
+    if(canFulfill == YES){
+        _amount.text = [NSString stringWithFormat:@"%d", amount];
+    }
 }
 
 - (void)showDoneButton {
@@ -421,6 +465,10 @@
         SelectInputViewController* controller = [segue destinationViewController];
         controller.selectType = ARRIVAL;
         controller.targetTextField = _arrival;
+    } else if ([segueStr isEqualToString:@"purposeSegue"] == YES) {
+        SelectInputViewController* controller = [segue destinationViewController];
+        controller.selectType = PURPOSE;
+        controller.targetTextField = _purpose;
     } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
         TransitViewController* controller = [segue destinationViewController];
         

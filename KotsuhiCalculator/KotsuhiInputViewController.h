@@ -51,4 +51,6 @@
 
 - (IBAction)onTap:(id)sender;
 
+- (void)fulfillAmount;
+
 @end

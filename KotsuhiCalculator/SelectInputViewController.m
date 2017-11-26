@@ -11,6 +11,7 @@
 #import "ConfigManager.h"
 #import "KotsuhiFileManager.h"
 #import "TrackingManager.h"
+#import "KotsuhiInputViewController.h"
 
 @interface SelectInputViewController ()
 
@@ -62,6 +63,8 @@
         str = @"出発地を選択";
     } else if (selectType == ARRIVAL) {
         str = @"到着地を選択";
+    } else if (selectType == PURPOSE) {
+        str = @"目的補足を選択";
     }
     
     return str;
@@ -80,6 +83,9 @@
         } else if (selectType == DEPARTURE || selectType == ARRIVAL) {
             str1 = kotsuhi.departure;
             str2 = kotsuhi.arrival;
+        } else if (selectType == PURPOSE) {
+            str1 = kotsuhi.purpose;
+            str2 = @"";
         }
         
         if([str1 isEqualToString:@""] == NO && [selectList containsObject:str1] == NO){
@@ -103,6 +109,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     targetTextField.text = [selectList objectAtIndex:indexPath.row];
+    
+    // 出発地・到着地の場合はKotsuhiInputViewControllerにある金額の自動セットメソッドを呼ぶ
+    if (selectType == DEPARTURE || selectType == ARRIVAL){
+        KotsuhiInputViewController* controller = (KotsuhiInputViewController*)self.presentingViewController;
+        [controller fulfillAmount];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

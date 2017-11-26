@@ -94,7 +94,7 @@
 + (BOOL)isForWindows {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     if([defaults objectForKey:@"FORWINDOWS"] == nil){
-        [self setForWindows:NO];
+        [self setForWindows:YES];
     }
     return [defaults boolForKey:@"FORWINDOWS"];
 }

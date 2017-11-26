@@ -12,6 +12,7 @@
 #define VISIT     1
 #define DEPARTURE 2
 #define ARRIVAL   3
+#define PURPOSE   4
 
 @interface SelectInputViewController : UIViewController <GADBannerViewDelegate>
 

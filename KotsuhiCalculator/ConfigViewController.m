@@ -55,9 +55,13 @@
     [_iccardSearch addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                         initWithTarget:self action:@selector(iccardButton:)]];
     
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    versionName.text = [NSString stringWithFormat:@"version%@",version];
+//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+//    versionName.text = [NSString stringWithFormat:@"version%@",version];
 
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    versionName.text = [NSString stringWithFormat:@"version%@",version];
+    
+    
     _forWindows.checkBoxSelected = [ConfigManager isForWindows];
     [_forWindows setState];
     [_forWindows addGestureRecognizer:[[UITapGestureRecognizer alloc]
