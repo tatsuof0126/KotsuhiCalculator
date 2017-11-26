@@ -435,7 +435,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1233" y="-339"/>
+            <point key="canvasLocation" x="1233" y="-600"/>
         </scene>
         <!--Select My Pattern View Controller-->
         <scene sceneID="5A1-yu-W7d">
@@ -503,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sff-HA-O4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647" y="-339"/>
+            <point key="canvasLocation" x="1647" y="-600"/>
         </scene>
         <!--Transit View Controller-->
         <scene sceneID="lhW-f6-if9">
@@ -544,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOV-ah-sMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647" y="394"/>
+            <point key="canvasLocation" x="1944" y="154"/>
         </scene>
         <!--Select Input View Controller-->
         <scene sceneID="JHL-Gx-Jpu">
@@ -598,7 +598,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGg-B6-NO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="394"/>
+            <point key="canvasLocation" x="1463" y="154"/>
         </scene>
         <!--未処理分のみ-->
         <scene sceneID="wKA-bn-Mee">
@@ -695,7 +695,7 @@
             </objects>
             <point key="canvasLocation" x="736" y="-600"/>
         </scene>
-        <!--設定/メール送信-->
+        <!--設定-->
         <scene sceneID="YP5-bS-Peg">
             <objects>
                 <viewController id="Z22-8g-kxX" customClass="ConfigViewController" sceneMemberID="viewController">
@@ -861,7 +861,7 @@
                             <outletCollection property="gestureRecognizers" destination="SgQ-wn-61S" appends="YES" id="mrD-fi-Hhl"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="設定/メール送信" image="settings.png" id="lUz-L6-Bqf"/>
+                    <tabBarItem key="tabBarItem" title="設定" image="settings.png" id="lUz-L6-Bqf"/>
                     <connections>
                         <outlet property="forWindows" destination="KTV-HF-Y8I" id="m0r-fE-Xkv"/>
                         <outlet property="iccardSearch" destination="K17-bs-LuS" id="z10-ag-BRy"/>
@@ -954,7 +954,142 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0H-Sc-omr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="1909"/>
+            <point key="canvasLocation" x="140" y="2034"/>
+        </scene>
+        <!--メール送信-->
+        <scene sceneID="xjX-7N-kbX">
+            <objects>
+                <viewController id="afb-RP-Hru" customClass="SendMailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GOp-eO-iYe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="wXp-qz-DBd">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="メール送信" id="cMd-EF-UR4">
+                                        <barButtonItem key="rightBarButtonItem" title="アドオン" id="SKF-LK-R6K">
+                                            <connections>
+                                                <segue destination="tRo-fk-ZcF" kind="modal" identifier="getaddon" modalTransitionStyle="crossDissolve" id="FcC-d2-tTx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="icH-dZ-58a">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" id="lYj-T8-G8n" customClass="CheckBoxButton">
+                                        <rect key="frame" x="274" y="96" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="メール送信（CSVファイル）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n6s-qh-hrx">
+                                        <rect key="frame" x="20" y="21" width="240" height="21"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="宛先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n4V-z4-gke">
+                                        <rect key="frame" x="30" y="60" width="35" height="21"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレスを入力" minimumFontSize="17" clearButtonMode="whileEditing" id="HUh-gn-ywb">
+                                        <rect key="frame" x="72" y="56" width="228" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="sendToEdited:" destination="afb-RP-Hru" eventType="editingDidEnd" id="8DA-Aj-Myg"/>
+                                            <outlet property="delegate" destination="afb-RP-Hru" id="gZm-z9-Oe0"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Windows向けのファイルで送る" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lUc-wf-zeL">
+                                        <rect key="frame" x="30" y="100" width="245" height="21"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Svq-Ci-1so">
+                                        <rect key="frame" x="40" y="150" width="240" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="未処理の交通費をメール送信"/>
+                                        <connections>
+                                            <action selector="sendUntreated:" destination="afb-RP-Hru" eventType="touchUpInside" id="x3a-5L-EZX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H8K-hB-clS">
+                                        <rect key="frame" x="40" y="200" width="200" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="交通費を全件メール送信"/>
+                                        <connections>
+                                            <action selector="sendAll:" destination="afb-RP-Hru" eventType="touchUpInside" id="CLv-Gm-Fei"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ajC-NX-6qy">
+                                        <rect key="frame" x="140" y="280" width="160" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="CSVレイアウト修正"/>
+                                        <connections>
+                                            <segue destination="e1A-YY-T5K" kind="modal" modalTransitionStyle="crossDissolve" id="iDW-EH-yDV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sm9-z9-oS0" appends="YES" id="aFO-Mr-37l"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="メール送信" image="mail.png" id="UcZ-9Y-Cdo"/>
+                    <connections>
+                        <outlet property="addonBtn" destination="SKF-LK-R6K" id="GvA-A9-d0k"/>
+                        <outlet property="forWindows" destination="lYj-T8-G8n" id="6Nn-Fe-Gtz"/>
+                        <outlet property="inputNavi" destination="cMd-EF-UR4" id="DKh-xk-aPD"/>
+                        <outlet property="scrollView" destination="icH-dZ-58a" id="Z3Z-3H-csO"/>
+                        <outlet property="sendTo" destination="HUh-gn-ywb" id="dZq-Dx-4d8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FVw-nu-9jx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sm9-z9-oS0">
+                    <connections>
+                        <action selector="onTap:" destination="afb-RP-Hru" id="NpS-Mk-aIW"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="736" y="1610"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LiY-2M-hzB">
+            <objects>
+                <viewController id="e1A-YY-T5K" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HET-k3-GwE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="0lQ-Gx-PE0">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="CSVレイアウト編集" id="Vl4-aU-pq0">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="Zlq-r2-Ekz"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h7Y-0M-gw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="1610"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="TBn-eG-yde">
@@ -1105,7 +1240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vgb-KS-r4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="1203"/>
+            <point key="canvasLocation" x="736" y="848"/>
         </scene>
         <!--My Pattern Input View Controller-->
         <scene sceneID="FRb-8r-JYe">
@@ -1383,7 +1518,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1161" y="1106"/>
+            <point key="canvasLocation" x="1233" y="848"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
@@ -1399,6 +1534,7 @@
                         <segue destination="2tZ-4A-8Cw" kind="relationship" relationship="viewControllers" id="h6d-YD-jJ1"/>
                         <segue destination="yXq-TC-jNC" kind="relationship" relationship="viewControllers" id="QSl-W4-P57"/>
                         <segue destination="wbR-Qd-m5b" kind="relationship" relationship="viewControllers" id="GFm-5s-Cfx"/>
+                        <segue destination="afb-RP-Hru" kind="relationship" relationship="viewControllers" id="NmU-Nm-s7J"/>
                         <segue destination="Z22-8g-kxX" kind="relationship" relationship="viewControllers" id="L2N-0Q-qOc"/>
                     </connections>
                 </tabBarController>
@@ -1412,6 +1548,7 @@
         <image name="browser_window.png" width="24" height="24"/>
         <image name="change.png" width="36" height="60"/>
         <image name="list.png" width="24" height="24"/>
+        <image name="mail.png" width="24" height="24"/>
         <image name="settings.png" width="24" height="24"/>
         <image name="train_i_lb.gif" width="53" height="53"/>
         <image name="train_i_lg.gif" width="53" height="53"/>
@@ -1421,8 +1558,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="roX-ev-jZw"/>
-        <segue reference="irV-zy-Fxc"/>
-        <segue reference="LEt-Z7-Aiy"/>
-        <segue reference="NVL-tN-U3x"/>
+        <segue reference="FcC-d2-tTx"/>
+        <segue reference="C6z-gW-zdA"/>
+        <segue reference="giW-1K-sx0"/>
+        <segue reference="9cf-Vc-ZzK"/>
     </inferredMetricsTieBreakers>
 </document>

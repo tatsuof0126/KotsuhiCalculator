@@ -60,6 +60,9 @@
 		0B7482531A0A77BD00F43758 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482501A0A77BD00F43758 /* check.png */; };
 		0B7482541A0A77BD00F43758 /* disable_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482511A0A77BD00F43758 /* disable_check.png */; };
 		0B7482551A0A77BD00F43758 /* nocheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7482521A0A77BD00F43758 /* nocheck.png */; };
+		0B7DD58D1FCB0643001198FB /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DD58A1FCB0641001198FB /* mail.png */; };
+		0B7DD58E1FCB0643001198FB /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DD58C1FCB0642001198FB /* mail@2x.png */; };
+		0B7DD5911FCB0819001198FB /* SendMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5901FCB0819001198FB /* SendMailViewController.m */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
 		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
 		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
@@ -194,6 +197,10 @@
 		0B7482511A0A77BD00F43758 /* disable_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_check.png; sourceTree = "<group>"; };
 		0B7482521A0A77BD00F43758 /* nocheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nocheck.png; sourceTree = "<group>"; };
 		0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		0B7DD58A1FCB0641001198FB /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
+		0B7DD58C1FCB0642001198FB /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@2x.png"; sourceTree = "<group>"; };
+		0B7DD58F1FCB0819001198FB /* SendMailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendMailViewController.h; sourceTree = "<group>"; };
+		0B7DD5901FCB0819001198FB /* SendMailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendMailViewController.m; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -372,6 +379,8 @@
 				0BA5EB65191F1A1F00323F5F /* MyPatternListViewController.m */,
 				0BA5EB67191F1A4C00323F5F /* MyPatternInputViewController.h */,
 				0BA5EB68191F1A4C00323F5F /* MyPatternInputViewController.m */,
+				0B7DD58F1FCB0819001198FB /* SendMailViewController.h */,
+				0B7DD5901FCB0819001198FB /* SendMailViewController.m */,
 				0BC80DE818E5B900008C01F8 /* ConfigViewController.h */,
 				0BC80DE918E5B900008C01F8 /* ConfigViewController.m */,
 				0B3EC950192E452400966776 /* PurchaseAddonViewController.h */,
@@ -463,6 +472,8 @@
 		0BA5EB6D192B930B00323F5F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0B7DD58A1FCB0641001198FB /* mail.png */,
+				0B7DD58C1FCB0642001198FB /* mail@2x.png */,
 				0BA5EB6E192B930B00323F5F /* list.png */,
 				0BA5EB6F192B930B00323F5F /* list@2x.png */,
 				0B6CBDE11BB30C04005E118A /* browser_window.png */,
@@ -646,6 +657,7 @@
 				0BA5EB74192B930B00323F5F /* settings.png in Resources */,
 				0B7482531A0A77BD00F43758 /* check.png in Resources */,
 				0B381F541A21B31D00BF5C8B /* Icon-Small.png in Resources */,
+				0B7DD58D1FCB0643001198FB /* mail.png in Resources */,
 				0B41A8271E2532F800D42B30 /* change.png in Resources */,
 				0B381F4A1A21B31D00BF5C8B /* Icon-60@2x.png in Resources */,
 				0B381F591A21B31D00BF5C8B /* Icon-Spotlight-40@3x.png in Resources */,
@@ -659,6 +671,7 @@
 				0B381F4E1A21B31D00BF5C8B /* Icon-76.png in Resources */,
 				0BA5EB79192B935A00323F5F /* book@2x.png in Resources */,
 				0B381F4D1A21B31D00BF5C8B /* Icon-72@2x.png in Resources */,
+				0B7DD58E1FCB0643001198FB /* mail@2x.png in Resources */,
 				0B381F511A21B31D00BF5C8B /* icon-small-40@2x.png in Resources */,
 				0B381F551A21B31D00BF5C8B /* Icon-Small@2x.png in Resources */,
 				0BA5EB75192B930B00323F5F /* settings@2x.png in Resources */,
@@ -760,6 +773,7 @@
 				0BA5EB69191F1A4C00323F5F /* MyPatternInputViewController.m in Sources */,
 				0BAEEE3619D9B6C500BF1981 /* TrackingManager.m in Sources */,
 				0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */,
+				0B7DD5911FCB0819001198FB /* SendMailViewController.m in Sources */,
 				0B74824F1A0A770500F43758 /* CheckBoxButton.m in Sources */,
 				0B091E4218CF5E5800C93391 /* main.m in Sources */,
 				0BC80DF318E5BCB8008C01F8 /* KotsuhiInputViewController.m in Sources */,
