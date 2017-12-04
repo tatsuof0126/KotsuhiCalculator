@@ -63,6 +63,7 @@
 		0B7DD58D1FCB0643001198FB /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DD58A1FCB0641001198FB /* mail.png */; };
 		0B7DD58E1FCB0643001198FB /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DD58C1FCB0642001198FB /* mail@2x.png */; };
 		0B7DD5911FCB0819001198FB /* SendMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5901FCB0819001198FB /* SendMailViewController.m */; };
+		0B7DD5941FCB1D16001198FB /* EditMailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5931FCB1D16001198FB /* EditMailDetailViewController.m */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
 		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
 		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
@@ -201,6 +202,8 @@
 		0B7DD58C1FCB0642001198FB /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@2x.png"; sourceTree = "<group>"; };
 		0B7DD58F1FCB0819001198FB /* SendMailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendMailViewController.h; sourceTree = "<group>"; };
 		0B7DD5901FCB0819001198FB /* SendMailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendMailViewController.m; sourceTree = "<group>"; };
+		0B7DD5921FCB1D16001198FB /* EditMailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMailDetailViewController.h; sourceTree = "<group>"; };
+		0B7DD5931FCB1D16001198FB /* EditMailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMailDetailViewController.m; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				0BA5EB68191F1A4C00323F5F /* MyPatternInputViewController.m */,
 				0B7DD58F1FCB0819001198FB /* SendMailViewController.h */,
 				0B7DD5901FCB0819001198FB /* SendMailViewController.m */,
+				0B7DD5921FCB1D16001198FB /* EditMailDetailViewController.h */,
+				0B7DD5931FCB1D16001198FB /* EditMailDetailViewController.m */,
 				0BC80DE818E5B900008C01F8 /* ConfigViewController.h */,
 				0BC80DE918E5B900008C01F8 /* ConfigViewController.m */,
 				0B3EC950192E452400966776 /* PurchaseAddonViewController.h */,
@@ -595,7 +600,7 @@
 		0B091E2A18CF5E5800C93391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Tatsuo Fujiwara";
 				TargetAttributes = {
 					0B091E3118CF5E5800C93391 = {
@@ -771,6 +776,7 @@
 				0BC80DF018E5BCA0008C01F8 /* KotsuhiListViewController.m in Sources */,
 				0B4871361BB4494D00AD55DD /* UntreatedListViewController.m in Sources */,
 				0BA5EB69191F1A4C00323F5F /* MyPatternInputViewController.m in Sources */,
+				0B7DD5941FCB1D16001198FB /* EditMailDetailViewController.m in Sources */,
 				0BAEEE3619D9B6C500BF1981 /* TrackingManager.m in Sources */,
 				0BC80DEA18E5B900008C01F8 /* ConfigViewController.m in Sources */,
 				0B7DD5911FCB0819001198FB /* SendMailViewController.m in Sources */,
@@ -812,14 +818,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -857,14 +869,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
