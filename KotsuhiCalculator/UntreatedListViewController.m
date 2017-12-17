@@ -344,9 +344,20 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(appDelegate.showInterstitialFlg == YES){
         if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-            [appDelegate showGadInterstitial:self];
-            // [AppDelegate showInterstitial:self];
+            BOOL showed = [appDelegate showGadInterstitial:self];
             appDelegate.showInterstitialFlg = NO;
+            
+            // インタースティシャルが表示されないときでデータが５件以上あればレビュー依頼
+            if(showed == NO){
+                int dataCount = 0;
+                for(NSArray* kotsuhiList in untreatedListByMonth){
+                    dataCount += kotsuhiList.count;
+                }
+                
+                if(dataCount >= 5){
+                    [AppDelegate requestReview];
+                }
+            }
         }
     }
 

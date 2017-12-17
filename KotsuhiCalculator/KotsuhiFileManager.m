@@ -264,6 +264,54 @@
     targetMyPattern.sort = maxsort+1;
 }
 
++ (NSArray*)loadDataItemList {
+    NSArray* dirpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* rootdirpath = [dirpaths objectAtIndex:0];
+    NSString* dirpath = [rootdirpath stringByAppendingPathComponent:@"dataitem"];
+    NSString* filepath = [dirpath stringByAppendingPathComponent:@"dataitemlist.dat"];
+    
+    // NSLog(@"load filepath : %@",filepath);
+    
+    NSData* readdata = [NSData dataWithContentsOfFile:filepath];
+    
+    NSArray* dataItemArray = nil;
+    if(readdata != nil){
+        // NSLog(@"readdata is not null");
+        dataItemArray = [DataItem makeDataItemArray:readdata];
+    } else {
+        // NSLog(@"readdata is null");
+        dataItemArray = [DataItem getInitDataItemList];
+        [KotsuhiFileManager saveDataItemList:dataItemArray];
+    }
+    
+    NSArray* returnArray = [dataItemArray sortedArrayUsingSelector:@selector(compareOrder:)];
+    
+    return returnArray;
+}
+
++ (void)saveDataItemList:(NSArray*)dataItemList {
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSError* error;
+    
+    NSArray* dirpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* rootdirpath = [dirpaths objectAtIndex:0];
+    NSString* dirpath = [rootdirpath stringByAppendingPathComponent:@"dataitem"];
+    
+    if([fileManager fileExistsAtPath:dirpath] == NO){
+        // ディレクトリが未作成の場合はディレクトリを作る
+        [fileManager createDirectoryAtPath:dirpath withIntermediateDirectories:YES attributes:nil error:&error];
+    }
+    
+    NSString* filename = [NSString stringWithFormat:@"dataitemlist.dat"];
+    NSString* filepath = [dirpath stringByAppendingPathComponent:filename];
+    
+    // NSLog(@"save filepath : %@",filepath);
+    
+    NSData* data = [DataItem getDataItemArrayData:dataItemList];
+    
+    [data writeToFile:filepath atomically:YES];
+}
+
 + (void)makeSampleData {
     
     NSArray* sampleKotsuhiArray =

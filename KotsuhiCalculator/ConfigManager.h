@@ -38,4 +38,8 @@
 
 + (void)setForWindows:(BOOL)forWindows;
 
++ (BOOL)isDayOrderAsc;
+
++ (void)setDayOrderAsc:(BOOL)dayOrderAsc;
+
 @end

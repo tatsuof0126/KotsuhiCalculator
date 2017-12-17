@@ -25,10 +25,6 @@
 
 @property (strong, nonatomic) IBOutlet CheckBoxButton *iccardSearch;
 
-@property (strong, nonatomic) IBOutlet UITextField *sendTo;
-
-@property (strong, nonatomic) IBOutlet CheckBoxButton *forWindows;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *removeAdsBtn;
 
 @property (strong, nonatomic) IBOutlet UILabel *reviewLabel;
@@ -38,14 +34,6 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *inputNavi;
 
 @property (strong, nonatomic) IBOutlet UILabel *versionName;
-
-@property BOOL sendAll;
-
-// - (IBAction)searchAddress:(id)sender;
-
-- (IBAction)sendUntreated:(id)sender;
-
-- (IBAction)sendAll:(id)sender;
 
 - (IBAction)onTap:(id)sender;
 

@@ -373,6 +373,9 @@
         if([ConfigManager isRemoveAdsFlg] == NO){
             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             appDelegate.showInterstitialFlg = YES;
+        } else {
+            // 広告が非表示の場合はレビュー依頼
+            [AppDelegate requestReview];
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -471,6 +474,8 @@
         controller.targetTextField = _purpose;
     } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
         TransitViewController* controller = [segue destinationViewController];
+        
+        controller.targetTextField = _amount;
         
         NSString* departureStr = [_departure.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         NSString* arrivalStr = [_arrival.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];

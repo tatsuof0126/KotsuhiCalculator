@@ -35,7 +35,12 @@
     [_forWindows setState];
     [_forWindows addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(forWindowsButton:)]];
-    
+
+    _dayOrder.checkBoxSelected = [ConfigManager isDayOrderAsc];
+    [_dayOrder setState];
+    [_dayOrder addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(forDayOrderButton:)]];
+
     // ScrollViewの高さを定義＆iPhone5対応
     scrollView.contentSize = CGSizeMake(320, 654);
     scrollView.frame = CGRectMake(0, 64, 320, 366);
@@ -76,7 +81,7 @@
 
 - (void)showDoneButton {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"完了"
-                                                            style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
+        style:UIBarButtonItemStylePlain target:self action:@selector(doneButton)];
     inputNavi.rightBarButtonItem = btn;
 }
 
@@ -97,6 +102,11 @@
     [ConfigManager setForWindows:_forWindows.selected];
 }
 
+- (void)forDayOrderButton:(UITapGestureRecognizer*)sender {
+    [_dayOrder checkboxPush:_dayOrder];
+    [ConfigManager setDayOrderAsc:_dayOrder.selected];
+}
+
 - (IBAction)sendUntreated:(id)sender {
     [self.view endEditing:YES];
     
@@ -106,6 +116,10 @@
     }
     
     NSArray* targetKotsuhiList = [KotsuhiFileManager loadUntreatedList];
+    if([ConfigManager isDayOrderAsc]){
+        targetKotsuhiList = targetKotsuhiList.reverseObjectEnumerator.allObjects;
+    }
+    
     [self sendMail:targetKotsuhiList sendAll:NO];
 }
 
@@ -118,6 +132,10 @@
     }
     
     NSArray* targetKotsuhiList = [KotsuhiFileManager loadKotsuhiList];
+    if([ConfigManager isDayOrderAsc]){
+        targetKotsuhiList = targetKotsuhiList.reverseObjectEnumerator.allObjects;
+    }
+    
     [self sendMail:targetKotsuhiList sendAll:YES];
 }
 
@@ -161,8 +179,10 @@
     
     [controller setMessageBody:@"交通費メモから送信" isHTML:NO];
     
-    // 交通費データをNSDataに変換（Windows用が指定されていた場合はSJISでエンコード）
+    // CSVデータを作成
     NSString* dataStr = [self makeCsvString:kotsuhiList];
+    
+    // CSVデータをNSDataに変換（Windows用が指定されていた場合はSJISでエンコード）
     NSData* data = nil;
     if([ConfigManager isForWindows]){
         data = [dataStr dataUsingEncoding:NSShiftJISStringEncoding];
@@ -170,7 +190,7 @@
         data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
     }
     
-    // ファイルを作成して添付。MimeTypeはtext/csv
+    // NSDataオブジェクトをファイルとして添付。MimeTypeはtext/csv
     NSString* fiilenameprefix = sendAll ? @"kotsuhiall" : @"kotsuhi";
     NSString* filename = [NSString stringWithFormat:@"%@%04d%02d%02d.csv",fiilenameprefix, year, month, day];
     [controller addAttachmentData:data mimeType:@"text/csv" fileName:filename];
@@ -182,31 +202,80 @@
 - (NSString*)makeCsvString:(NSArray*)kotsuhiList {
     NSMutableString* retString = [NSMutableString stringWithString:@""];
     
-    [retString appendString:@"年,月,日,訪問先,出発地,到着地,交通手段,金額(片道),金額,往復,目的補足,経路,処理済"];
-    if([ConfigManager isForWindows]){
-        [retString appendString:@"\r"];
+    NSArray* dataItemArray = [KotsuhiFileManager loadDataItemList];
+    NSString* newlineStr = [ConfigManager isForWindows] ? @"\r\n" : @"\n";
+    
+    // ヘッダー行を作る
+    for(DataItem* dataItem in dataItemArray){
+        if(dataItem.usecsv == NO){
+            continue;
+        }
+        [retString appendString:dataItem.name];
+        [retString appendString:@","];
     }
-    [retString appendString:@"\n"];
+    [retString deleteCharactersInRange:NSMakeRange(retString.length-1, 1)];
+    [retString appendString:newlineStr];
     
     for(Kotsuhi* kotsuhi in kotsuhiList){
-        // 半角カンマを全角に置き換え
-        NSString* visit = [Utility replaceComma:kotsuhi.visit];
-        NSString* departure = [Utility replaceComma:kotsuhi.departure];
-        NSString* arrival = [Utility replaceComma:kotsuhi.arrival];
-        NSString* transportation = [Utility replaceComma:kotsuhi.transportation];
-        NSString* purpose = [Utility replaceComma:kotsuhi.purpose];
-        NSString* route = [Utility replaceComma:kotsuhi.route];
-        
-        [retString appendString:[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%@,%@,%d,%d,%@,%@,%@,%@",
-                                 kotsuhi.year, kotsuhi.month, kotsuhi.day, visit, departure, arrival, transportation,
-                                 kotsuhi.amount, [kotsuhi getTripAmount], kotsuhi.roundtrip ? @"往復" : @"",
-                                 purpose,route, kotsuhi.treated ? @"処理済" : @""]];
-        if([ConfigManager isForWindows]){
-            [retString appendString:@"\r"];
+        for(DataItem* dataItem in dataItemArray){
+            if(dataItem.usecsv == NO){
+                continue;
+            }
+            switch (dataItem.itemId) {
+                case ITEMID_YEAR:
+                    [retString appendFormat:@"%d", kotsuhi.year];
+                    break;
+                case ITEMID_MONTH:
+                    [retString appendFormat:@"%d", kotsuhi.month];
+                    break;
+                case ITEMID_DAY:
+                    [retString appendFormat:@"%d", kotsuhi.day];
+                    break;
+                case ITEMID_YYYYMMDD:
+                    [retString appendFormat:@"%04d%02d%02d", kotsuhi.year, kotsuhi.month, kotsuhi.day];
+                    break;
+                case ITEMID_VISIT:
+                    [retString appendString:[Utility replaceComma:kotsuhi.visit]];
+                    break;
+                case ITEMID_DEPARTURE:
+                    [retString appendString:[Utility replaceComma:kotsuhi.departure]];
+                    break;
+                case ITEMID_ARRIVAL:
+                    [retString appendString:[Utility replaceComma:kotsuhi.arrival]];
+                    break;
+                case ITEMID_TRANSPORTATION:
+                    [retString appendString:[Utility replaceComma:kotsuhi.transportation]];
+                    break;
+                case ITEMID_AMOUNT_ONEWAY:
+                    [retString appendFormat:@"%d", kotsuhi.amount];
+                    break;
+                case ITEMID_AMOUNT:
+                    [retString appendFormat:@"%d", [kotsuhi getTripAmount]];
+                    break;
+                case ITEMID_ROUNDTRIP:
+                    [retString appendString:kotsuhi.roundtrip ? @"往復" : @""];
+                    break;
+                case ITEMID_PURPOSE:
+                    [retString appendString:[Utility replaceComma:kotsuhi.purpose]];
+                    break;
+                case ITEMID_ROUTE:
+                    [retString appendString:[Utility replaceComma:kotsuhi.route]];
+                    break;
+                case ITEMID_TREATED:
+                    [retString appendString:kotsuhi.treated ? @"処理済" : @""];
+                    break;
+                default:
+                    break;
+            }
+            [retString appendString:@","];
         }
-        [retString appendString:@"\n"];
+        
+        [retString deleteCharactersInRange:NSMakeRange(retString.length-1, 1)];
+        [retString appendString:newlineStr];
     }
     
+    // NSLog(@"MailBody : \n%@", retString);
+
     return retString;
 }
 
@@ -238,11 +307,16 @@
 - (void)mailSent {
     if(_sendAll == YES){
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"メール送信画面―メール送信（全件）" value:nil screen:@"メール送信画面"];
-        [Utility showAlert:@"送信完了" message:@"メールを送信しました"];
+        // [Utility showAlert:@"送信完了" message:@"メールを送信しました"];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"送信完了" message:@"メールを送信しました。" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [AppDelegate requestReview]; // レビュー依頼
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
     } else {
         [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"メール送信画面―メール送信（未処理）" value:nil screen:@"メール送信画面"];
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"送信完了" message:@"メールを送信しました。\n送信した交通費データを処理済にしますか？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"送信完了" message:@"メールを送信しました。\n\n送信した交通費データを処理済にしますか？" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"処理済にする" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self treatSentKotsuhi];
         }]];
@@ -259,7 +333,11 @@
         [KotsuhiFileManager saveKotsuhi:kotsuhi];
     }
     
-    [Utility showAlert:@"処理済に変更しました。"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"処理済に変更しました。" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [AppDelegate requestReview]; // レビュー依頼
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
     
     [TrackingManager sendEventTracking:@"Button" action:@"Push" label:@"メール送信画面―メール送信後の処理済" value:nil screen:@"メール送信画面"];
 }

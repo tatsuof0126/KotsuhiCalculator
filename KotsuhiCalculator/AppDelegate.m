@@ -133,19 +133,6 @@
     }
 }
 
-/*
-+ (void)adjustOriginForBeforeiOS6:(UIView*)view {
-    // iOS5/6対応
-    if([[[UIDevice currentDevice] systemVersion] compare:@"7" options:NSNumericSearch]
-       == NSOrderedAscending){
-        CGRect oldRect = view.frame;
-        CGRect newRect = CGRectMake(oldRect.origin.x, oldRect.origin.y-20,
-                                    oldRect.size.width, oldRect.size.height);
-        view.frame = newRect;
-    }
-}
-*/
-
 - (void)initializeGoogleAnalytics {
     // トラッキングIDを設定
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-23529359-4"];
@@ -153,44 +140,6 @@
     // 例外を Google Analytics に送る
     [GAI sharedInstance].trackUncaughtExceptions = YES;
 }
-
-/*
-+ (void)showInterstitial:(UIViewController*)controller {
-    @try {
-        // インタースティシャル広告を表示（AppBank Network(Nend)）
-        if([ConfigManager isRemoveAdsFlg] == NO){
-            [[NADInterstitial sharedInstance] showAdFromViewController:controller];
-            
-            NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAdFromViewController:controller];
-            switch ( result ){
-                case AD_SHOW_SUCCESS:
-                    NSLog(@"広告の表示に成功しました。");
-                    break;
-                case AD_SHOW_ALREADY:
-                    NSLog(@"既に広告が表示されています。");
-                    break;
-                case AD_FREQUENCY_NOT_REACHABLE:
-                    NSLog(@"広告のフリークエンシーカウントに達していません。");
-                    break;
-                case AD_LOAD_INCOMPLETE:
-                    NSLog(@"抽選リクエストが実行されていない、もしくは実行中です。");
-                    break;
-                case AD_REQUEST_INCOMPLETE:
-                    NSLog(@"抽選リクエストに失敗しています。");
-                    break;
-                case AD_DOWNLOAD_INCOMPLETE:
-                    NSLog(@"広告のダウンロードが完了していません。");
-                    break;
-                case AD_CANNOT_DISPLAY:
-                    NSLog(@"指定されたViewControllerに広告が表示できませんでした。");
-                    break;
-            }
-        }
-    } @catch (NSException *exception) {
-        [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"showInterstitial" value:nil screen:@"showInterstitial"];
-    }
-}
- */
 
 + (GADBannerView*)makeGadView:(UIViewController<GADBannerViewDelegate>*)controller {
     GADBannerView* gadView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
@@ -216,15 +165,17 @@
     }
 }
 
-- (void)showGadInterstitial:(UIViewController*)controller {
+- (BOOL)showGadInterstitial:(UIViewController*)controller {
     int rand = (int)arc4random_uniform(100);
     if(rand >= INTERSTITIAL_FREQ){
-        return;
+        return NO;
     }
     
+    BOOL showed = NO;
     @try {
         if ([gadInterstitial isReady]) {
             [gadInterstitial presentFromRootViewController:controller];
+            showed = YES;
         } else {
             // 広告の準備ができてないならロード失敗と判断して、次回に備え再読み込み
             [self prepareGadInterstitial];
@@ -233,6 +184,8 @@
         NSLog(@"Exception : %@", [exception description]);
         [TrackingManager sendEventTracking:@"Exception" action:@"Exception" label:@"showGadInterstitial" value:nil screen:@"showGadInterstitial"];
     }
+    
+    return showed;
 }
 
 - (void)interstitialDidDismissScreen:(GADInterstitial*)interstitial {
@@ -244,5 +197,19 @@
     NSLog(@"didFailToReceiveAdWithError : %@", [error description]);
 }
 
++ (void)requestReview {
+    int rand = (int)arc4random_uniform(100);
+    if(rand >= REQ_REVIEW_FREQ){
+        return;
+    }
+    
+    // iOSのバージョンをチェックしてレビュー依頼（毎回表示されるわけではないらしい）
+    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (iOSVersion > 10.2f) {
+        if([SKStoreReviewController class]){
+            [SKStoreReviewController requestReview];
+        }
+    }
+}
 
 @end

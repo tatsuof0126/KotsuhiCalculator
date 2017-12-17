@@ -64,6 +64,7 @@
 		0B7DD58E1FCB0643001198FB /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DD58C1FCB0642001198FB /* mail@2x.png */; };
 		0B7DD5911FCB0819001198FB /* SendMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5901FCB0819001198FB /* SendMailViewController.m */; };
 		0B7DD5941FCB1D16001198FB /* EditMailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5931FCB1D16001198FB /* EditMailDetailViewController.m */; };
+		0B7DD5971FD5A595001198FB /* DataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7DD5961FD5A595001198FB /* DataItem.m */; };
 		0BA14ADD191918E800B94B16 /* Kotsuhi.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14ADC191918E800B94B16 /* Kotsuhi.m */; };
 		0BA14AE319192C1900B94B16 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA14AE219192C1900B94B16 /* Utility.m */; };
 		0BA5EB5A191A860D00323F5F /* MyPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EB59191A860D00323F5F /* MyPattern.m */; };
@@ -204,6 +205,8 @@
 		0B7DD5901FCB0819001198FB /* SendMailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendMailViewController.m; sourceTree = "<group>"; };
 		0B7DD5921FCB1D16001198FB /* EditMailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMailDetailViewController.h; sourceTree = "<group>"; };
 		0B7DD5931FCB1D16001198FB /* EditMailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMailDetailViewController.m; sourceTree = "<group>"; };
+		0B7DD5951FD5A595001198FB /* DataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataItem.h; sourceTree = "<group>"; };
+		0B7DD5961FD5A595001198FB /* DataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataItem.m; sourceTree = "<group>"; };
 		0BA14ADB191918E800B94B16 /* Kotsuhi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kotsuhi.h; sourceTree = "<group>"; };
 		0BA14ADC191918E800B94B16 /* Kotsuhi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kotsuhi.m; sourceTree = "<group>"; };
 		0BA14AE119192C1900B94B16 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				0BA14ADC191918E800B94B16 /* Kotsuhi.m */,
 				0BA5EB58191A860D00323F5F /* MyPattern.h */,
 				0BA5EB59191A860D00323F5F /* MyPattern.m */,
+				0B7DD5951FD5A595001198FB /* DataItem.h */,
+				0B7DD5961FD5A595001198FB /* DataItem.m */,
 				0BA5EB5B191A895000323F5F /* KotsuhiFileManager.h */,
 				0BA5EB5C191A895000323F5F /* KotsuhiFileManager.m */,
 				0B3EC957192E467500966776 /* ConfigManager.h */,
@@ -787,6 +792,7 @@
 				0B096F67192F9E6E00D8E127 /* KotsuhiCalculatorUIApplication.m in Sources */,
 				0B3EC956192E45E100966776 /* InAppPurchaseManager.m in Sources */,
 				0B3EC952192E452400966776 /* PurchaseAddonViewController.m in Sources */,
+				0B7DD5971FD5A595001198FB /* DataItem.m in Sources */,
 				0BA5EB5D191A895000323F5F /* KotsuhiFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

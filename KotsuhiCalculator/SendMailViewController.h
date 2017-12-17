@@ -27,6 +27,8 @@
 
 @property (strong, nonatomic) IBOutlet CheckBoxButton *forWindows;
 
+@property (strong, nonatomic) IBOutlet CheckBoxButton *dayOrder;
+
 @property BOOL sendAll;
 
 @end

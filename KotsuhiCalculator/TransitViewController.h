@@ -17,6 +17,10 @@
 
 @property (strong, nonatomic) NSString* targetUrl;
 
+@property (strong, nonatomic) UITextField* targetTextField;
+
+- (IBAction)inputAmountButton:(id)sender;
+
 - (IBAction)backButton:(id)sender;
 
 @end

@@ -17,6 +17,7 @@
 #define SET_REMOVE_ADS 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
 #define SET_SEND_MAIL 0 // 0=何もしない（リリース時）、1=購入済みにセット、2=未購入にセット
 #define INTERSTITIAL_FREQ 25 // インタースティシャル広告の表示割合（％）
+#define REQ_REVIEW_FREQ 5 // レビュー依頼の表示割合（％）
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GADInterstitialDelegate>
 
@@ -51,8 +52,10 @@
 
 - (void)prepareGadInterstitial;
 
-- (void)showGadInterstitial:(UIViewController*)controller;
+- (BOOL)showGadInterstitial:(UIViewController*)controller;
 
 - (void)interstitialDidDismissScreen:(GADInterstitial*)interstitial;
+
++ (void)requestReview;
 
 @end

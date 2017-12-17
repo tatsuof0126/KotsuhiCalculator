@@ -304,6 +304,8 @@
     } else if ([segueStr isEqualToString:@"transitSegue"] == YES) {
         TransitViewController* controller = [segue destinationViewController];
         
+        controller.targetTextField = _amount;
+        
         NSString* departureStr = [_departure.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         NSString* arrivalStr = [_arrival.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         NSString* routeStr = [_route.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];

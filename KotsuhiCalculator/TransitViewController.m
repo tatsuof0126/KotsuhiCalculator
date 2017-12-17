@@ -77,6 +77,44 @@
 }
 */
 
+- (IBAction)inputAmountButton:(id)sender {
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"金額を入力してください"
+        message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        
+        textField.font = [UIFont systemFontOfSize:20.0];
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        
+        UILabel* leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,60,30)];
+        leftLabel.text = @"";
+        
+        UILabel* rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,60,30)];
+        rightLabel.text = @"円";
+        
+        textField.leftView = leftLabel;
+        textField.leftViewMode = UITextFieldViewModeAlways;
+        textField.rightView = rightLabel;
+        textField.rightViewMode = UITextFieldViewModeAlways;
+    }];
+    
+    [alertController addAction:
+     [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+            handler:^(UIAlertAction *action) {
+                UITextField* textField = alertController.textFields.firstObject;
+                if(textField != nil && _targetTextField != nil){
+                    _targetTextField.text = textField.text;
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }]];
+    [alertController addAction:
+     [UIAlertAction actionWithTitle:@"キャンセル" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 - (IBAction)backButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

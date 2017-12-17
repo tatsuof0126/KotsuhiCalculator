@@ -11,6 +11,7 @@
 #import "KotsuhiFileManager.h"
 #import "ConfigManager.h"
 #import "TrackingManager.h"
+#import "Utility.h"
 
 #define REGIST_BTN 1
 
@@ -267,9 +268,20 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(appDelegate.showInterstitialFlg == YES){
         if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-            [appDelegate showGadInterstitial:self];
-            // [AppDelegate showInterstitial:self];
+            BOOL showed = [appDelegate showGadInterstitial:self];
             appDelegate.showInterstitialFlg = NO;
+            
+            // インタースティシャルが表示されないときはレビュー依頼（データが１０件以上ある場合）
+            if(showed == NO){
+                int dataCount = 0;
+                for(NSArray* kotsuhiList in kotsuhiListByMonth){
+                    dataCount += kotsuhiList.count;
+                }
+                
+                if(dataCount >= 10){
+                    [AppDelegate requestReview];
+                }
+            }
         }
     }
 }

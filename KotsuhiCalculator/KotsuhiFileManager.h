@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Kotsuhi.h"
 #import "MyPattern.h"
+#import "DataItem.h"
 
 @interface KotsuhiFileManager : NSObject
 
@@ -29,6 +30,10 @@
 + (void)removeMyPattern:(int)mypatternid;
 
 + (NSArray*)loadMyPatternList;
+
++ (NSArray*)loadDataItemList;
+
++ (void)saveDataItemList:(NSArray*)dataItemList;
 
 + (void)makeSampleData;
 

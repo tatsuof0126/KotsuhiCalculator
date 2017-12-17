@@ -105,4 +105,18 @@
     [defaults synchronize];
 }
 
++ (BOOL)isDayOrderAsc {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"DAYORDER"] == nil){
+        [self setDayOrderAsc:YES];
+    }
+    return [defaults boolForKey:@"DAYORDER"];
+}
+
++ (void)setDayOrderAsc:(BOOL)dayOrderAsc {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:dayOrderAsc forKey:@"DAYORDER"];
+    [defaults synchronize];
+}
+
 @end
