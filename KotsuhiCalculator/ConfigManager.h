@@ -26,6 +26,10 @@
 
 + (void)setDefaultPurpose:(NSString*)purpose;
 
++ (NSString*)getDefaultDeparture;
+
++ (void)setDefaultDeparture:(NSString*)departure;
+
 + (BOOL)isICCardSearch;
 
 + (void)setICCardSearch:(BOOL)icCardSearch;

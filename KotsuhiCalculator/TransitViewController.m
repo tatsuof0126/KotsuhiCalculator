@@ -35,10 +35,11 @@
     webView.frame = CGRectMake(0, 64, 320, 416);
     [AppDelegate adjustForiPhone5:webView];
     
+    // 運賃を調べる画面で広告を出さないようにする
     // 広告表示（admob）
-    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
-        gadView = [AppDelegate makeGadView:self];
-    }
+//    if(AD_VIEW == 1 && [ConfigManager isRemoveAdsFlg] == NO){
+//        gadView = [AppDelegate makeGadView:self];
+//    }
 }
 
 - (void)adViewDidReceiveAd:(GADBannerView*)adView {

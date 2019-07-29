@@ -23,6 +23,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *purposeText;
 
+@property (strong, nonatomic) IBOutlet UITextField *departureText;
+
 @property (strong, nonatomic) IBOutlet CheckBoxButton *iccardSearch;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *removeAdsBtn;

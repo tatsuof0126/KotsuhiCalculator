@@ -63,6 +63,7 @@
         // 交通手段・目的補足のデフォルトを設定
         kotsuhi.transportation = [ConfigManager getDefaultTransportation];
         kotsuhi.purpose = [ConfigManager getDefaultPurpose];
+        kotsuhi.departure = [ConfigManager getDefaultDeparture];
     }
     
     // 初期値をセット

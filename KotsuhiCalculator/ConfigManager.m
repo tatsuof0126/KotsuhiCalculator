@@ -66,6 +66,20 @@
     [defaults synchronize];
 }
 
++ (NSString*)getDefaultDeparture {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"DEPARTURE"] == nil){
+        [self setDefaultDeparture:@""];
+    }
+    return [defaults stringForKey:@"DEPARTURE"];
+}
+
++ (void)setDefaultDeparture:(NSString*)departure {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:departure forKey:@"DEPARTURE"];
+    [defaults synchronize];
+}
+
 + (BOOL)isICCardSearch {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     return [defaults boolForKey:@"ICCARDSEARCH"];

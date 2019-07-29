@@ -134,6 +134,10 @@
     [ConfigManager setDefaultPurpose:((UITextField*)sender).text];
 }
 
+- (IBAction)departureEdited:(id)sender {
+    [ConfigManager setDefaultDeparture:((UITextField*)sender).text];
+}
+
 - (void)iccardButton:(UITapGestureRecognizer*)sender {
     [_iccardSearch checkboxPush:_iccardSearch];
     [ConfigManager setICCardSearch:_iccardSearch.selected];
