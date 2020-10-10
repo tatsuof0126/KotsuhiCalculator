@@ -111,6 +111,20 @@
 			remoteGlobalIDString = 0B091E3118CF5E5800C93391;
 			remoteInfo = KotsuhiCalculator;
 		};
+		0B3133A622EF86DC009B9565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8FD14B8472F9D4259CBA14B2F9422990;
+			remoteInfo = GoogleUtilities;
+		};
+		0B3133A822EF86DC009B9565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA6982BAC72E6E8B7791A6FC524609EA;
+			remoteInfo = nanopb;
+		};
 		0B7CCA6E1DD62E1200E8C19F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0B7CCA6A1DD62E1200E8C19F /* Pods.xcodeproj */;
@@ -474,6 +488,8 @@
 		0B7CCA6B1DD62E1200E8C19F /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				0B3133A722EF86DC009B9565 /* libGoogleUtilities.a */,
+				0B3133A922EF86DC009B9565 /* libnanopb.a */,
 				0B7CCA6F1DD62E1200E8C19F /* libPods-KotsuhiCalculator.a */,
 			);
 			name = Products;
@@ -642,6 +658,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0B3133A722EF86DC009B9565 /* libGoogleUtilities.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGoogleUtilities.a;
+			remoteRef = 0B3133A622EF86DC009B9565 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0B3133A922EF86DC009B9565 /* libnanopb.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libnanopb.a;
+			remoteRef = 0B3133A822EF86DC009B9565 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0B7CCA6F1DD62E1200E8C19F /* libPods-KotsuhiCalculator.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -931,13 +961,17 @@
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
+					"${PODS_ROOT}/**",
+					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds/\"",
+					"\"${PODS_ROOT}/Headers/Private\"/**",
 				);
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
 					"$(PROJECT_DIR)/KotsuhiCalculator",
 				);
@@ -978,13 +1012,17 @@
 				GCC_PREFIX_HEADER = "KotsuhiCalculator/KotsuhiCalculator-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
+					"${PODS_ROOT}/**",
+					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds/\"",
+					"\"${PODS_ROOT}/Headers/Private\"/**",
 				);
 				INFOPLIST_FILE = "KotsuhiCalculator/KotsuhiCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleAnalyticsLibrary",
 					"$(PROJECT_DIR)/KotsuhiCalculator",
 				);
